@@ -10,7 +10,8 @@ pull_wos <- function(query,
                      edition = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
                                   "BSCI", "BHCI", "IC", "CCR", "ESCI"),
                      email = NULL,
-                     sid = auth()) {
+                     sid = auth(Sys.getenv("WOS_USERNAME"),
+                                Sys.getenv("WOS_PASSWORD"))) {
 
   # First send the query to the API and get back the metadata we'll need to set
   # up the downloading of the data

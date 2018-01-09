@@ -8,7 +8,8 @@
 #' @return A length-1 character vector containing a session ID.
 #'
 #' @export
-auth <- function() {
+auth <- function(username = Sys.getenv("WOS_USERNAME"),
+                 password = Sys.getenv("WOS_PASSWORD")) {
 
   body <-
     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -25,7 +26,7 @@ auth <- function() {
   response <- httr::POST(
     url = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate',
     body = body,
-    httr::authenticate('XXX', password = 'XXX'),
+    httr::authenticate(username, password = password),
     httr::timeout(30)
   )
 

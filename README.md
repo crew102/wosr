@@ -30,6 +30,9 @@ Basic usage
 ``` r
 library(wosr)
 
+# Save your WoS API username and password in envionrment variables
+Sys.setenv(WOS_USERNAME = "your_username", WOS_PASSWORD = "your_password")
+
 # Get session ID:
 sid <- auth()
 
@@ -44,6 +47,9 @@ data <- pull_wos(query = query, sid = sid)
 ### InCites
 
 ``` r
+# Save your InCites developer key in an envionrment variable
+Sys.setenv(INCITES_KEY = "your_key")
+
 # Vector of UTs (publications) to get InCites data for:
 uts <- c("000272272000015", "000272366800025", "000272877700013")
 

@@ -1,7 +1,10 @@
-one_incites_req <- function(one_batch) {
+one_incites_req <- function(one_batch, key) {
   ut_string <- paste0(one_batch, collapse = ",")
   url <- paste0(
-    "https://api.thomsonreuters.com/incites_ps/v1/DocumentLevelMetricsByUT/json?X-TR-API-APP-ID=XXX&UT=", ut_string
+    "https://api.thomsonreuters.com/incites_ps/v1/DocumentLevelMetricsByUT/json?X-TR-API-APP-ID=",
+    key,
+    "&UT=",
+    ut_string
   )
   resp <- httr::GET(
     url = url,
@@ -18,7 +21,7 @@ one_incites_req <- function(one_batch) {
 
 # document this
 #' @export
-pull_incites <- function(uts) {
+pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY")) {
 
   uts <- gsub("^WOS:", "", uts)
 
@@ -47,7 +50,7 @@ pull_incites <- function(uts) {
     one_batch <- unique(uts[start:end])
 
     tryCatch({
-      out_list[[i]] <- one_incites_req(one_batch)
+      out_list[[i]] <- one_incites_req(one_batch, key = key)
     }, error = function(m) {
       msg <- paste0(m$message, collapse = " ")
       message("\nRan into the following error: '", msg, "'\n")
@@ -58,7 +61,7 @@ pull_incites <- function(uts) {
         )
         Sys.sleep(1800)
       }
-      out_list[[i]] <<- try(one_incites_req(one_batch))
+      out_list[[i]] <<- try(one_incites_req(one_batch, key = key))
     })
 
     if (num_tot != 0) {

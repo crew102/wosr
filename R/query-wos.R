@@ -26,7 +26,8 @@ query_wos <- function(query,
                       edition = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
                                   "BSCI", "BHCI", "IC", "CCR", "ESCI"),
                       email = NULL,
-                      sid = auth()) {
+                      sid = auth(Sys.getenv("WOS_USERNAME"),
+                                 Sys.getenv("WOS_PASSWORD"))) {
 
   # Create XML body to POST to server
   body <- paste0(
