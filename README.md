@@ -3,6 +3,7 @@ wosr
 
 > R clients to the Web of Science and Incites APIs
 
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Linux Build Status](https://travis-ci.org/vt-arc/wosr.svg?branch=master)](https://travis-ci.org/vt-arc/wosr)
 
 Introduction
@@ -21,13 +22,12 @@ if (!require(devtools)) install.packages("devtools")
 devtools::install_github("vt-arc/wosr")
 ```
 
-
-Examples
+Basic usage
 ---------------
 
 ### Web of Science
 
-```
+``` r
 library(wosr)
 
 # Get session ID:
@@ -43,7 +43,7 @@ data <- pull_wos(query = query, sid = sid)
 
 ### InCites
 
-```
+``` r
 # Vector of UTs (publications) to get InCites data for:
 uts <- c("000272272000015", "000272366800025", "000272877700013")
 
@@ -53,7 +53,7 @@ data <- pull_incites(uts)
 
 ### Web of Science and Incites
 
-```
+``` r
 # Pull WoS data
 wos <- pull_wos(query = 'TS=("animal welfare")')
 
