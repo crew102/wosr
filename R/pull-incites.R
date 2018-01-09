@@ -2,15 +2,9 @@ one_incites_req <- function(one_batch, key) {
   ut_string <- paste0(one_batch, collapse = ",")
   url <- paste0(
     "https://api.thomsonreuters.com/incites_ps/v1/DocumentLevelMetricsByUT/json?X-TR-API-APP-ID=",
-    key,
-    "&UT=",
-    ut_string
+    key, "&UT=", ut_string
   )
-  resp <- httr::GET(
-    url = url,
-    httr::user_agent("VT-ARC"),
-    httr::add_headers("From" = "chris.baker@vt-arc.org")
-  )
+  resp <- httr::GET(url, ua())
   raw_txt <- httr::content(resp, "text", encoding = "UTF-8")
   if (grepl("rate limit quota violation", raw_txt, ignore.case = TRUE))
     stop("limit")

@@ -17,10 +17,6 @@ one_pull <- function(query_id, first_record, count, sid) {
     </soap:Envelope>'
   )
 
-  # add headers
-  # httr::user_agent("VT-ARC"),
-  # httr::add_headers("From" = "chris.baker@vt-arc.org")
-
   # Send request for WoS data to API
   httr::POST(
     url = "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
@@ -28,7 +24,8 @@ one_pull <- function(query_id, first_record, count, sid) {
     httr::add_headers(
       "cookie" = paste0("SID=", sid),
       "From" = "testing"
-    )
+    ),
+    ua()
   )
 }
 

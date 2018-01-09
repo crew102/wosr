@@ -13,3 +13,5 @@ replace_if_0_rows <- function(x, replace = NULL) {
   }
   x
 }
+
+ua <- function() httr::user_agent("https://github.com/vt-arc/wosr")

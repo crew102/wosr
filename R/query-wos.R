@@ -51,10 +51,6 @@ query_wos <- function(query,
     </soapenv:Envelope>'
   )
 
-  # add headers
-  # httr::user_agent("VT-ARC"),
-  # httr::add_headers("From" = "chris.baker@vt-arc.org")
-
   # Send HTTP request
   response <- httr::POST(
     url = "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
@@ -62,7 +58,8 @@ query_wos <- function(query,
     httr::add_headers(
       "cookie" = sprintf("SID=%s", sid),
       "From" = ifelse(is.null(email), "", email)
-    )
+    ),
+    ua()
   )
 
   # Confirm server didn't throw an error

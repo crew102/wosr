@@ -20,14 +20,13 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
     </soapenv:Body>
     </soapenv:Envelope>'
 
-  # add headers
-
   # Send HTTP POST request
   response <- httr::POST(
     url = 'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate',
     body = body,
     httr::authenticate(username, password = password),
-    httr::timeout(30)
+    httr::timeout(30),
+    ua()
   )
 
   # Confirm server didn't throw an error
