@@ -3,13 +3,11 @@
 #' @param query Query string
 #' @param edition Web of Science editions to query. Possible values are listed
 #' online \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.
-#' @param email Your email. Include this so the good people at Clarivate
-#' Analytics know who's accessing their service. The default value of \code{NULL}
-#' means no email will be included in the HTTP request.
 #' @param sid Session identifier (SID). The default setting is to get a fresh
 #' SID each time you query the WoS, via a call to \code{\link{auth}}. However,
 #' you should try to reuse SID values over multiple queries so that you don't
 #' run into the throttling limits placed on new sessions.
+#' @param ... Arguments passed along to httr's \code{\link[httr]{POST}}
 #'
 #' @return An object of class \code{query_result}. This object has the number
 #' of publications that are returned by your query, as well as all the info
@@ -25,9 +23,9 @@
 query_wos <- function(query,
                       edition = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
                                   "BSCI", "BHCI", "IC", "CCR", "ESCI"),
-                      email = NULL,
                       sid = auth(Sys.getenv("WOS_USERNAME"),
-                                 Sys.getenv("WOS_PASSWORD"))) {
+                                 Sys.getenv("WOS_PASSWORD")),
+                      ...) {
 
   # Create XML body to POST to server
   body <- paste0(
@@ -55,11 +53,9 @@ query_wos <- function(query,
   response <- httr::POST(
     url = "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
     body = body,
-    httr::add_headers(
-      "cookie" = sprintf("SID=%s", sid),
-      "From" = ifelse(is.null(email), "", email)
-    ),
-    ua()
+    httr::add_headers("cookie" = sprintf("SID=%s", sid)),
+    ua(),
+    ...
   )
 
   # Confirm server didn't throw an error

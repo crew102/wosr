@@ -1,4 +1,4 @@
-one_pull <- function(query_id, first_record, count, sid) {
+one_pull <- function(query_id, first_record, count, sid, ...) {
 
   # Create body of HTTP request, which asks for data for a given number of records
   # (count), starting at record number first_record. This allows paginated
@@ -21,15 +21,12 @@ one_pull <- function(query_id, first_record, count, sid) {
   httr::POST(
     url = "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
     body = body,
-    httr::add_headers(
-      "cookie" = paste0("SID=", sid),
-      "From" = "testing"
-    ),
-    ua()
+    httr::add_headers("cookie" = paste0("SID=", sid)),
+    ua(), ...
   )
 }
 
-download_wos <- function(query_result) {
+download_wos <- function(query_result, ...) {
 
   # Make sure query didn't return more than 100,000 results. The API doesn't
   # allow you to download a data set that is more than 100,000 records in size
@@ -62,7 +59,8 @@ download_wos <- function(query_result) {
         query_id = query_result$query_id,
         first_record = 100 * i - 99,
         count = 100,
-        sid = query_result$sid
+        sid = query_result$sid,
+        ...
       )
       check_resp(response, message = "") # add message here?
       all_resps[[i]] <- response
@@ -78,7 +76,8 @@ download_wos <- function(query_result) {
       query_id = query_result$query_id,
       first_record = i_pst_rnds + 1,
       count =  left_over,
-      sid = query_result$sid
+      sid = query_result$sid,
+      ...
     )
     check_resp(response, message = "Got the following error when downloading data:\n\n")
     all_resps[[length_out]] <- response
