@@ -1,0 +1,21 @@
+Package: wosr
+Type: Package
+Title: Clients to the 'Web of Science' and 'InCites' APIs
+Description: An R client to the Web of Science and InCites 
+  <https://clarivate.com/products/data-integration/> web services.
+Version: 0.0.0.9000
+Authors@R: person("Christopher", "Baker", email = "chriscrewbaker@gmail.com",
+  role = c("aut", "cre"))
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.1)
+Imports:
+  httr, 
+  xml2, 
+  jsonlite,
+  pbapply,
+  utils,
+  tools
+RoxygenNote: 6.0.1.9000
+Suggests: testthat

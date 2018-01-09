@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^TODO\.md$
+^makefile$
+^\.travis\.yml$
+^README\.Rmd$
+^README-.*\.png$
