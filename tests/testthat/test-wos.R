@@ -1,13 +1,14 @@
 context("WoS clients")
 
 test_that("authentication works", {
+  skip_on_cran()
   expect_true(is.character(auth()))
 })
 
-sid <- auth()
-
 test_that("Wos clients work as expected for regular result sets", {
 
+  skip_on_cran()
+  sid <- auth()
   query <- "TS = (\"dog welfare\")"
 
   # Test querying of WOS
@@ -23,6 +24,8 @@ test_that("Wos clients work as expected for regular result sets", {
 })
 
 test_that("Wos clients work as expected for small result sets", {
+  skip_on_cran()
+  sid <- auth()
   out <- pull_wos("UT=(000272366800025 OR 000272877700013)", sid = sid)
   expect_true(is.list(out))
 })
