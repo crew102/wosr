@@ -51,7 +51,7 @@ query_wos <- function(query,
 
   # Send HTTP request
   response <- httr::POST(
-    url = "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
+    "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
     body = body,
     httr::add_headers("cookie" = sprintf("SID=%s", sid)),
     ua(),

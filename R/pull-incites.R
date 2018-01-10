@@ -5,7 +5,7 @@ one_incites_req <- function(one_batch, key, ...) {
     key, "&UT=", ut_string
   )
   resp <- httr::GET(url, ua(), ...)
-  raw_txt <- httr::content(resp, "text", encoding = "UTF-8")
+  raw_txt <- httr::content(resp, as = "text", encoding = "UTF-8")
   if (grepl("rate limit quota violation", raw_txt, ignore.case = TRUE))
     stop("limit")
   json_resp <- jsonlite::fromJSON(raw_txt)

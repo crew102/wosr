@@ -15,12 +15,7 @@ pull_wos <- function(query,
 
   # First send the query to the API and get back the metadata we'll need to set
   # up the downloading of the data
-  qr_out <- query_wos(
-    query,
-    editions = editions,
-    sid = sid,
-    ...
-  )
+  qr_out <- query_wos(query, editions = editions, sid = sid, ...)
 
   # Return NA if query didn't match any results
   if (qr_out$rec_cnt == 0) return(NA)

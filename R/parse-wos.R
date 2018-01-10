@@ -24,7 +24,7 @@ one_parse <- function(response) {
 # in a given rec node)
 parse_gen_pub_data <- function(doc_list) {
 
-  pub_els <- c(
+  pub_els_xpath <- c(
     ut = ".//uid[1]", # document id
     title = ".//summary//title[@type='item'][1]", # title
     journal = ".//summary//title[@type='source'][1]", # journal
@@ -36,16 +36,16 @@ parse_gen_pub_data <- function(doc_list) {
     grant_number = ".//fullrecord_metadata//grant_id", # grant numbers
     grant_agency = ".//fullrecord_metadata//grant_agency" # grant orgs
   )
-  pub_els_out <- parse_els_apply(doc_list, xpath = pub_els)
+  pub_els_out <- parse_els_apply(doc_list, xpath = pub_els_xpath)
 
-  pub_atrs <- c(
+  pub_atrs_xpath <- c(
     sortdate = ".//summary//pub_info[1]", # publication's pub date
     value = ".//dynamic_data//identifier[@type='doi'][1]", # publication's DOI
     local_count = ".//citation_related//silo_tc[1]" # times cited
   )
-  pub_atr_out <- parse_atrs_apply(doc_list, xpath = pub_atrs)
+  atr_list <- parse_atrs_apply(doc_list, xpath = pub_atrs_xpath)
 
-  bind_el_atr(pub_els_out, pub_atr_out)
+  bind_el_atr(pub_els_out, atr_list = atr_list)
 }
 
 # For each pub, find the nodes containing author data and extract the relevant
@@ -69,7 +69,7 @@ parse_author_node_data <- function(doc_list) {
     addr_no = "." # Authors address number, for linking to address data
   )
 
-  parse_deep(author_list, el_xpath, atr_xpath)
+  parse_deep(author_list, el_xpath = el_xpath, atr_xpath = atr_xpath)
 }
 
 # For each pub, find the nodes containing address data and extract the relevant
@@ -90,7 +90,7 @@ parse_address_node_data <- function(doc_list) {
   )
   atr_xpath <- c(addr_no = ".")
 
-  parse_deep(address_list, el_xpath, atr_xpath)
+  parse_deep(address_list, el_xpath = el_xpath, atr_xpath = atr_xpath)
 }
 
 ## utility parsing functions

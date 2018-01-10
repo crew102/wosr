@@ -19,7 +19,7 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
 
   # Send request for WoS data to API
   httr::POST(
-    url = "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
+    "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
     body = body,
     httr::add_headers("cookie" = paste0("SID=", sid)),
     ua(), ...
@@ -56,7 +56,7 @@ download_wos <- function(query_result, ...) {
     prog_bar <- utils::txtProgressBar(min = 0, max = full_rnds, style = 3)
     for (i in 1:full_rnds) {
       response <- one_pull(
-        query_id = query_result$query_id,
+        query_result$query_id,
         first_record = 100 * i - 99,
         count = 100,
         sid = query_result$sid,
@@ -73,7 +73,7 @@ download_wos <- function(query_result, ...) {
   # sets of 100 records
   if (left_over > 0) {
     response <- one_pull(
-      query_id = query_result$query_id,
+      query_result$query_id,
       first_record = i_pst_rnds + 1,
       count =  left_over,
       sid = query_result$sid,
