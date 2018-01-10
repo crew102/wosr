@@ -1,7 +1,7 @@
 #' Query the Web of Science
 #'
 #' @param query Query string
-#' @param edition Web of Science editions to query. Possible values are listed
+#' @param editions Web of Science editions to query. Possible values are listed
 #' online \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.
 #' @param sid Session identifier (SID). The default setting is to get a fresh
 #' SID each time you query the WoS, via a call to \code{\link{auth}}. However,
@@ -21,8 +21,8 @@
 #'
 #' @export
 query_wos <- function(query,
-                      edition = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
-                                  "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+                      editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
+                                   "BSCI", "BHCI", "IC", "CCR", "ESCI"),
                       sid = auth(Sys.getenv("WOS_USERNAME"),
                                  Sys.getenv("WOS_PASSWORD")),
                       ...) {
@@ -37,7 +37,7 @@ query_wos <- function(query,
     <queryParameters>
     <databaseId>WOS</databaseId>
     <userQuery> ', escape_query(query), ' </userQuery>',
-    paste_eds(edition),
+    paste_eds(editions),
     '<queryLanguage>en</queryLanguage>
     </queryParameters>
     <retrieveParameters>
@@ -79,13 +79,13 @@ query_wos <- function(query,
 
 # Create part of XML body that contains the WOS editions that should be searched
 # for a given query
-paste_eds <- function(edition) {
+paste_eds <- function(editions) {
 
   edition_vec <- sprintf(
     "<editions>
     <collection>WOS</collection>
     <edition>%s</edition>
-    </editions>", edition
+    </editions>", editions
   )
 
   paste(edition_vec, collapse = " ")

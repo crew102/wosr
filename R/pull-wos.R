@@ -7,7 +7,7 @@
 #'
 #' @export
 pull_wos <- function(query,
-                     edition = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
+                     editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
                                   "BSCI", "BHCI", "IC", "CCR", "ESCI"),
                      sid = auth(Sys.getenv("WOS_USERNAME"),
                                 Sys.getenv("WOS_PASSWORD")),
@@ -17,9 +17,9 @@ pull_wos <- function(query,
   # up the downloading of the data
   qr_out <- query_wos(
     query,
-    edition = edition,
-    email = email,
-    sid = sid
+    editions = editions,
+    sid = sid,
+    ...
   )
 
   # Return NA if query didn't match any results
