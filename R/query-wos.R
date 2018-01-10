@@ -69,7 +69,7 @@ query_wos <- function(query,
   # need to add print method
   structure(
     list(
-      query_id = query_id,
+      query_id = as.numeric(query_id),
       rec_cnt = as.numeric(rec_cnt),
       sid = sid
     ),
