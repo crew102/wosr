@@ -30,6 +30,6 @@ pull_wos <- function(query,
   parse_list <- parse_wos(all_resps)
 
   # Create data frames from list of parsed fields
-  dfs <- data_frame_wos(parse_list)
-  process_wos_apply(dfs)
+  wos_data <- data_frame_wos(parse_list)
+  process_wos(wos_data)
 }

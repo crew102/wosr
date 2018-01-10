@@ -64,5 +64,5 @@ data <- pull_incites(uts)
 wos <- pull_wos(query = 'TS=("animal welfare")')
 
 # Download InCites data for those publications:
-data <- pull_incites(uts = wos$publication_data$ut)
+data <- pull_incites(uts = wos$publication$ut)
 ```

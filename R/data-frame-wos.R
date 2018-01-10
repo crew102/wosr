@@ -3,28 +3,29 @@ data_frame_wos <- function(parse_list) {
   # Create list of data frame sets, one set of dfs for each round of downloading
   df_list <- lapply(parse_list, get_dfs)
   # bind data frames together
-  suppressWarnings(bind_dfs(df_list))
+  wos_data <- suppressWarnings(bind_dfs(df_list))
+  structure(wos_data, class = c(class(wos_data), "wos_data"))
 }
 
 # Create various data frames
 get_dfs <- function(one_set) {
 
-  publication_data <- get_pub_df(one_set$pub_parselist)
+  publication <- get_pub_df(one_set$pub_parselist)
   ut_value_dfs <- get_ut_value_dfs(one_set$pub_parselist)
 
-  ut_vec <- publication_data$ut
-  author_data <- nested_list_to_df(one_set$author_parselist, ut_vec = ut_vec)
-  address_data <- nested_list_to_df(one_set$address_parselist, ut_vec = ut_vec)
+  ut_vec <- publication$ut
+  author <- nested_list_to_df(one_set$author_parselist, ut_vec = ut_vec)
+  address <- nested_list_to_df(one_set$address_parselist, ut_vec = ut_vec)
 
   list(
-    publication_data = publication_data,
-    author_data = author_data,
-    address_data = address_data,
-    jsc_data = ut_value_dfs$jsc,
-    keywords_data = ut_value_dfs$keyword,
-    keywords_plus_data = ut_value_dfs$keywords_plus,
-    grant_number_data = ut_value_dfs$grant_number,
-    grant_agency_data = ut_value_dfs$grant_agency
+    publication = publication,
+    author = author,
+    address = address,
+    jsc = ut_value_dfs$jsc,
+    keyword = ut_value_dfs$keyword,
+    keywords_plus = ut_value_dfs$keywords_plus,
+    grant_number = ut_value_dfs$grant_number,
+    grant_agency = ut_value_dfs$grant_agency
   )
 }
 
@@ -87,7 +88,7 @@ bind_dfs <- function(df_batchs) {
   lapply2(names(df_batchs[[1]]), function(x) {
     structure(
      do.call(rbind, lapply(df_batchs, function(y) replace_if_0_rows(y[[x]]))),
-     class = c("data.frame", x)
+     class = c("data.frame", paste0(x, "_df"))
     )
   })
 }
