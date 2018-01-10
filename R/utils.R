@@ -15,3 +15,7 @@ replace_if_0_rows <- function(x, replace = NULL) {
 }
 
 ua <- function() httr::user_agent("https://github.com/vt-arc/wosr")
+
+format_num <- function(x) format(
+  x, big.mark = ",", scientific = FALSE, trim = TRUE
+)
