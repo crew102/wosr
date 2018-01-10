@@ -41,6 +41,7 @@ process_wos.author_df <- function(x) {
 
   colnames(x)[colnames(x) == "seq_no"] <- "author_no"
   x$author_no <- as.numeric(x$author_no)
+  x$daisng_id <- as.numeric(x$daisng_id)
 
   splt <- strsplit(x$addr_no, " ")
   times <- vapply(splt, function(x) if (is.na(x[1])) 0 else length(x), numeric(1))
