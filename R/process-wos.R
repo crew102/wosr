@@ -4,8 +4,8 @@ process_wos.default <- function(x) x
 
 process_wos.wos_data <- function(x) {
 
-  proc_out <- lapply(x, function(y)
-    process_wos(replace_if_0_rows(y, replace = NA))
+  proc_out <- lapply(x, function(one_df)
+    process_wos(replace_if_0_rows(one_df, replace = NA))
   )
   author_address <- proc_out$author[[2]]
   proc_out$author <- proc_out$author[[1]]
@@ -19,7 +19,7 @@ process_wos.wos_data <- function(x) {
 
   # have to remove _df classes on data frames and add back wos_data class
   # on list of data frames so that printing is nice
-  wos_data <- lapply(temp_out, function(y) structure(y, class = "data.frame"))
+  wos_data <- lapply(temp_out, structure, class = "data.frame")
   structure(wos_data, class = c("list", "wos_data"))
 }
 

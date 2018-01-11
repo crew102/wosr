@@ -109,7 +109,7 @@ unescape_xml <- function(x) {
 }
 
 split_nodes <- function(doc_list, xpath)
-  lapply(doc_list, function(x) xml_find_all(x, xpath))
+  lapply(doc_list, xml_find_all, xpath = xpath)
 
 parse_deep <- function(entity_list, el_xpath, atr_xpath) {
   lapply(entity_list, function(x) {
@@ -123,7 +123,7 @@ parse_deep <- function(entity_list, el_xpath, atr_xpath) {
 }
 
 parse_els_apply <- function(doc_list, xpath)
-  lapply(doc_list, function(x) parse_els(x, xpath = xpath))
+  lapply(doc_list, parse_els, xpath = xpath)
 
 parse_els <- function(doc, xpath)
   lapply(xpath, function(x) parse_el_txt(doc, x))
@@ -134,7 +134,7 @@ parse_el_txt <- function(doc, xpath) {
 }
 
 parse_atrs_apply <- function(doc_list, xpath)
-  lapply(doc_list, function(x) parse_atrs(x, xpath = xpath))
+  lapply(doc_list, parse_atrs, xpath = xpath)
 
 parse_atrs <- function(doc, xpath) {
   lapply2(names(xpath), function(x) {
