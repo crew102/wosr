@@ -20,7 +20,7 @@ process_wos.wos_data <- function(x) {
   # have to remove _df classes on data frames and add back wos_data class
   # on list of data frames so that printing is nice
   wos_data <- lapply(temp_out, structure, class = "data.frame")
-  structure(wos_data, class = c("list", "wos_data"))
+  append_class(wos_data, "wos_data")
 }
 
 process_wos.publication_df <- function(x) {

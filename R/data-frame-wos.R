@@ -90,8 +90,8 @@ nested_list_to_df <- function(list, ut_vec) {
 bind_dfs <- function(df_batchs) {
   lapply2(names(df_batchs[[1]]), function(x) {
     structure(
-     do.call(rbind, lapply(df_batchs, function(y) replace_if_0_rows(y[[x]]))),
-     class = c("data.frame", paste0(x, "_df"))
+     do.call(rbind, lapply(df_batchs, function(y) y[[x]])),
+     class = append_class(x, paste0(x, "_df")) # add classes to dfs for oop in process-wos
     )
   })
 }

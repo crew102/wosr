@@ -19,3 +19,5 @@ ua <- function() httr::user_agent("https://github.com/vt-arc/wosr")
 format_num <- function(x) format(
   x, big.mark = ",", scientific = FALSE, trim = TRUE
 )
+
+append_class <- function(x, class) structure(x, class = c(class(x), class))
