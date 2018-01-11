@@ -60,7 +60,10 @@ get_ut_value_dfs <- function(pub_parselist) {
 one_ut_value_df <- function(one_list) {
   lapply2(ut_val_flds, function(f) {
       vec <- one_list[[f]]
-      if (is.na(vec[1]) || length(vec) == 0) return(NULL)
+      # have to seperate these two if statemetns so null's arn't checked in
+      # second statement (which would throw warning)
+      if (is.null(vec)) return(NULL)
+      if (is.na(vec[1])) return(NULL)
       len <- length(vec)
       ut <- rep(one_list$ut, len)
       df <- data.frame(
