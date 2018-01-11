@@ -2,7 +2,7 @@ process_wos <- function(x) UseMethod("process_wos")
 
 process_wos.default <- function(x) x
 
-process_wos.wos_data <- function(x) {
+process_wos_apply <- function(df_list) {
 
   proc_out <- lapply(df_list, process_wos)
 

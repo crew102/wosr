@@ -3,8 +3,7 @@ data_frame_wos <- function(parse_list) {
   # Create list of data frame sets, one set of dfs for each round of downloading
   df_list <- lapply(parse_list, get_dfs)
   # bind data frames together
-  wos_data <- suppressWarnings(bind_dfs(df_list))
-  structure(wos_data, class = c(class(wos_data), "wos_data"))
+  suppressWarnings(bind_dfs(df_list))
 }
 
 # Create various data frames
