@@ -2,13 +2,15 @@ context("WoS clients")
 
 test_that("authentication works", {
   skip_on_cran()
-  expect_true(is.character(auth()))
+  # reuse sid across tests, so we don't run into throttling limits. note that
+  # this has to be insdie test_that function, so we can use skip_on_cran.
+  sid <<- auth()
+  expect_true(is.character(sid))
 })
 
 test_that("Wos clients work as expected for regular result sets", {
 
   skip_on_cran()
-  sid <- auth()
   query <- "TS = (\"dog welfare\")"
 
   # Test querying of WOS
@@ -23,9 +25,8 @@ test_that("Wos clients work as expected for regular result sets", {
   expect_true(all(dfs_have_rows))
 })
 
-test_that("Wos clients work as expected for small result sets", {
+test_that("pull_wos works as expected for small result sets", {
   skip_on_cran()
-  sid <- auth()
   out <- pull_wos("UT=(000272366800025 OR 000272877700013)", sid = sid)
   expect_true(is.list(out))
 })
