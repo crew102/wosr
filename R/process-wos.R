@@ -4,18 +4,16 @@ process_wos.default <- function(x) x
 
 process_wos.wos_data <- function(x) {
 
-  proc_out <- lapply(x, function(one_df)
-    process_wos(replace_if_0_rows(one_df, replace = NA))
-  )
-  author_address <- proc_out$author[[2]]
-  proc_out$author <- proc_out$author[[1]]
+  proc_out <- lapply(df_list, process_wos)
 
+  # Pull out data frames in proc_out$author and reorder dfs
   temp_out <- c(
-    proc_out[1:3],
-    author_address = NA,
-    proc_out[4:length(proc_out)]
+    proc_out[1], # publication
+    proc_out$author[1], # author
+    proc_out[3], # address
+    proc_out$author[2], # author_address
+    proc_out[4:length(proc_out)] # rest of columns
   )
-  temp_out$author_address <- author_address
 
   # have to remove _df classes on data frames and add back wos_data class
   # on list of data frames so that printing is nice
@@ -49,21 +47,23 @@ process_wos.author_df <- function(x) {
   author_no <- rep(x$author_no, times)
   addr_no <- unlist(splt[vapply(splt, function(x) !is.na(x[1]), logical(1))])
 
-  author_address_link <- data.frame(
-    ut = ut,
-    author_no = author_no,
-    addr_no = as.numeric(addr_no),
-    stringsAsFactors = FALSE
-  )
+  if (sum(times) != 0)  # if there is a need for a author_address table b/c data exists
+    author_address <- data.frame(
+      ut = ut,
+      author_no = author_no,
+      addr_no = as.numeric(addr_no),
+      stringsAsFactors = FALSE
+    )
+  else
+    author_address <- NA
 
-  x$addr_no <- NULL
   author_cols <- c(
     "ut", "author_no", "display_name", "first_name", "last_name",
     "email", "daisng_id"
   )
   list(
-    x[, author_cols],
-    replace_if_0_rows(author_address_link, replace = NA)
+    author = x[, author_cols],
+    author_address = author_address
   )
 }
 
