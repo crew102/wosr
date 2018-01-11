@@ -1,6 +1,6 @@
 context("Incites client")
 
-test_that("pull_incites works as expected", {
+test_that("pull_incites works for a small number of uts", {
 
   skip_on_cran()
   uts <- c(
@@ -11,7 +11,11 @@ test_that("pull_incites works as expected", {
   out_incites <- pull_incites(uts)
   expect_true(nrow(out_incites) == length(uts))
 
-  data_out <- pull_wos("TS = (dog welfare)")
-  out_incites_2 <- pull_incites(data_out$publication_data$ut)
-  expect_true(nrow(out_incites_2) > 1000)
 })
+
+# test_that("pull_incites works for a large number of uts", {
+#   skip_on_cran()
+#   data_out <- pull_wos("TS = (dog welfare)")
+#   out_incites_2 <- pull_incites(data_out$publication$ut)
+#   expect_true(nrow(out_incites_2) > 1000)
+# })
