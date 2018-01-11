@@ -4,14 +4,33 @@
 \alias{auth}
 \title{Authenticate user credentials}
 \usage{
-auth()
+auth(username = Sys.getenv("WOS_USERNAME"),
+  password = Sys.getenv("WOS_PASSWORD"))
+}
+\arguments{
+\item{username}{Your username}
+
+\item{password}{Your password}
 }
 \value{
-A length-1 character vector containing a session ID.
+A session ID
 }
 \description{
-\code{auth} asks the API server for a session ID (SID), which will later be
+\code{auth} asks the API's server for a session ID (SID), which will later be
 passed to either \code{\link{query_wos}} or \code{\link{pull_wos}}. Note,
-there are limits on how many SIDs you can get in a given period of time
+there are limits on how many session IDs you can get in a given period of time
 (roughly 5 SIDs in a 5 minute time period).
+}
+\examples{
+\dontrun{
+
+# Pass user credentials in manually:
+auth("some_username", password = "some_password")
+
+# Use default of looking for username and password in env variables, so you
+# don't have to keep specifying them in your code:
+Sys.setenv(WOS_USERNAME = "some_username", WOS_PASSWORD = "some_password")
+auth()
+}
+
 }

@@ -17,7 +17,7 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
     </soap:Envelope>'
   )
 
-  # Function to send a request for WoS data to API
+  # Function to send a request to the API
   one_post <- function() {
     httr::POST(
       "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
@@ -28,7 +28,7 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
   }
 
   # If you run into throttling error (2 calls per second per SID), just make
-  # request again (up to three trys)
+  # request again (up to three tries)
   for (i in 1:3) {
     response <- one_post()
     maybe_error <- try(check_resp(response, ""), silent = TRUE)

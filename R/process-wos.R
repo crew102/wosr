@@ -73,7 +73,7 @@ process_wos.address_df <- function(x) {
 }
 
 process_wos.jsc_df <- function(x) {
-  # There are duplicate JSC values (differing only in capitilization). Remove these.
+  # There are duplicate JSC values (differing only in capitalization). Remove these.
   x$jsc <- to_title_case(x$jsc)
   unique(x)
 }

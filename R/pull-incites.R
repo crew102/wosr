@@ -13,7 +13,36 @@ one_incites_req <- function(one_batch, key, ...) {
   if (is.data.frame(temp_out)) temp_out else NULL
 }
 
-# document this
+#' Pull data from the InCites API
+#'
+#' @param uts A vector of UTs whose InCites data you would like to get from the
+#' API's server. Each UT is a 15-digit identifier for a given publication. You
+#' can specify the UT using only these 15 digits, or you can append the 15 digits
+#' with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").
+#' @param key The developer key that the server will use to authenticate your
+#' account.
+#' @param ... Arguments passed along to \code{\link[httr]{GET}}
+#'
+#' @return A data frame where each row corresponds to a different publication.
+#' The definitions for the columns in this data frame can be found online at
+#' the API's documentation \href{http://about.incites.thomsonreuters.com/api/#!/InCites_API_Methods/get_DocumentLevelMetricsByUT_format}{page} (thought note that the column names are all
+#' converted to lower case by \code{pull_incites} and 0/1 flag variables
+#' converted to booleans). Also note that not all publications that are indexed
+#' in WoS are also indexed in InCites, so you may not receive data back for
+#' some UTs.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' uts <- c(
+#' "WOS:000346263300011", "WOS:000362312600021", "WOS:000279885800004",
+#' "WOS:000294667500003", "WOS:000294946900020", "WOS:000412659200006"
+#' )
+#' pull_incites(uts, key = "some_key")
+#'
+#' pull_incites(c("000346263300011", "000362312600021"), key = "some_key")
+#'}
+#'
 #' @export
 pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), ...) {
 
@@ -23,7 +52,7 @@ pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), ...) {
   num_tot <- ceiling(l / 100)
 
   # requests are made in batches of 100...use trick of appending any batches
-  # that arn't 100 in size so they are, then calling unique on ut_vec...this
+  # that aren’t 100 in size so they are, then calling unique on ut_vec...this
   # makes it easy to index ut_vec in a single fashion
   needs_uts <- num_tot * 100 - l
   if (needs_uts != 0) {
