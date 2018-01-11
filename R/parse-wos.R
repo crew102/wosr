@@ -15,7 +15,8 @@ one_parse <- function(response) {
   list(
     pub_parselist = parse_gen_pub_data(doc_list),
     author_parselist = parse_author_node_data(doc_list),
-    address_parselist = parse_address_node_data(doc_list)
+    address_parselist = parse_address_node_data(doc_list),
+    grant_parselist = parse_grant_data(doc_list)
   )
 }
 
@@ -32,9 +33,7 @@ parse_gen_pub_data <- function(doc_list) {
     abstract = ".//fullrecord_metadata//p[ancestor::abstract_text]", # abstract
     jsc = ".//fullrecord_metadata//subject[@ascatype='traditional']", # JSCs
     keyword = ".//fullrecord_metadata//keyword", # keywords
-    keywords_plus = ".//static_data//keywords_plus/keyword", # keywords plus
-    grant_number = ".//fullrecord_metadata//grant_id", # grant numbers
-    grant_agency = ".//fullrecord_metadata//grant_agency" # grant orgs
+    keywords_plus = ".//static_data//keywords_plus/keyword" # keywords plus
   )
   pub_els_out <- parse_els_apply(doc_list, xpath = pub_els_xpath)
 
@@ -82,8 +81,8 @@ parse_address_node_data <- function(doc_list) {
   )
 
   el_xpath <- c(
-    org_pref = "./organizations/organization[@pref='Y'][1]", # preferred name of org
-    org = "./organizations/organization[not(@pref='Y')][1]", # regular name of org
+    org_pref = "organizations/organization[@pref='Y'][1]", # preferred name of org
+    org = "organizations/organization[not(@pref='Y')][1]", # regular name of org
     city = "city[1]", # org city
     state = "state[1]", # org state
     country = "country[1]" # org country
@@ -91,6 +90,12 @@ parse_address_node_data <- function(doc_list) {
   atr_xpath <- c(addr_no = ".")
 
   parse_deep(address_list, el_xpath = el_xpath, atr_xpath = atr_xpath)
+}
+
+parse_grant_data <- function(doc_list) {
+  grant_list <- split_nodes(doc_list, ".//fund_ack/grants/grant")
+  el_xpath <- c(grant_agency = "grant_agency", grant_id = "grant_ids/grant_id")
+  parse_deep_grants(grant_list, el_xpath = el_xpath)
 }
 
 ## utility parsing functions
@@ -117,6 +122,21 @@ parse_deep <- function(entity_list, el_xpath, atr_xpath) {
       els <- parse_els(q, xpath = el_xpath)
       atrs <- parse_atrs(q, xpath = atr_xpath)
       unlist(c(els, atrs))
+    })
+    do.call(rbind, one_ent_data)
+  })
+}
+
+parse_deep_grants <- function(entity_list, el_xpath) {
+  lapply(entity_list, function(x) {
+    one_ent_data <- lapply(x, function(q) {
+      temp <- parse_els(q, xpath = el_xpath)
+      num_ids <- length(temp$grant_id)
+      # if num_ids isn't length 0 (i.e., null) or length 1 (not requiring we rep vector)
+      if (num_ids >= 2) {
+        temp$grant_agency <- rep(temp$grant_agency, num_ids)
+      }
+      do.call(cbind, temp)
     })
     do.call(rbind, one_ent_data)
   })

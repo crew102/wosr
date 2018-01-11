@@ -16,6 +16,7 @@ get_dfs <- function(one_set) {
   ut_vec <- publication$ut
   author <- nested_list_to_df(one_set$author_parselist, ut_vec = ut_vec)
   address <- nested_list_to_df(one_set$address_parselist, ut_vec = ut_vec)
+  grant <- nested_list_to_df(one_set$grant_parselist, ut_vec = ut_vec)
 
   list(
     publication = publication,
@@ -24,8 +25,7 @@ get_dfs <- function(one_set) {
     jsc = ut_value_dfs$jsc,
     keyword = ut_value_dfs$keyword,
     keywords_plus = ut_value_dfs$keywords_plus,
-    grant_number = ut_value_dfs$grant_number,
-    grant_agency = ut_value_dfs$grant_agency
+    grant = grant
   )
 }
 
