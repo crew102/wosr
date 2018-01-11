@@ -11,7 +11,8 @@
 auth <- function(username = Sys.getenv("WOS_USERNAME"),
                  password = Sys.getenv("WOS_PASSWORD")) {
 
-  body <- '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+  body <-
+    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
     xmlns:auth="http://auth.cxf.wokmws.thomsonreuters.com">
     <soapenv:Header/>
     <soapenv:Body>
@@ -21,7 +22,7 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
 
   # Send HTTP POST request
   response <- httr::POST(
-    'http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate',
+    "http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate",
     body = body,
     httr::authenticate(username, password = password),
     httr::timeout(30),
@@ -36,5 +37,5 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
 
   # Pull out SID from XML
   doc <- get_xml(response)
-  parse_el_txt(doc, "//return")
+  parse_el_txt(doc, xpath = "//return")
 }

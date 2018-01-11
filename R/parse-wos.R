@@ -9,7 +9,7 @@ one_parse <- function(response) {
   doc <- get_xml(response)
 
   # Get nodes corresponding to each publication
-  doc_list <- xml_find_all(doc, "//rec")
+  doc_list <- xml_find_all(doc, xpath = "//rec")
 
   # Parse data
   list(
@@ -100,7 +100,7 @@ parse_grant_data <- function(doc_list) {
 
 ## utility parsing functions
 get_xml <- function(response) {
-  raw_xml <- httr::content(response, "text")
+  raw_xml <- httr::content(response, as = "text")
   unescaped_xml <- unescape_xml(raw_xml)
   unescaped_xml <- paste0("<x>", unescaped_xml, "</x>")
   read_html(unescaped_xml)
@@ -146,10 +146,10 @@ parse_els_apply <- function(doc_list, xpath)
   lapply(doc_list, parse_els, xpath = xpath)
 
 parse_els <- function(doc, xpath)
-  lapply(xpath, function(x) parse_el_txt(doc, x))
+  lapply(xpath, function(x) parse_el_txt(doc, xpath = x))
 
 parse_el_txt <- function(doc, xpath) {
-  txt <- xml_text(xml_find_all(doc, xpath))
+  txt <- xml_text(xml_find_all(doc, xpath = xpath))
   na_if_missing(txt)
 }
 
@@ -158,7 +158,7 @@ parse_atrs_apply <- function(doc_list, xpath)
 
 parse_atrs <- function(doc, xpath) {
   lapply2(names(xpath), function(x) {
-    el <- xml_find_all(doc, xpath[[x]])
+    el <- xml_find_all(doc, xpath = xpath[[x]])
     atr_out <- xml_attr(el, attr = x)
     na_if_missing(atr_out)
   })
