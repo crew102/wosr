@@ -30,3 +30,15 @@ test_that("pull_wos works as expected for small result sets", {
   out <- pull_wos("UT=(000272366800025 OR 000272877700013)", sid = sid)
   expect_true(is.list(out))
 })
+
+test_that("pull_wos returns na for empty result sets", {
+  skip_on_cran()
+  out <- pull_wos("UT=(0002723668000)", sid = sid)
+  expect_true(is.na(out))
+})
+
+test_that("pull_wos returns data frames with NAs when data frame has no data", {
+  skip_on_cran()
+  out <- pull_wos("Ti=(\"pet welfare\")", sid = sid)
+  expect_true(is.data.frame(out$keyword) && ncol(out$keyword) == 2)
+})
