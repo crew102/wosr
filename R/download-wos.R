@@ -17,13 +17,28 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
     </soap:Envelope>'
   )
 
-  # Send request for WoS data to API
-  httr::POST(
-    "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
-    body = body,
-    httr::add_headers("cookie" = paste0("SID=", sid)),
-    ua(), ...
-  )
+  # Function to send a request for WoS data to API
+  one_post <- function() {
+    httr::POST(
+      "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
+      body = body,
+      httr::add_headers("cookie" = paste0("SID=", sid)),
+      ua(), ...
+    )
+  }
+
+  # If you run into throttling error (2 calls per second per SID), just make
+  # request again (up to three trys)
+  for (i in 1:3) {
+    response <- one_post()
+    maybe_error <- try(check_resp(response, ""), silent = TRUE)
+    if (!("try-error" %in% class(maybe_error))) {
+      return(response)
+    } else {
+      if (!grepl("throttle", maybe_error[1], ignore.case = TRUE))
+        return(response)
+    }
+  }
 }
 
 download_wos <- function(query_result, ...) {
