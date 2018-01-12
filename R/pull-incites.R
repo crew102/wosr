@@ -1,18 +1,3 @@
-one_incites_req <- function(one_batch, key, ...) {
-  ut_string <- paste0(one_batch, collapse = ",")
-  url <- paste0(
-    "https://api.thomsonreuters.com/incites_ps/v1/DocumentLevelMetricsByUT/json?X-TR-API-APP-ID=",
-    key, "&UT=", ut_string
-  )
-  resp <- httr::GET(url, ua(), ...)
-  raw_txt <- httr::content(resp, as = "text", encoding = "UTF-8")
-  if (grepl("rate limit quota violation", raw_txt, ignore.case = TRUE))
-    stop("limit")
-  json_resp <- jsonlite::fromJSON(raw_txt)
-  temp_out <- json_resp$api$rval[[1]]
-  if (is.data.frame(temp_out)) temp_out else NULL
-}
-
 #' Pull data from the InCites API
 #'
 #' @param uts A vector of UTs whose InCites data you would like to get from the
@@ -25,11 +10,12 @@ one_incites_req <- function(one_batch, key, ...) {
 #'
 #' @return A data frame where each row corresponds to a different publication.
 #' The definitions for the columns in this data frame can be found online at
-#' the API's documentation \href{http://about.incites.thomsonreuters.com/api/#!/InCites_API_Methods/get_DocumentLevelMetricsByUT_format}{page} (thought note that the column names are all
-#' converted to lower case by \code{pull_incites} and 0/1 flag variables
-#' converted to booleans). Also note that not all publications that are indexed
-#' in WoS are also indexed in InCites, so you may not receive data back for
-#' some UTs.
+#' the API's documentation \href{http://about.incites.thomsonreuters.com/api/#/}{page}
+#' (see the \code{DocumentLevelMetricsByUT} method details for definitions).
+#' Note that the column names are all converted to lower case by
+#' \code{pull_incites} and 0/1 flag variables converted to booleans). Also note
+#' that not all publications that are indexed in WoS are also indexed in
+#' InCites, so you may not receive data back for some UTs.
 #'
 #' @examples
 #' \dontrun{
@@ -45,54 +31,61 @@ one_incites_req <- function(one_batch, key, ...) {
 #'
 #' @export
 pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), ...) {
-
   uts <- gsub("^WOS:", "", uts)
-
-  l <- length(uts)
-  num_tot <- ceiling(l / 100)
-
-  # requests are made in batches of 100...use trick of appending any batches
-  # that aren’t 100 in size so they are, then calling unique on ut_vec...this
-  # makes it easy to index ut_vec in a single fashion
-  needs_uts <- num_tot * 100 - l
-  if (needs_uts != 0) {
-    to_add <- rep(uts[1], needs_uts)
-    uts <- c(uts, to_add)
-  }
-
-  out_list <- vector(mode = "list", length = num_tot)
-
-  if (num_tot != 0) {
-   prog_bar <- utils::txtProgressBar(min = 0, max = num_tot, style = 3)
-  }
-
-  for (i in 1:num_tot) {
-
-    start <- ((i - 1) * 100) + 1
-    end <- i * 100
-    one_batch <- unique(uts[start:end])
-
-    tryCatch({
-      out_list[[i]] <- one_incites_req(one_batch, key = key, ...)
-    }, error = function(m) {
-      msg <- paste0(m$message, collapse = " ")
-      message("\nRan into the following error: '", msg, "'\n")
-      if (grepl(pattern = "limit", x = msg, ignore.case = TRUE)) {
-        message(
-          "Pausing execution and retrying in 30 minutes. ",
-          "Will restart execution at ", format(Sys.time() + 1800, "%X"), ".\n"
-        )
-        Sys.sleep(1800)
-      }
-      out_list[[i]] <<- try(one_incites_req(one_batch, key = key, ...))
-    })
-
-    if (num_tot != 0) {
-      utils::setTxtProgressBar(prog_bar, i)
-    }
-
-    Sys.sleep(2)
-  }
-
+  urls <- get_urls(uts = gsub("^WOS:", "", uts), key = key)
+  out_list <- pbapply::pblapply(urls, try_incites_req, ... = ...)
   unique(process_incites(do.call("rbind", out_list)))
+}
+
+get_urls <- function(uts, key) {
+  ut_list <- split_uts(uts)
+  lapply(ut_list, get_url, key = key)
+}
+
+split_uts <- function(uts) {
+  len <- seq_along(uts)
+  f <- ceiling(len / 100)
+  split(uts, f = f)
+}
+
+get_url <- function(uts, key) {
+  paste0(
+    "https://api.thomsonreuters.com/incites_ps/v1/DocumentLevelMetricsByUT/json?X-TR-API-APP-ID=",
+    key,
+    "&UT=",
+    paste0(uts, collapse = ",")
+  )
+}
+
+try_incites_req <- function(url, ...) {
+
+  # Try making the HTTP request up to 30 times (spaced 1 minute apart)
+  for (i in 1:30) {
+    maybe_data <- try(one_incites_req(url, ...), silent = TRUE)
+    if (!("try-error" %in% class(maybe_data))) {
+      Sys.sleep(2)
+      return(maybe_data)
+    } else {
+      if (grepl("limit", maybe_data[1])) {
+        message("\nRan into throttling limit. Retrying request in 1 minute.")
+        Sys.sleep(60)
+      } else {
+        stop(maybe_data[1])
+      }
+    }
+  }
+
+  stop("\n\nRan into throttling limit 30 times, stopping")
+}
+
+one_incites_req <- function(url, ...) {
+  response <- httr::GET(url, ua(), ...)
+  raw_txt <- httr::content(response, as = "text", encoding = "UTF-8")
+  if (grepl("rate limit quota violation", raw_txt, ignore.case = TRUE))
+    stop("limit")
+  if (httr::http_error(response))
+    stop(httr::http_status(response))
+  json_resp <- jsonlite::fromJSON(raw_txt)
+  maybe_data_frame <- json_resp$api$rval[[1]]
+  if (is.data.frame(maybe_data_frame)) maybe_data_frame else NULL
 }
