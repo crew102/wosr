@@ -1,7 +1,3 @@
-process_wos <- function(x) UseMethod("process_wos")
-
-process_wos.default <- function(x) x
-
 process_wos_apply <- function(df_list) {
 
   proc_out <- lapply(df_list, process_wos)
@@ -20,6 +16,10 @@ process_wos_apply <- function(df_list) {
   wos_data <- lapply(temp_out, structure, class = "data.frame")
   append_class(wos_data, "wos_data")
 }
+
+process_wos <- function(x) UseMethod("process_wos")
+
+process_wos.default <- function(x) x
 
 process_wos.publication_df <- function(x) {
   colnames(x)[colnames(x) == "local_count"] <- "tot_cites"

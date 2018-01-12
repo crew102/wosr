@@ -1,3 +1,39 @@
+download_wos <- function(query_result, ...) {
+
+  # Make sure query didn't return more than 100,000 results. The API doesn't
+  # allow you to download a data set that is more than 100,000 records in size
+  rec_cnt <- query_result$rec_cnt
+  if (rec_cnt >= 100000) {
+    stop(
+        "Can't download result sets that have 100,000 or more records.
+        Break your query into pieces using the PY tag." # add pointer to documentation
+    )
+  }
+
+  # Return NA if no pubs matched the query
+  if (rec_cnt == 0) return(NA)
+
+  from <- seq(1, to = rec_cnt, by = 100)
+  count <- rep(100, times = length(from))
+  count[length(count)] <- rec_cnt - from[length(count)] + 1
+
+  pbapply::pblapply(seq_len(length(from)), function(x) {
+    response <- one_pull(
+      query_result$query_id,
+      first_record = from[x],
+      count = count[x],
+      sid = query_result$sid,
+      ...
+    )
+    check_resp(
+      response,
+      message = "Got the following error when downloading data:\n\n"
+    )
+    response
+  })
+
+}
+
 one_pull <- function(query_id, first_record, count, sid, ...) {
 
   # Create body of HTTP request, which asks for data for a given number of records
@@ -39,40 +75,4 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
         return(response)
     }
   }
-}
-
-download_wos <- function(query_result, ...) {
-
-  # Make sure query didn't return more than 100,000 results. The API doesn't
-  # allow you to download a data set that is more than 100,000 records in size
-  rec_cnt <- query_result$rec_cnt
-  if (rec_cnt >= 100000) {
-    stop(
-        "Can't download result sets that have 100,000 or more records.
-        Break your query into pieces using the PY tag." # add pointer to documentation
-    )
-  }
-
-  # Return NA if no pubs matched the query
-  if (rec_cnt == 0) return(NA)
-
-  from <- seq(1, to = rec_cnt, by = 100)
-  count <- rep(100, times = length(from))
-  count[length(count)] <- rec_cnt - from[length(count)] + 1
-
-  pbapply::pblapply(seq_len(length(from)), function(x) {
-    response <- one_pull(
-      query_result$query_id,
-      first_record = from[x],
-      count = count[x],
-      sid = query_result$sid,
-      ...
-    )
-    check_resp(
-      response,
-      message = "Got the following error when downloading data:\n\n"
-    )
-    response
-  })
-
 }
