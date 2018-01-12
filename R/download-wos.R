@@ -56,47 +56,23 @@ download_wos <- function(query_result, ...) {
   # Return NA if no pubs matched the query
   if (rec_cnt == 0) return(NA)
 
-  full_rnds <- floor(rec_cnt / 100)
-  i_pst_rnds <- full_rnds * 100
-  left_over <- rec_cnt - i_pst_rnds
-  bool_left_over <- left_over > 0
-  length_out <- full_rnds + bool_left_over
-  all_resps <- vector(mode = "list", length = length_out)
+  from <- seq(1, to = rec_cnt, by = 100)
+  count <- rep(100, times = length(from))
+  count[length(count)] <- rec_cnt - from[length(count)] + 1
 
-  # change this loop to use pbapply
-
-  # For each "round" of records (i.e., set of 100 publications), we download
-  # the data from the API and put it in the all_resps list.
-  if (full_rnds > 0) {
-    prog_bar <- utils::txtProgressBar(min = 0, max = full_rnds, style = 3)
-    for (i in 1:full_rnds) {
-      response <- one_pull(
-        query_result$query_id,
-        first_record = 100 * i - 99,
-        count = 100,
-        sid = query_result$sid,
-        ...
-      )
-      check_resp(response, message = "") # add message here?
-      all_resps[[i]] <- response
-
-      utils::setTxtProgressBar(prog_bar, i)
-    }
-  }
-
-  # The left_over records are the final records that were not captured in the
-  # sets of 100 records
-  if (left_over > 0) {
+  pbapply::pblapply(seq_len(length(from)), function(x) {
     response <- one_pull(
       query_result$query_id,
-      first_record = i_pst_rnds + 1,
-      count =  left_over,
+      first_record = from[x],
+      count = count[x],
       sid = query_result$sid,
       ...
     )
-    check_resp(response, message = "Got the following error when downloading data:\n\n")
-    all_resps[[length_out]] <- response
-  }
+    check_resp(
+      response,
+      message = "Got the following error when downloading data:\n\n"
+    )
+    response
+  })
 
-  all_resps
 }
