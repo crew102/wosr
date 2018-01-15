@@ -1,16 +1,16 @@
 context("WoS clients")
 
 test_that("authentication works", {
-  skip_on_cran()
+  skip_if_no_auth()
   # reuse sid across tests, so we don't run into throttling limits. note that
-  # this has to be insdie test_that function, so we can use skip_on_cran.
+  # this has to be insdie test_that function, so we can use skip_if_no_auth()
   sid <<- auth()
   expect_true(is.character(sid))
 })
 
 test_that("Wos clients work as expected for regular result sets", {
 
-  skip_on_cran()
+  skip_if_no_auth()
   query <- "TS = (\"dog welfare\")"
 
   # Test querying of WOS
@@ -26,19 +26,19 @@ test_that("Wos clients work as expected for regular result sets", {
 })
 
 test_that("pull_wos works as expected for small result sets", {
-  skip_on_cran()
+  skip_if_no_auth()
   out <- pull_wos("UT=(000272366800025 OR 000272877700013)", sid = sid)
   expect_true(is.list(out))
 })
 
 test_that("pull_wos returns na for empty result sets", {
-  skip_on_cran()
+  skip_if_no_auth()
   out <- pull_wos("UT=(0002723668000)", sid = sid)
   expect_true(is.na(out))
 })
 
 test_that("pull_wos returns data frames with NAs when data frame has no data", {
-  skip_on_cran()
+  skip_if_no_auth()
   out <- pull_wos("Ti=(\"pet welfare\")", sid = sid)
   expect_true(is.data.frame(out$keyword) && ncol(out$keyword) == 2)
 })
