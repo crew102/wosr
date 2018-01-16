@@ -1,6 +1,6 @@
 process_wos_apply <- function(df_list) {
 
-  proc_out <- lapply(df_list, process_wos)
+  proc_out <- lapply(df_list, function(x) process_wos(x))
 
   # Pull out data frames in proc_out$author and reorder dfs
   temp_out <- c(
