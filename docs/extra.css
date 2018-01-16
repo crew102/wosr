@@ -1,0 +1,11 @@
+h2 code, h3 code {
+  background-color: transparent;
+}
+
+pre, code {
+  background-color: #EDEDED;
+}
+
+pre {
+  border: 1px solid #cccccc;
+}

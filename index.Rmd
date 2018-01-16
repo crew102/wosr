@@ -1,0 +1,80 @@
+---
+title: "slowraker"
+output: github_document
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  progress = FALSE,
+  error = FALSE, 
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+<br>
+
+## Installation
+
+You can get the development version from GitHub:
+
+```r
+if (!require(devtools)) install.packages("devtools")
+
+devtools::install_github("vt-arc/wosr")
+```
+
+### Web of Science
+
+```{r, eval = FALSE}
+library(wosr)
+
+# Save your WoS API username and password in environment vars
+Sys.setenv(WOS_USERNAME = "your_username", WOS_PASSWORD = "your_password")
+
+# Get session ID
+sid <- auth()
+```
+
+```{r, echo = FALSE}
+library(wosr)
+sid <- auth()
+```
+
+```{r}
+# Query WoS to see how many results there are for a particular query
+query <- 'TS = ("animal welfare") AND PY = (2002-2003)'
+query_wos(query, sid = sid)
+```
+
+```{r}
+# Download data (this may take some time)
+pull_wos(query, sid = sid)
+```
+
+### InCites
+
+```{r, eval = FALSE}
+# Save your InCites developer key in an environment variable
+Sys.setenv(INCITES_KEY = "your_key")
+```
+
+```{r}
+# Vector of UTs (publication identifiers) to get InCites data for
+uts <- c("000272272000015", "000272366800025", "000272877700013")
+
+# Download InCites data for those UTs
+pull_incites(uts)
+```
+
+### Web of Science and Incites
+
+```{r}
+# Download WoS data
+wos <- pull_wos('TS = ("dog welfare")', sid = sid)
+
+# Download InCites data
+pull_incites(wos$publication$ut)
+```

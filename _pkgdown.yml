@@ -1,0 +1,30 @@
+title: wosr
+
+template:
+  params:
+    bootswatch: flatly
+
+navbar:
+  title: wosr
+  type: default
+  left:
+  - text: "Getting started"
+    href: articles/getting-started.html
+  - text: "FAQs"
+    href: articles/faqs.html
+  right:
+  - text: "Reference"
+    icon: fa-info-circle
+    href: reference/index.html
+  - icon: fa-github fa-lg
+    href: https://github.com/vt-arc/wosr
+
+reference:
+  - title: WoS API
+    contents:
+    - auth
+    - query_wos
+    - pull_wos
+  - title: InCites API
+    contents:
+    - pull_incites
