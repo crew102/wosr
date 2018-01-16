@@ -1,0 +1,42 @@
+---
+title: "Frequently asked questions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FAQs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+### 1. Why does the WoS API sometimes return a different number of records than the WoS web interface?
+
+The API does not conduct lemmatization before applying your query, while the web interface does. This means that your query will typically match a smaller number of records when applied to the API versus the web interface.
+
+### 2. What are the throttling limits on the WoS and InCites APIs?
+
+There are two important rate limits that the user of `wosr` should be aware of. 
+
+* For the WoS API, you can't request more than 5 session IDs (SIDs) in a 5 minute period. This means that you can't call `auth()` more than 5 times in a five minute period. You can reuse a SID across queries, though, so this limit is not that big of a deal.
+
+* According to the documentation, the InCites API limits users to 1,000 requests per 24 hour period (you can include up to 100 UTs in each request). That would suggest that you can download up to 100,000 publications-worth of data for the InCites API each day. However, based on my experience, there is another undocumented throttling limit placed on InCites (roughly 1,500 publications per 30 minute period).[^1] 
+
+### 3. Why doesn't `pull_incites()` return data for all of my publications?
+
+Not all publications that are indexed in the Web of Science database are also indexed in InCites.
+
+### 4. How do I link the `author` and `address` data frames that are returned by `pull_wos()` together?
+
+You can join the data frames using the `author_address` linking table, like so:
+
+```{r, eval = FALSE}
+library(wosr)
+library(dplyr)
+
+data <- pull_wos("TS=\"dog welfare\"")
+
+data$author %>% 
+  left_join(data$author_address, by = c("ut", "author_no")) %>% 
+  left_join(data$address, by = c("ut", "addr_no")) %>% 
+  View()
+```
+
+[1]: To accommodate this limit, `pull_incites()` sleeps for one minute after it gets a throttling limit error from the server, then tries to send another request. It will do this up to 30 times. 

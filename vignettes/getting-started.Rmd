@@ -1,0 +1,131 @@
+---
+title: "Getting started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  progress = FALSE,
+  error = FALSE, 
+  message = FALSE
+)
+
+options(digits = 2)
+```
+
+1. The first step is to open up a session with the WoS API. This process involves calling `auth()`, which authenticates the user with the API's server and returns a session ID (sid), which can then be passed along to `query_wos()` or `pull_wos()`:
+
+```{r, echo = FALSE}
+library(wosr)
+sid <- auth()
+```
+
+```{r}
+library(wosr)
+sid <- auth(username = "your_username", password = "your_password")
+sid
+```
+
+2. Now we can query WoS to see how many records match our query string:
+
+```{r}
+# Find all publications which contain "animal welfare" in their titles (TI tag)
+# and has the words "dog" and "welfare" somewhere in their titles, abstracts, or
+# list of keywords (TS tag).
+query <- 'TI = ("animal welfare") AND TS = (dog welfare)'
+query_wos(query, sid = sid)
+```
+
+3. Pull the data:
+
+```{r}
+data <- pull_wos(query, sid = sid)
+data
+```
+
+4. Link the data frames found in `data` together as necessary, to answer whatever questions you have:
+
+- What are the 5 most popular journal subject category (JSC) in the set of publications, and which publications were assigned to them?
+
+```{r}
+library(dplyr)
+
+top_jscs <- 
+  data$jsc %>% 
+    group_by(jsc) %>% 
+    count() %>% 
+    arrange(desc(n)) %>% 
+    head()
+
+top_jscs
+```
+
+```{r}
+data$jsc %>% 
+  inner_join(top_jscs, by = "jsc") %>% 
+  inner_join(data$publication, by = "ut") %>% 
+  select(title) %>% 
+  distinct() %>% 
+  head()
+```
+
+- Which publications have "cat" in their abstracts, who are the authors on these publications, and which organizations are they from?
+
+```{r}
+cat_pubs <- 
+  data$publication %>% 
+    filter(grepl("\\bcat\\b", abstract, ignore.case = TRUE))
+
+cat_pubs
+```
+
+```{r}
+cat_authors <- 
+  data$author %>% 
+    semi_join(cat_pubs, by = "ut")
+
+cat_authors
+```
+
+```{r}
+cat_authors %>% 
+  inner_join(data$author_address, by = c("ut", "author_no")) %>% 
+  inner_join(data$address, by = c("ut", "addr_no"))
+```
+
+- Which funding organizations were responsible for funding publications with top citation counts in this set?
+
+```{r}
+data$grant %>% 
+  inner_join(data$publication, by = "ut") %>% 
+  select(ut, tot_cites, grant_agency) %>% 
+  distinct() %>% 
+  arrange(desc(tot_cites)) %>% 
+  head()
+```
+
+4. Download more detailed citation data (from the InCites API) for the top-cited publications in this set:
+
+```{r, eval = FALSE}
+top_100_pubs <- 
+  data$publication %>% 
+    arrange(desc(tot_cites)) %>% 
+    slice(1:100)
+
+head(pull_incites(top_100_pubs$ut, key = "your_incites_key"), n = 20)
+```
+
+```{r, echo = FALSE}
+top_100_pubs <- 
+  data$publication %>% 
+    arrange(desc(tot_cites)) %>% 
+    slice(1:100)
+
+head(pull_incites(top_100_pubs$ut), n = 20)
+```
