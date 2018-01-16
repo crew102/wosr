@@ -23,7 +23,7 @@ There are two important rate limits that the user of `wosr` should be aware of.
 
 Not all publications that are indexed in the Web of Science database are also indexed in InCites.
 
-### 4. How do I link the `author` and `address` data frames that are returned by `pull_wos()` together?
+### 4. How do I link the `author` and `address` data frames returned by `pull_wos()` together?
 
 You can join the data frames using the `author_address` linking table, like so:
 
@@ -31,12 +31,15 @@ You can join the data frames using the `author_address` linking table, like so:
 library(wosr)
 library(dplyr)
 
-data <- pull_wos("TS=\"dog welfare\"")
+data <- pull_wos("TS = \"dog welfare\"")
 
 data$author %>% 
   left_join(data$author_address, by = c("ut", "author_no")) %>% 
-  left_join(data$address, by = c("ut", "addr_no")) %>% 
-  View()
+  left_join(data$address, by = c("ut", "addr_no"))
 ```
+
+### 5. How do I download data for a query that returns more than 100,000 records?
+
+The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (`PY`). For example, if you have a broad query like `"TS = dog"` (which matches over 250,000 records), you could break it up into four sub-queries that have congruous date ranges (and which return fewer than 100,000 records each), then append the results together. E.g., `queries <- c("TS = dog AND PY = 1900-1980", "TS = dog AND PY = 1981-2000", "TS = dog AND PY = 2001-2010", "TS = dog AND PY = 2011-2018"); results <- lapply(queries, pull_wos)`.
 
 [1]: To accommodate this limit, `pull_incites()` sleeps for one minute after it gets a throttling limit error from the server, then tries to send another request. It will do this up to 30 times. 

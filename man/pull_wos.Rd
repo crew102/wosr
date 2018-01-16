@@ -85,8 +85,8 @@ pull_wos("TI = \\"pet welfare\\"", sid = auth("your_username", "your_password"))
 # It's best to first see how many records your query returns by calling
 # query_wos. Otherwise, you may start downloading a very large result set:
 query <- "TS = ((cadmium AND gill*) NOT Pisces)"
-query_wos(query) # shows that there are 1,611 records that match the query
-pull_wos(query)
+query_wos(query, sid = sid) # shows that there are 1,611 matching publications
+pull_wos(query, sid = sid)
 }
 
 }

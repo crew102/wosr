@@ -19,20 +19,19 @@ knitr::opts_chunk$set(
 options(digits = 2)
 ```
 
-1. The first step is to open up a session with the WoS API. This process involves calling `auth()`, which authenticates the user with the API's server and returns a session ID (sid), which can then be passed along to `query_wos()` or `pull_wos()`:
+1. The first step is to open up a session with the WoS API. To do this, you call `auth()`, which authenticates the user with the API's server and returns a session ID (sid).
+
+```{r, eval = FALSE}
+library(wosr)
+sid <- auth(username = "your_username", password = "your_password")
+```
 
 ```{r, echo = FALSE}
 library(wosr)
 sid <- auth()
 ```
 
-```{r}
-library(wosr)
-sid <- auth(username = "your_username", password = "your_password")
-sid
-```
-
-2. Now we can query WoS to see how many records match our query string:
+2. Now we can query WoS to see how many records match our query string.
 
 ```{r}
 # Find all publications which contain "animal welfare" in their titles (TI tag)
@@ -42,16 +41,16 @@ query <- 'TI = ("animal welfare") AND TS = (dog welfare)'
 query_wos(query, sid = sid)
 ```
 
-3. Pull the data:
+3. Pull the data.
 
 ```{r}
 data <- pull_wos(query, sid = sid)
 data
 ```
 
-4. Link the data frames found in `data` together as necessary, to answer whatever questions you have:
+4. Link the data frames found in `data` together as necessary, to answer whatever questions you have.
 
-- What are the 5 most popular journal subject category (JSC) in the set of publications, and which publications were assigned to them?
+- What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications were assigned to those JSCs?
 
 ```{r}
 library(dplyr)
@@ -80,7 +79,8 @@ data$jsc %>%
 ```{r}
 cat_pubs <- 
   data$publication %>% 
-    filter(grepl("\\bcat\\b", abstract, ignore.case = TRUE))
+    filter(grepl("\\bcat\\b", abstract, ignore.case = TRUE)) %>% 
+    select(ut, title)
 
 cat_pubs
 ```
@@ -88,7 +88,8 @@ cat_pubs
 ```{r}
 cat_authors <- 
   data$author %>% 
-    semi_join(cat_pubs, by = "ut")
+    semi_join(cat_pubs, by = "ut") %>% 
+    select(ut, author_no, display_name)
 
 cat_authors
 ```
@@ -96,10 +97,11 @@ cat_authors
 ```{r}
 cat_authors %>% 
   inner_join(data$author_address, by = c("ut", "author_no")) %>% 
-  inner_join(data$address, by = c("ut", "addr_no"))
+  inner_join(data$address, by = c("ut", "addr_no")) %>% 
+  select(ut, author_no, display_name, org)
 ```
 
-- Which funding organizations were responsible for funding publications with top citation counts in this set?
+- Which funding organizations were responsible for funding publications with top citation counts?
 
 ```{r}
 data$grant %>% 
@@ -110,22 +112,24 @@ data$grant %>%
   head()
 ```
 
-4. Download more detailed citation data (from the InCites API) for the top-cited publications in this set:
+5. Download more detailed citation data (from the InCites API) for the top-cited publications
 
 ```{r, eval = FALSE}
 top_100_pubs <- 
   data$publication %>% 
     arrange(desc(tot_cites)) %>% 
-    slice(1:100)
+    slice(1:100) %>% 
+    .$ut
 
-head(pull_incites(top_100_pubs$ut, key = "your_incites_key"), n = 20)
+head(pull_incites(top_100_pubs, key = "your_incites_key"), n = 20)
 ```
 
 ```{r, echo = FALSE}
 top_100_pubs <- 
   data$publication %>% 
     arrange(desc(tot_cites)) %>% 
-    slice(1:100)
+    slice(1:100) %>% 
+    .$ut
 
-head(pull_incites(top_100_pubs$ut), n = 20)
+head(pull_incites(top_100_pubs), n = 20)
 ```

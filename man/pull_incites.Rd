@@ -20,14 +20,18 @@ account.}
 \value{
 A data frame where each row corresponds to a different publication.
 The definitions for the columns in this data frame can be found online at
-the API's documentation \href{http://about.incites.thomsonreuters.com/api/#!/InCites_API_Methods/get_DocumentLevelMetricsByUT_format}{page} (thought note that the column names are all
-converted to lower case by \code{pull_incites} and 0/1 flag variables
-converted to booleans). Also note that not all publications that are indexed
-in WoS are also indexed in InCites, so you may not receive data back for
-some UTs.
+the API's documentation \href{http://about.incites.thomsonreuters.com/api/#/}{page}
+(see the \code{DocumentLevelMetricsByUT} method details for definitions).
+Note that the column names are all converted to lower case by
+\code{pull_incites} and 0/1 flag variables converted to booleans). Also note
+that not all publications that are indexed in WoS are also indexed in
+InCites, so you may not receive data back for some UTs.
 }
 \description{
-Pull data from the InCites API
+\strong{Important note:} The throttling limits on the InCites API are not
+documented anywhere and are difficult to determine from experience. As such,
+whenever \code{pull_incites} runs receives a throttling error from the
+server, it sleeps for 1 minute and then retrys the request. If no data is
 }
 \examples{
 \dontrun{
