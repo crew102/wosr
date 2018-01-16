@@ -59,7 +59,7 @@ get_ut_value_dfs <- function(pub_parselist) {
 one_ut_value_df <- function(one_list) {
   lapply2(ut_val_flds, function(f) {
       vec <- one_list[[f]]
-      # have to seperate these two if statemetns so null's arn't checked in
+      # have to seperate these two if statements so null's aren't checked in
       # second statement (which would throw warning)
       if (is.null(vec)) return(NULL)
       if (is.na(vec[1])) return(NULL)

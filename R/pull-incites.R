@@ -1,5 +1,10 @@
 #' Pull data from the InCites API
 #'
+#' \strong{Important note:} The throttling limits on the InCites API are not
+#' documented anywhere and are difficult to determine from experience. As such,
+#' whenever \code{pull_incites} runs receives a throttling error from the
+#' server, it sleeps for 1 minute and then retrys the request. If no data is
+#'
 #' @param uts A vector of UTs whose InCites data you would like to get from the
 #' API's server. Each UT is a 15-digit identifier for a given publication. You
 #' can specify the UT using only these 15 digits, or you can append the 15 digits

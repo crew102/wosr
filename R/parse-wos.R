@@ -132,10 +132,7 @@ parse_deep_grants <- function(entity_list, el_xpath) {
     one_ent_data <- lapply(x, function(q) {
       temp <- parse_els(q, xpath = el_xpath)
       num_ids <- length(temp$grant_id)
-      # if num_ids isn't length 0 (i.e., null) or length 1 (not requiring we rep vector)
-      if (num_ids >= 2) {
-        temp$grant_agency <- rep(temp$grant_agency, num_ids)
-      }
+      if (num_ids >= 2) temp$grant_agency <- rep(temp$grant_agency, num_ids)
       do.call(cbind, temp)
     })
     do.call(rbind, one_ent_data)

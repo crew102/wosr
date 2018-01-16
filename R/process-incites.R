@@ -1,4 +1,3 @@
-# class incites data and make single processor
 process_incites <- function(incites_df) {
   if (!is.data.frame(incites_df)) return(NULL)
   colnames(incites_df) <- tolower(colnames(incites_df))
