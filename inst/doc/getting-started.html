@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Getting started</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Getting started</h1>
+
+
+
+<ol style="list-style-type: decimal">
+<li>The first step is to open up a session with the WoS API. To do this, you call <code>auth()</code>, which authenticates the user with the API’s server and returns a session ID (sid).</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wosr)
+sid &lt;-<span class="st"> </span><span class="kw">auth</span>(<span class="dt">username =</span> <span class="st">&quot;your_username&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;your_password&quot;</span>)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Now we can query WoS to see how many records match our query string.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find all publications which contain &quot;animal welfare&quot; in their titles (TI tag)</span>
+<span class="co"># and has the words &quot;dog&quot; and &quot;welfare&quot; somewhere in their titles, abstracts, or</span>
+<span class="co"># list of keywords (TS tag).</span>
+query &lt;-<span class="st"> 'TI = (&quot;animal welfare&quot;) AND TS = (dog welfare)'</span>
+<span class="kw">query_wos</span>(query, <span class="dt">sid =</span> sid)
+<span class="co">#&gt; Matching records: 82</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Pull the data.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">pull_wos</span>(query, <span class="dt">sid =</span> sid)
+data
+<span class="co">#&gt; List of 8</span>
+<span class="co">#&gt;  $ publication   :'data.frame':  82 obs. of  8 variables:</span>
+<span class="co">#&gt;   ..$ ut       : chr [1:82] &quot;WOS:000377031100025&quot; ...</span>
+<span class="co">#&gt;   ..$ title    : chr [1:82] &quot;ANIMAL WELFARE Brachycephalic dog breeds&quot; ...</span>
+<span class="co">#&gt;   ..$ journal  : chr [1:82] &quot;Veterinary Record&quot; ...</span>
+<span class="co">#&gt;   ..$ date     : Date[1:82], format: &quot;2016-05-28&quot; ...</span>
+<span class="co">#&gt;   ..$ doc_type : chr [1:82] &quot;Letter&quot; ...</span>
+<span class="co">#&gt;   ..$ doi      : chr [1:82] &quot;10.1136/vr.i2991&quot; ...</span>
+<span class="co">#&gt;   ..$ tot_cites: num [1:82] 0 0 ...</span>
+<span class="co">#&gt;   ..$ abstract : chr [1:82] NA ...</span>
+<span class="co">#&gt;  $ author        :'data.frame':  214 obs. of  7 variables:</span>
+<span class="co">#&gt;   ..$ ut          : chr [1:214] &quot;WOS:000377031100025&quot; ...</span>
+<span class="co">#&gt;   ..$ author_no   : num [1:214] 1 1 ...</span>
+<span class="co">#&gt;   ..$ display_name: chr [1:214] &quot;Goddard, Philip&quot; ...</span>
+<span class="co">#&gt;   ..$ first_name  : chr [1:214] &quot;Philip&quot; ...</span>
+<span class="co">#&gt;   ..$ last_name   : chr [1:214] &quot;Goddard&quot; ...</span>
+<span class="co">#&gt;   ..$ email       : chr [1:214] &quot;PGoddard@goddardvetgroup.co.uk&quot; ...</span>
+<span class="co">#&gt;   ..$ daisng_id   : num [1:214] 1.3e+07 ...</span>
+<span class="co">#&gt;  $ address       :'data.frame':  123 obs. of  7 variables:</span>
+<span class="co">#&gt;   ..$ ut      : chr [1:123] &quot;WOS:000377031100025&quot; ...</span>
+<span class="co">#&gt;   ..$ addr_no : num [1:123] 1 1 ...</span>
+<span class="co">#&gt;   ..$ org_pref: chr [1:123] NA ...</span>
+<span class="co">#&gt;   ..$ org     : chr [1:123] NA ...</span>
+<span class="co">#&gt;   ..$ city    : chr [1:123] &quot;London&quot; ...</span>
+<span class="co">#&gt;   ..$ state   : chr [1:123] NA ...</span>
+<span class="co">#&gt;   ..$ country : chr [1:123] &quot;England&quot; ...</span>
+<span class="co">#&gt;  $ author_address:'data.frame':  129 obs. of  3 variables:</span>
+<span class="co">#&gt;   ..$ ut       : chr [1:129] &quot;WOS:000377031100025&quot; ...</span>
+<span class="co">#&gt;   ..$ author_no: num [1:129] 1 1 ...</span>
+<span class="co">#&gt;   ..$ addr_no  : num [1:129] 1 1 ...</span>
+<span class="co">#&gt;  $ jsc           :'data.frame':  115 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut : chr [1:115] &quot;WOS:000377031100025&quot; ...</span>
+<span class="co">#&gt;   ..$ jsc: chr [1:115] &quot;Veterinary Sciences&quot; ...</span>
+<span class="co">#&gt;  $ keyword       :'data.frame':  237 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut     : chr [1:237] &quot;WOS:000314027500001&quot; ...</span>
+<span class="co">#&gt;   ..$ keyword: chr [1:237] &quot;animal&quot; ...</span>
+<span class="co">#&gt;  $ keywords_plus :'data.frame':  294 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut           : chr [1:294] &quot;WOS:000412686200005&quot; ...</span>
+<span class="co">#&gt;   ..$ keywords_plus: chr [1:294] &quot;nonaccidental injury&quot; ...</span>
+<span class="co">#&gt;  $ grant         :'data.frame':  19 obs. of  3 variables:</span>
+<span class="co">#&gt;   ..$ ut          : chr [1:19] &quot;WOS:000314027500001&quot; ...</span>
+<span class="co">#&gt;   ..$ grant_agency: chr [1:19] &quot;Animal and Society Institute-Wesleyan An&quot;..</span>
+<span class="co">#&gt;   ..$ grant_id    : chr [1:19] NA ...</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Link the data frames found in <code>data</code> together as necessary, to answer whatever questions you have.</li>
+</ol>
+<ul>
+<li>What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications were assigned to those JSCs?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+top_jscs &lt;-<span class="st"> </span>
+<span class="st">  </span>data<span class="op">$</span>jsc <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(jsc) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">count</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()
+
+top_jscs
+<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt; # Groups: jsc [6]</span>
+<span class="co">#&gt;   jsc                                     n</span>
+<span class="co">#&gt;   &lt;chr&gt;                               &lt;int&gt;</span>
+<span class="co">#&gt; 1 Veterinary Sciences                    67</span>
+<span class="co">#&gt; 2 Zoology                                 9</span>
+<span class="co">#&gt; 3 Agriculture, Dairy &amp; Animal Science     5</span>
+<span class="co">#&gt; 4 Behavioral Sciences                     4</span>
+<span class="co">#&gt; 5 History &amp; Philosophy of Science         3</span>
+<span class="co">#&gt; 6 Sociology                               3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>jsc <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(top_jscs, <span class="dt">by =</span> <span class="st">&quot;jsc&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>publication, <span class="dt">by =</span> <span class="st">&quot;ut&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(title) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>()
+<span class="co">#&gt;                                              title</span>
+<span class="co">#&gt; 1         ANIMAL WELFARE Brachycephalic dog breeds</span>
+<span class="co">#&gt; 2                Reporting animal welfare concerns</span>
+<span class="co">#&gt; 3 Animal welfare activist injured while aiding dog</span>
+<span class="co">#&gt; 4            Animal Welfare in Veterinary Practice</span>
+<span class="co">#&gt; 5                  PET BREEDING AND ANIMAL-WELFARE</span>
+<span class="co">#&gt; 6           Science, sentience, and animal welfare</span></code></pre></div>
+<ul>
+<li>Which publications have “cat” in their abstracts, who are the authors on these publications, and which organizations are they from?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_pubs &lt;-<span class="st"> </span>
+<span class="st">  </span>data<span class="op">$</span>publication <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">bcat</span><span class="ch">\\</span><span class="st">b&quot;</span>, abstract, <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(ut, title)
+
+cat_pubs
+<span class="co">#&gt;                    ut</span>
+<span class="co">#&gt; 1 WOS:000346849200008</span>
+<span class="co">#&gt; 2 WOS:000256104000004</span>
+<span class="co">#&gt; 3 WOS:000317556100002</span>
+<span class="co">#&gt; 4 WOS:000282006600007</span>
+<span class="co">#&gt;                                                                                      title</span>
+<span class="co">#&gt; 1                         Introducing breathlessness as a significant animal welfare issue</span>
+<span class="co">#&gt; 2                  Assessment of animal welfare aspects in extreme breeds of dogs and cats</span>
+<span class="co">#&gt; 3 Redesigning the Donation Box: The Effect of Animal Banks on Donations for Animal Welfare</span>
+<span class="co">#&gt; 4           Public awareness in New Zealand of animal welfare legislation relating to cats</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_authors &lt;-<span class="st"> </span>
+<span class="st">  </span>data<span class="op">$</span>author <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">semi_join</span>(cat_pubs, <span class="dt">by =</span> <span class="st">&quot;ut&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">select</span>(ut, author_no, display_name)
+
+cat_authors
+<span class="co">#&gt;                     ut author_no      display_name</span>
+<span class="co">#&gt; 1  WOS:000346849200008         1 Beausoleil, N. J.</span>
+<span class="co">#&gt; 2  WOS:000346849200008         2     Mellor, D. J.</span>
+<span class="co">#&gt; 3  WOS:000256104000004         1       Steiger, A.</span>
+<span class="co">#&gt; 4  WOS:000256104000004         2        Stucki, E.</span>
+<span class="co">#&gt; 5  WOS:000256104000004         3         Peyer, N.</span>
+<span class="co">#&gt; 6  WOS:000256104000004         4        Keller, P.</span>
+<span class="co">#&gt; 7  WOS:000317556100002         1  Gueguen, Nicolas</span>
+<span class="co">#&gt; 8  WOS:000282006600007         1  Farnworth, M. J.</span>
+<span class="co">#&gt; 9  WOS:000282006600007         2      Campbell, J.</span>
+<span class="co">#&gt; 10 WOS:000282006600007         3      Adams, N. J.</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_authors <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>author_address, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;ut&quot;</span>, <span class="st">&quot;author_no&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>address, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;ut&quot;</span>, <span class="st">&quot;addr_no&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ut, author_no, display_name, org)
+<span class="co">#&gt;                    ut author_no      display_name                 org</span>
+<span class="co">#&gt; 1 WOS:000346849200008         1 Beausoleil, N. J.         Massey Univ</span>
+<span class="co">#&gt; 2 WOS:000346849200008         2     Mellor, D. J.         Massey Univ</span>
+<span class="co">#&gt; 3 WOS:000256104000004         1       Steiger, A.           Univ Bern</span>
+<span class="co">#&gt; 4 WOS:000256104000004         2        Stucki, E.       Bundesamt Vet</span>
+<span class="co">#&gt; 5 WOS:000256104000004         3         Peyer, N.       Bundesamt Vet</span>
+<span class="co">#&gt; 6 WOS:000282006600007         1  Farnworth, M. J. Unitec Inst Technol</span>
+<span class="co">#&gt; 7 WOS:000282006600007         2      Campbell, J. Unitec Inst Technol</span>
+<span class="co">#&gt; 8 WOS:000282006600007         3      Adams, N. J. Unitec Inst Technol</span></code></pre></div>
+<ul>
+<li>Which funding organizations were responsible for funding publications with top citation counts?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>grant <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>publication, <span class="dt">by =</span> <span class="st">&quot;ut&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ut, tot_cites, grant_agency) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot_cites)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>()
+<span class="co">#&gt;                    ut tot_cites</span>
+<span class="co">#&gt; 1 WOS:000266414200001        68</span>
+<span class="co">#&gt; 2 WOS:000266414200001        68</span>
+<span class="co">#&gt; 3 WOS:000250058400056        18</span>
+<span class="co">#&gt; 4 WOS:000299252600032        16</span>
+<span class="co">#&gt; 5 WOS:000346849200008        13</span>
+<span class="co">#&gt; 6 WOS:000376588600097        13</span>
+<span class="co">#&gt;                                                                         grant_agency</span>
+<span class="co">#&gt; 1                                                       Ontario Graduate Scholarship</span>
+<span class="co">#&gt; 2                                                     NSERC postgraduate scholarship</span>
+<span class="co">#&gt; 3                                                                 Intramural NIH HHS</span>
+<span class="co">#&gt; 4                     Centre for Animal Welfare and Ethics, University of Queensland</span>
+<span class="co">#&gt; 5                     Animal Welfare Science and Bioethics Centre, Massey University</span>
+<span class="co">#&gt; 6 United States National Science Foundation Division of Social and Economic Sciences</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Download more detailed citation data (from the InCites API) for the top-cited publications</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_100_pubs &lt;-<span class="st"> </span>
+<span class="st">  </span>data<span class="op">$</span>publication <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot_cites)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span>.<span class="op">$</span>ut
+
+<span class="kw">head</span>(<span class="kw">pull_incites</span>(top_100_pubs, <span class="dt">key =</span> <span class="st">&quot;your_incites_key&quot;</span>), <span class="dt">n =</span> <span class="dv">20</span>)</code></pre></div>
+<pre><code>#&gt; NULL</code></pre>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
