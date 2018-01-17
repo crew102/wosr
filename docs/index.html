@@ -74,9 +74,10 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(devtools)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"vt-arc/wosr"</span>)</code></pre></div>
-<div id="web-of-science" class="section level3">
-<h3 class="hasAnchor">
-<a href="#web-of-science" class="anchor"></a>Web of Science</h3>
+</div>
+<div id="web-of-science" class="section level2">
+<h2 class="hasAnchor">
+<a href="#web-of-science" class="anchor"></a>Web of Science</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wosr)
 
 <span class="co"># Save your WoS API username and password in environment vars</span>
@@ -134,9 +135,9 @@ query &lt;-<span class="st"> 'TS = ("animal welfare") AND PY = (2002-2003)'</spa
 <span class="co">#&gt;   ..$ grant_agency: chr "Selcuk University Research Foundation"</span>
 <span class="co">#&gt;   ..$ grant_id    : chr "2000/062"</span></code></pre></div>
 </div>
-<div id="incites" class="section level3">
-<h3 class="hasAnchor">
-<a href="#incites" class="anchor"></a>InCites</h3>
+<div id="incites" class="section level2">
+<h2 class="hasAnchor">
+<a href="#incites" class="anchor"></a>InCites</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save your InCites developer key in an environment variable</span>
 <span class="kw">Sys.setenv</span>(<span class="dt">INCITES_KEY =</span> <span class="st">"your_key"</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector of UTs (publication identifiers) to get InCites data for</span>
@@ -146,16 +147,15 @@ uts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"00
 <span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(uts)
 <span class="co">#&gt; NULL</span></code></pre></div>
 </div>
-<div id="web-of-science-and-incites" class="section level3">
-<h3 class="hasAnchor">
-<a href="#web-of-science-and-incites" class="anchor"></a>Web of Science and Incites</h3>
+<div id="web-of-science-and-incites" class="section level2">
+<h2 class="hasAnchor">
+<a href="#web-of-science-and-incites" class="anchor"></a>Web of Science and InCites</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download WoS data</span>
 wos &lt;-<span class="st"> </span><span class="kw"><a href="reference/pull_wos.html">pull_wos</a></span>(<span class="st">'TS = ("dog welfare")'</span>, <span class="dt">sid =</span> sid)
 
 <span class="co"># Download InCites data</span>
 <span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(wos<span class="op">$</span>publication<span class="op">$</span>ut)
 <span class="co">#&gt; NULL</span></code></pre></div>
-</div>
 </div>
 </div>
   </div>

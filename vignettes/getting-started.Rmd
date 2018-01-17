@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 options(digits = 2)
 ```
 
-1. The first step is to open up a session with the WoS API. To do this, you call `auth()`, which authenticates the user with the API's server and returns a session ID (sid).
+1. The first step is to open up a session with the WoS API. To do this, you call `auth()`, which authenticates the user with the API's server and returns a session ID (SID).
 
 ```{r, eval = FALSE}
 library(wosr)
@@ -48,7 +48,7 @@ data <- pull_wos(query, sid = sid)
 data
 ```
 
-4. Link the data frames found in `data` together as necessary, to answer whatever questions you have.
+4. `pull_wos()` returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have:
 
 - What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications were assigned to those JSCs?
 

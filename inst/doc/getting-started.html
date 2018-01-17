@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <ol style="list-style-type: decimal">
-<li>The first step is to open up a session with the WoS API. To do this, you call <code>auth()</code>, which authenticates the user with the API’s server and returns a session ID (sid).</li>
+<li>The first step is to open up a session with the WoS API. To do this, you call <code>auth()</code>, which authenticates the user with the API’s server and returns a session ID (SID).</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wosr)
 sid &lt;-<span class="st"> </span><span class="kw">auth</span>(<span class="dt">username =</span> <span class="st">&quot;your_username&quot;</span>, <span class="dt">password =</span> <span class="st">&quot;your_password&quot;</span>)</code></pre></div>
@@ -133,7 +133,7 @@ data
 <span class="co">#&gt;   ..$ grant_agency: chr [1:19] &quot;Animal and Society Institute-Wesleyan An&quot;..</span>
 <span class="co">#&gt;   ..$ grant_id    : chr [1:19] NA ...</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>Link the data frames found in <code>data</code> together as necessary, to answer whatever questions you have.</li>
+<li><code>pull_wos()</code> returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have:</li>
 </ol>
 <ul>
 <li>What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications were assigned to those JSCs?</li>

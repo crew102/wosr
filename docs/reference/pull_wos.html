@@ -182,8 +182,8 @@ database:</p><dl class='dl-horizontal'>
 <span class='co'># It's best to first see how many records your query returns by calling</span>
 <span class='co'># query_wos. Otherwise, you may start downloading a very large result set:</span>
 <span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"TS = ((cadmium AND gill*) NOT Pisces)"</span>
-<span class='fu'><a href='query_wos.html'>query_wos</a></span>(<span class='no'>query</span>) <span class='co'># shows that there are 1,611 records that match the query</span>
-<span class='fu'>pull_wos</span>(<span class='no'>query</span>)
+<span class='fu'><a href='query_wos.html'>query_wos</a></span>(<span class='no'>query</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>) <span class='co'># shows that there are 1,611 matching publications</span>
+<span class='fu'>pull_wos</span>(<span class='no'>query</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

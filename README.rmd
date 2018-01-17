@@ -32,7 +32,7 @@ if (!require(devtools)) install.packages("devtools")
 devtools::install_github("vt-arc/wosr")
 ```
 
-### Web of Science
+## Web of Science
 
 ```{r, eval = FALSE}
 library(wosr)
@@ -60,7 +60,7 @@ query_wos(query, sid = sid)
 pull_wos(query, sid = sid)
 ```
 
-### InCites
+## InCites
 
 ```{r, eval = FALSE}
 # Save your InCites developer key in an environment variable
@@ -75,7 +75,7 @@ uts <- c("000272272000015", "000272366800025", "000272877700013")
 pull_incites(uts)
 ```
 
-### Web of Science and Incites
+## Web of Science and InCites
 
 ```{r}
 # Download WoS data

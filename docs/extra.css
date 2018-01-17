@@ -9,3 +9,7 @@ pre, code {
 pre {
   border: 1px solid #cccccc;
 }
+
+h2, h3 {
+  border-bottom: 2px solid #2c3e50;
+}

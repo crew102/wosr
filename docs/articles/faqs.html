@@ -69,18 +69,18 @@
     
     
 <div class="contents">
-<div id="why-does-the-wos-api-sometimes-return-a-different-number-of-records-than-the-wos-web-interface" class="section level3">
+<div id="why-does-the-wos-api-sometimes-return-a-different-number-of-records-than-the-wos-web-app" class="section level3">
 <h3 class="hasAnchor">
-<a href="#why-does-the-wos-api-sometimes-return-a-different-number-of-records-than-the-wos-web-interface" class="anchor"></a>1. Why does the WoS API sometimes return a different number of records than the WoS web interface?</h3>
-<p>The API does not conduct lemmatization before applying your query, while the web interface does. This means that your query will typically match a smaller number of records when applied to the API versus the web interface.</p>
+<a href="#why-does-the-wos-api-sometimes-return-a-different-number-of-records-than-the-wos-web-app" class="anchor"></a>1. Why does the WoS API sometimes return a different number of records than the WoS web app?</h3>
+<p>The API does not conduct lemmatization before applying your query, while the web app does. This means that your query will typically match a smaller number of records when you’re using the API.</p>
 </div>
 <div id="what-are-the-throttling-limits-on-the-wos-and-incites-apis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#what-are-the-throttling-limits-on-the-wos-and-incites-apis" class="anchor"></a>2. What are the throttling limits on the WoS and InCites APIs?</h3>
-<p>There are two important rate limits that the user of <code>wosr</code> should be aware of.</p>
+<p>There are two important rate limits that the user of <code>wosr</code> should be aware of:</p>
 <ul>
-<li><p>For the WoS API, you can’t request more than 5 session IDs (SIDs) in a 5 minute period. This means that you can’t call <code><a href="../reference/auth.html">auth()</a></code> more than 5 times in a five minute period. You can reuse a SID across queries, though, so this limit is not that big of a deal.</p></li>
-<li><p>According to the documentation, the InCites API limits users to 1,000 requests per 24 hour period (you can include up to 100 UTs in each request). That would suggest that you can download up to 100,000 publications-worth of data for the InCites API each day. However, based on my experience, there is another undocumented throttling limit placed on InCites (roughly 1,500 publications per 30 minute period).[^1]</p></li>
+<li><p>For the WoS API, you can’t request more than 5 session IDs (SIDs) in a 5 minute period (i.e., you can’t call <code><a href="../reference/auth.html">auth()</a></code> more than 5 times in a five minute period). You can reuse a SID across queries, though, so this limit isn’t a big deal.</p></li>
+<li><p>According to the documentation, the InCites API limits users to 1,000 requests per 24 hour period, where each request can contain up to 100 UTs. That would suggest that you can download up to 100,000 publications-worth of data from the InCites API each day. However, based on my experience, there is another (undocumented) throttling limit which restricts the user to requesting no more than ~ 1,500 publications per 30 minute period.[^1]</p></li>
 </ul>
 </div>
 <div id="why-doesnt-pull_incites-return-data-for-all-of-my-publications" class="section level3">
@@ -88,9 +88,9 @@
 <a href="#why-doesnt-pull_incites-return-data-for-all-of-my-publications" class="anchor"></a>3. Why doesn’t <code><a href="../reference/pull_incites.html">pull_incites()</a></code> return data for all of my publications?</h3>
 <p>Not all publications that are indexed in the Web of Science database are also indexed in InCites.</p>
 </div>
-<div id="how-do-i-link-the-author-and-address-data-frames-returned-by-pull_wos-together" class="section level3">
+<div id="how-do-i-link-together-the-author-and-address-data-frames-returned-by-pull_wos" class="section level3">
 <h3 class="hasAnchor">
-<a href="#how-do-i-link-the-author-and-address-data-frames-returned-by-pull_wos-together" class="anchor"></a>4. How do I link the <code>author</code> and <code>address</code> data frames returned by <code><a href="../reference/pull_wos.html">pull_wos()</a></code> together?</h3>
+<a href="#how-do-i-link-together-the-author-and-address-data-frames-returned-by-pull_wos" class="anchor"></a>4. How do I link together the <code>author</code> and <code>address</code> data frames returned by <code><a href="../reference/pull_wos.html">pull_wos()</a></code>?</h3>
 <p>You can join the data frames using the <code>author_address</code> linking table, like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wosr)
 <span class="kw">library</span>(dplyr)
@@ -104,7 +104,7 @@ data<span class="op">$</span>author <span class="op">%&gt;%</span><span class="s
 <div id="how-do-i-download-data-for-a-query-that-returns-more-than-100000-records" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-do-i-download-data-for-a-query-that-returns-more-than-100000-records" class="anchor"></a>5. How do I download data for a query that returns more than 100,000 records?</h3>
-<p>The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (<code>PY</code>). For example, if you have a broad query like <code>"TS = dog"</code> (which matches over 250,000 records), you could break it up into four sub-queries that have congruous date ranges (and which return fewer than 100,000 records each), then append the results together. E.g., <code>queries &lt;- c("TS = dog AND PY = 1900-1980", "TS = dog AND PY = 1981-2000", "TS = dog AND PY = 2001-2010", "TS = dog AND PY = 2011-2018"); results &lt;- lapply(queries, pull_wos)</code>.</p>
+<p>The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (<code>PY</code>). For example, if you have a broad query like <code>"TS = dog"</code> (which matches over 250,000 records), you could break it up into four sub-queries that have contiguous date ranges (and which return fewer than 100,000 records each). E.g., <code>queries &lt;- c("TS = dog AND PY = 1900-1980", "TS = dog AND PY = 1981-2000", "TS = dog AND PY = 2001-2010", "TS = dog AND PY = 2011-2018"); results &lt;- lapply(queries, pull_wos)</code>.</p>
 </div>
 </div>
   </div>
