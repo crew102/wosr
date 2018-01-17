@@ -90,8 +90,9 @@
     
     <p><strong>Important note:</strong> The throttling limits on the InCites API are not
 documented anywhere and are difficult to determine from experience. As such,
-whenever <code>pull_incites</code> runs receives a throttling error from the
-server, it sleeps for 1 minute and then retrys the request. If no data is</p>
+whenever <code>pull_incites</code> receives a throttling error from the
+server, it sleeps for 1 minute then retries the request. It does this up
+to 30 times for each unique HTTP request it makes to the server.</p>
     
 
     <pre class="usage"><span class='fu'>pull_incites</span>(<span class='no'>uts</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"INCITES_KEY"</span>), <span class='no'>...</span>)</pre>
@@ -124,7 +125,7 @@ The definitions for the columns in this data frame can be found online at
 the API's documentation <a href='http://about.incites.thomsonreuters.com/api/#/'>page</a>
 (see the <code>DocumentLevelMetricsByUT</code> method details for definitions).
 Note that the column names are all converted to lower case by
-<code>pull_incites</code> and 0/1 flag variables converted to booleans). Also note
+<code>pull_incites</code> and the 0/1 flag variables converted to booleans). Also note
 that not all publications that are indexed in WoS are also indexed in
 InCites, so you may not receive data back for some UTs.</p>
     

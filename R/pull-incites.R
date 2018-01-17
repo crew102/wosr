@@ -2,8 +2,9 @@
 #'
 #' \strong{Important note:} The throttling limits on the InCites API are not
 #' documented anywhere and are difficult to determine from experience. As such,
-#' whenever \code{pull_incites} runs receives a throttling error from the
-#' server, it sleeps for 1 minute and then retrys the request. If no data is
+#' whenever \code{pull_incites} receives a throttling error from the
+#' server, it sleeps for 1 minute then retries the request. It does this up
+#' to 30 times for each unique HTTP request it makes to the server.
 #'
 #' @param uts A vector of UTs whose InCites data you would like to get from the
 #' API's server. Each UT is a 15-digit identifier for a given publication. You
@@ -18,7 +19,7 @@
 #' the API's documentation \href{http://about.incites.thomsonreuters.com/api/#/}{page}
 #' (see the \code{DocumentLevelMetricsByUT} method details for definitions).
 #' Note that the column names are all converted to lower case by
-#' \code{pull_incites} and 0/1 flag variables converted to booleans). Also note
+#' \code{pull_incites} and the 0/1 flag variables converted to booleans). Also note
 #' that not all publications that are indexed in WoS are also indexed in
 #' InCites, so you may not receive data back for some UTs.
 #'

@@ -3,7 +3,7 @@ wosr
 
 > R clients to the Web of Science and Incites APIs
 
-[![Project Status: WIP â€“ Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![Linux Build Status](https://travis-ci.org/vt-arc/wosr.svg?branch=master)](https://travis-ci.org/vt-arc/wosr) [![CRAN version](http://www.r-pkg.org/badges/version/wosr)](https://cran.r-project.org/package=wosr)
+[![Linux Build Status](https://travis-ci.org/vt-arc/wosr.svg?branch=master)](https://travis-ci.org/vt-arc/wosr) [![CRAN version](http://www.r-pkg.org/badges/version/wosr)](https://cran.r-project.org/package=wosr)
 
 Installation
 ------------
@@ -97,7 +97,7 @@ Sys.setenv(INCITES_KEY = "your_key")
 uts <- c("000272272000015", "000272366800025", "000272877700013")
 
 # Download InCites data for those UTs
-pull_incites(uts)
+head(pull_incites(uts))
 #> NULL
 ```
 
@@ -109,7 +109,7 @@ Web of Science and InCites
 wos <- pull_wos('TS = ("dog welfare")', sid = sid)
 
 # Download InCites data
-pull_incites(wos$publication$ut)
+head(pull_incites(wos$publication$ut))
 #> NULL
 ```
 

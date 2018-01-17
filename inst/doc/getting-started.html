@@ -78,8 +78,8 @@ sid &lt;-<span class="st"> </span><span class="kw">auth</span>(<span class="dt">
 <ol start="2" style="list-style-type: decimal">
 <li>Now we can query WoS to see how many records match our query string.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find all publications which contain &quot;animal welfare&quot; in their titles (TI tag)</span>
-<span class="co"># and has the words &quot;dog&quot; and &quot;welfare&quot; somewhere in their titles, abstracts, or</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find all publications that contain &quot;animal welfare&quot; in their titles (TI tag)</span>
+<span class="co"># and have the words &quot;dog&quot; and &quot;welfare&quot; somewhere in their titles, abstracts, or</span>
 <span class="co"># list of keywords (TS tag).</span>
 query &lt;-<span class="st"> 'TI = (&quot;animal welfare&quot;) AND TS = (dog welfare)'</span>
 <span class="kw">query_wos</span>(query, <span class="dt">sid =</span> sid)
@@ -133,10 +133,10 @@ data
 <span class="co">#&gt;   ..$ grant_agency: chr [1:19] &quot;Animal and Society Institute-Wesleyan An&quot;..</span>
 <span class="co">#&gt;   ..$ grant_id    : chr [1:19] NA ...</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li><code>pull_wos()</code> returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have:</li>
+<li><code>pull_wos()</code> returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have. For example:</li>
 </ol>
 <ul>
-<li>What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications were assigned to those JSCs?</li>
+<li>What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications belong to them?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 

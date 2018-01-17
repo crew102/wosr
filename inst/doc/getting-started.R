@@ -18,8 +18,8 @@ library(wosr)
 sid <- auth()
 
 ## ------------------------------------------------------------------------
-# Find all publications which contain "animal welfare" in their titles (TI tag)
-# and has the words "dog" and "welfare" somewhere in their titles, abstracts, or
+# Find all publications that contain "animal welfare" in their titles (TI tag)
+# and have the words "dog" and "welfare" somewhere in their titles, abstracts, or
 # list of keywords (TS tag).
 query <- 'TI = ("animal welfare") AND TS = (dog welfare)'
 query_wos(query, sid = sid)

@@ -144,7 +144,7 @@ query &lt;-<span class="st"> 'TS = ("animal welfare") AND PY = (2002-2003)'</spa
 uts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"000272272000015"</span>, <span class="st">"000272366800025"</span>, <span class="st">"000272877700013"</span>)
 
 <span class="co"># Download InCites data for those UTs</span>
-<span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(uts)
+<span class="kw">head</span>(<span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(uts))
 <span class="co">#&gt; NULL</span></code></pre></div>
 </div>
 <div id="web-of-science-and-incites" class="section level2">
@@ -154,7 +154,7 @@ uts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"00
 wos &lt;-<span class="st"> </span><span class="kw"><a href="reference/pull_wos.html">pull_wos</a></span>(<span class="st">'TS = ("dog welfare")'</span>, <span class="dt">sid =</span> sid)
 
 <span class="co"># Download InCites data</span>
-<span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(wos<span class="op">$</span>publication<span class="op">$</span>ut)
+<span class="kw">head</span>(<span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(wos<span class="op">$</span>publication<span class="op">$</span>ut))
 <span class="co">#&gt; NULL</span></code></pre></div>
 </div>
 </div>
