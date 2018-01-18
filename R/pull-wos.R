@@ -54,14 +54,14 @@
 #' sid <- auth("your_username", password = "your_password")
 #' pull_wos("TS = (dog welfare) AND PY = 2010", sid = sid)
 #'
-#' # Re-use session ID (sid). This is best practice to avoid throttling limits:
+#' # Re-use session ID. This is best practice to avoid throttling limits:
 #' pull_wos("TI = \"dog welfare\"", sid = sid)
 #'
-#' # Get fresh session Id:
+#' # Get fresh session ID:
 #' pull_wos("TI = \"pet welfare\"", sid = auth("your_username", "your_password"))
 #'
-#' # It's best to first see how many records your query returns by calling
-#' # query_wos. Otherwise, you may start downloading a very large result set:
+#' # It's best to see how many records your query matches before actually
+#' # downloading the data. To do that, call query_wos before running pull_wos:
 #' query <- "TS = ((cadmium AND gill*) NOT Pisces)"
 #' query_wos(query, sid = sid) # shows that there are 1,611 matching publications
 #' pull_wos(query, sid = sid)

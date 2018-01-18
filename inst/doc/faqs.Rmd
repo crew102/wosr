@@ -7,11 +7,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-### 1. Why does the WoS API sometimes return a different number of records than the WoS web app?
+### Why does the WoS API sometimes return a different number of records than the WoS web app?
 
 The API does not conduct lemmatization before applying your query, while the web app does. This means that your query will typically match a smaller number of records when you're using the API.
 
-### 2. What are the throttling limits on the WoS and InCites APIs?
+### What are the throttling limits on the WoS and InCites APIs?
 
 There are two important rate limits that the user of `wosr` should be aware of:
 
@@ -19,11 +19,11 @@ There are two important rate limits that the user of `wosr` should be aware of:
 
 * According to the documentation, the InCites API limits users to 1,000 requests per 24 hour period, where each request can contain up to 100 UTs. That would suggest that you can download up to 100,000 publications-worth of data from the InCites API each day. However, based on my experience, there is another (undocumented) throttling limit which restricts the user to requesting no more than ~ 1,500 publications per 30 minute period.[^1]
 
-### 3. Why doesn't `pull_incites()` return data for all of my publications?
+### Why doesn't `pull_incites()` return data for all of my publications?
 
 Not all publications that are indexed in the Web of Science database are also indexed in InCites.
 
-### 4. How do I link together the `author` and `address` data frames returned by `pull_wos()`?
+### How do I link together the `author` and `address` data frames returned by `pull_wos()`?
 
 You can join the data frames using the `author_address` linking table, like so:
 
@@ -38,8 +38,8 @@ data$author %>%
   left_join(data$address, by = c("ut", "addr_no"))
 ```
 
-### 5. How do I download data for a query that returns more than 100,000 records?
+### How do I download data for a query that returns more than 100,000 records?
 
 The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (`PY`). For example, if you have a broad query like `"TS = dog"` (which matches over 250,000 records), you could break it up into four sub-queries that have contiguous date ranges (and which return fewer than 100,000 records each). E.g., `queries <- c("TS = dog AND PY = 1900-1980", "TS = dog AND PY = 1981-2000", "TS = dog AND PY = 2001-2010", "TS = dog AND PY = 2011-2018"); results <- lapply(queries, pull_wos)`.
 
-[1]: To accommodate this limit, `pull_incites()` sleeps for one minute after it gets a throttling error from the server, then tries to send another request. It will do this up to 30 times. 
+[^1]: To accommodate this limit, `pull_incites()` sleeps for one minute after it gets a throttling error from the server, then tries to send another request. It will do this up to 30 times. 

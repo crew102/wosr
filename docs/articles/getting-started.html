@@ -253,7 +253,90 @@ cat_authors
 <span class="st">    </span>.<span class="op">$</span>ut
 
 <span class="kw">head</span>(<span class="kw"><a href="../reference/pull_incites.html">pull_incites</a></span>(top_100_pubs, <span class="dt">key =</span> <span class="st">"your_incites_key"</span>), <span class="dt">n =</span> <span class="dv">20</span>)</code></pre></div>
-<pre><code>#&gt; NULL</code></pre>
+<pre><code>#&gt;                       ut article_type tot_cites journal_expected_citations
+#&gt; 1.1  WOS:000072696200007           AA         3                     8.8125
+#&gt; 1.2  WOS:000073134100006            5         0                     0.1289
+#&gt; 1.3  WOS:000073615900005           AA         7                     5.5368
+#&gt; 1.4  WOS:000073615900017           AA         0                     5.5368
+#&gt; 1.5  WOS:000075834700001           AA         3                     4.1957
+#&gt; 1.6  WOS:000083395700002            E         0                     1.5000
+#&gt; 1.7  WOS:000083467400032           AA         0                     2.1957
+#&gt; 1.8  WOS:000086084900004           AA        90                    18.2096
+#&gt; 1.9  WOS:000181518501071            M         0                     0.2198
+#&gt; 1.10 WOS:000184768800002           AA         0                     1.6000
+#&gt; 1.11 WOS:000222663700011            P         1                         NA
+#&gt; 1.12 WOS:000223297300005           AA         2                     2.3269
+#&gt; 1.13 WOS:000233498000009           AA         7                    15.4675
+#&gt; 1.14 WOS:000233498000011           AA         6                    15.4675
+#&gt; 1.15 WOS:000235583900016           AA        42                    10.4235
+#&gt; 1.16 WOS:000239334800014            5         1                     0.0179
+#&gt; 1.17 WOS:000240387300015            E         5                     2.0833
+#&gt; 1.18 WOS:000240931200002            5         0                     0.0086
+#&gt; 1.19 WOS:000249481000003           AA        14                    18.3220
+#&gt; 1.20 WOS:000250058400056           AA        18                    32.4911
+#&gt;      journal_act_exp_citations impact_factor avg_expected_rate percentile
+#&gt; 1.1                       0.34        -1.000            12.879       65.5
+#&gt; 1.2                       0.00        -1.000             0.030      100.0
+#&gt; 1.3                       1.26        -1.000            12.944       48.0
+#&gt; 1.4                       0.00        -1.000            12.944      100.0
+#&gt; 1.5                       0.72         0.592            12.944       65.4
+#&gt; 1.6                       0.00         1.462             1.370      100.0
+#&gt; 1.7                       0.00        -1.000            24.820      100.0
+#&gt; 1.8                       4.94         1.737            14.117        1.6
+#&gt; 1.9                       0.00         4.081             0.200      100.0
+#&gt; 1.10                      0.00         0.042            13.201      100.0
+#&gt; 1.11                        NA        -1.000             1.469       28.1
+#&gt; 1.12                      0.86        -1.000            13.416       76.1
+#&gt; 1.13                      0.45         0.929            12.655       50.7
+#&gt; 1.14                      0.39         0.929            12.655       54.5
+#&gt; 1.15                      4.03         0.679            13.429        5.8
+#&gt; 1.16                     56.00         1.000             0.025        1.7
+#&gt; 1.17                      2.40         0.518             1.078        5.4
+#&gt; 1.18                      0.00         1.737             0.025      100.0
+#&gt; 1.19                      0.76         1.771            14.674       25.8
+#&gt; 1.20                      0.55         3.348            30.784       41.2
+#&gt;        nci esi_most_cited_article hot_paper is_international_collab
+#&gt; 1.1   0.23                  FALSE     FALSE                   FALSE
+#&gt; 1.2   0.00                  FALSE     FALSE                   FALSE
+#&gt; 1.3   0.54                  FALSE     FALSE                   FALSE
+#&gt; 1.4   0.00                  FALSE     FALSE                   FALSE
+#&gt; 1.5   0.23                  FALSE     FALSE                   FALSE
+#&gt; 1.6   0.00                  FALSE     FALSE                   FALSE
+#&gt; 1.7   0.00                  FALSE     FALSE                   FALSE
+#&gt; 1.8   6.38                  FALSE     FALSE                   FALSE
+#&gt; 1.9   0.00                  FALSE     FALSE                    TRUE
+#&gt; 1.10  0.00                  FALSE     FALSE                   FALSE
+#&gt; 1.11  0.68                  FALSE     FALSE                   FALSE
+#&gt; 1.12  0.15                  FALSE     FALSE                   FALSE
+#&gt; 1.13  0.55                  FALSE     FALSE                   FALSE
+#&gt; 1.14  0.47                  FALSE     FALSE                    TRUE
+#&gt; 1.15  3.13                  FALSE     FALSE                    TRUE
+#&gt; 1.16 39.79                  FALSE     FALSE                   FALSE
+#&gt; 1.17  4.64                  FALSE     FALSE                   FALSE
+#&gt; 1.18  0.00                  FALSE     FALSE                   FALSE
+#&gt; 1.19  0.95                  FALSE     FALSE                   FALSE
+#&gt; 1.20  0.58                  FALSE     FALSE                   FALSE
+#&gt;      is_institution_collab is_industry_collab oa_flag
+#&gt; 1.1                  FALSE              FALSE   FALSE
+#&gt; 1.2                  FALSE              FALSE   FALSE
+#&gt; 1.3                  FALSE              FALSE   FALSE
+#&gt; 1.4                  FALSE              FALSE   FALSE
+#&gt; 1.5                  FALSE              FALSE   FALSE
+#&gt; 1.6                  FALSE              FALSE   FALSE
+#&gt; 1.7                  FALSE              FALSE   FALSE
+#&gt; 1.8                   TRUE              FALSE   FALSE
+#&gt; 1.9                   TRUE               TRUE   FALSE
+#&gt; 1.10                 FALSE              FALSE   FALSE
+#&gt; 1.11                 FALSE              FALSE   FALSE
+#&gt; 1.12                 FALSE              FALSE   FALSE
+#&gt; 1.13                 FALSE              FALSE   FALSE
+#&gt; 1.14                 FALSE              FALSE   FALSE
+#&gt; 1.15                  TRUE              FALSE   FALSE
+#&gt; 1.16                 FALSE              FALSE   FALSE
+#&gt; 1.17                 FALSE              FALSE   FALSE
+#&gt; 1.18                 FALSE              FALSE   FALSE
+#&gt; 1.19                 FALSE              FALSE   FALSE
+#&gt; 1.20                  TRUE              FALSE   FALSE</code></pre>
 </div>
   </div>
 

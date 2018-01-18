@@ -173,14 +173,14 @@ database:</p><dl class='dl-horizontal'>
 <span class='no'>sid</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='auth.html'>auth</a></span>(<span class='st'>"your_username"</span>, <span class='kw'>password</span> <span class='kw'>=</span> <span class='st'>"your_password"</span>)
 <span class='fu'>pull_wos</span>(<span class='st'>"TS = (dog welfare) AND PY = 2010"</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>)
 
-<span class='co'># Re-use session ID (sid). This is best practice to avoid throttling limits:</span>
+<span class='co'># Re-use session ID. This is best practice to avoid throttling limits:</span>
 <span class='fu'>pull_wos</span>(<span class='st'>"TI = \"dog welfare\""</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>)
 
-<span class='co'># Get fresh session Id:</span>
+<span class='co'># Get fresh session ID:</span>
 <span class='fu'>pull_wos</span>(<span class='st'>"TI = \"pet welfare\""</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='fu'><a href='auth.html'>auth</a></span>(<span class='st'>"your_username"</span>, <span class='st'>"your_password"</span>))
 
-<span class='co'># It's best to first see how many records your query returns by calling</span>
-<span class='co'># query_wos. Otherwise, you may start downloading a very large result set:</span>
+<span class='co'># It's best to see how many records your query matches before actually</span>
+<span class='co'># downloading the data. To do that, call query_wos before running pull_wos:</span>
 <span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"TS = ((cadmium AND gill*) NOT Pisces)"</span>
 <span class='fu'><a href='query_wos.html'>query_wos</a></span>(<span class='no'>query</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>) <span class='co'># shows that there are 1,611 matching publications</span>
 <span class='fu'>pull_wos</span>(<span class='no'>query</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>)
