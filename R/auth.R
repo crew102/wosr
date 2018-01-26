@@ -5,8 +5,8 @@
 #' there are limits on how many session IDs you can get in a given period of time
 #' (roughly 5 SIDs in a 5 minute time period).
 #'
-#' @param username Your username
-#' @param password Your password
+#' @param username Your username. Specify \code{username = NULL} if you want to use IP-based authentication.
+#' @param password Your password. Specify \code{password = NULL} if you want to use IP-based authentication.
 #'
 #' @return A session ID
 #'
@@ -35,14 +35,25 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
     </soapenv:Body>
     </soapenv:Envelope>'
 
+  url <- "http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate"
+
   # Send HTTP POST request
-  response <- httr::POST(
-    "http://search.webofknowledge.com/esti/wokmws/ws/WOKMWSAuthenticate",
-    body = body,
-    httr::authenticate(username, password = password),
-    httr::timeout(30),
-    ua()
-  )
+  if (is.null(username) && is.null(password)) {
+    response <- httr::POST(
+      url,
+      body = body,
+      httr::timeout(30),
+      ua()
+    )
+  } else {
+    response <- httr::POST(
+      url,
+      body = body,
+      httr::authenticate(username, password = password),
+      httr::timeout(30),
+      ua()
+    )
+  }
 
   # Confirm server didn't throw an error
   check_resp(

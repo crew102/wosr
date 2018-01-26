@@ -8,9 +8,9 @@ auth(username = Sys.getenv("WOS_USERNAME"),
   password = Sys.getenv("WOS_PASSWORD"))
 }
 \arguments{
-\item{username}{Your username}
+\item{username}{Your username. Specify \code{username = NULL} if you want to use IP-based authentication.}
 
-\item{password}{Your password}
+\item{password}{Your password. Specify \code{password = NULL} if you want to use IP-based authentication.}
 }
 \value{
 A session ID
