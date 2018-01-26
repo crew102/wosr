@@ -15,7 +15,7 @@ with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").}
 \item{key}{The developer key that the server will use to authenticate your
 account.}
 
-\item{...}{Arguments passed along to \code{\link[httr]{GET}}}
+\item{...}{Arguments passed along to \code{\link[httr]{GET}}.}
 }
 \value{
 A data frame where each row corresponds to a different publication.

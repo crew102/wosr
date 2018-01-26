@@ -12,7 +12,7 @@
 #' SID each time you query the WoS, via a call to \code{\link{auth}}. However,
 #' you should try to reuse SID values over multiple queries so that you don't
 #' run into the throttling limits placed on new sessions.
-#' @param ... Arguments passed along to \code{\link[httr]{POST}}
+#' @param ... Arguments passed along to \code{\link[httr]{POST}}.
 #'
 #' @return An object of class \code{query_result}. This object has the number
 #' of publications that are returned by your query (\code{rec_cnt}), as well as

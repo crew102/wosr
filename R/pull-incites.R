@@ -12,7 +12,7 @@
 #' with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").
 #' @param key The developer key that the server will use to authenticate your
 #' account.
-#' @param ... Arguments passed along to \code{\link[httr]{GET}}
+#' @param ... Arguments passed along to \code{\link[httr]{GET}}.
 #'
 #' @return A data frame where each row corresponds to a different publication.
 #' The definitions for the columns in this data frame can be found online at

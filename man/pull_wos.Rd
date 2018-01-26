@@ -20,7 +20,7 @@ SID each time you query the WoS, via a call to \code{\link{auth}}. However,
 you should try to reuse SID values over multiple queries so that you don't
 run into the throttling limits placed on new sessions.}
 
-\item{...}{Arguments passed along to \code{\link[httr]{POST}}}
+\item{...}{Arguments passed along to \code{\link[httr]{POST}}.}
 }
 \value{
 A list of data frames, which can be joined together like a relational

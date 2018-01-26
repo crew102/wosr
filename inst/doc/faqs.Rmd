@@ -42,4 +42,8 @@ data$author %>%
 
 The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (`PY`). For example, if you have a broad query like `"TS = dog"` (which matches over 250,000 records), you could break it up into four sub-queries that have contiguous date ranges (and which return fewer than 100,000 records each). E.g., `queries <- c("TS = dog AND PY = 1900-1980", "TS = dog AND PY = 1981-2000", "TS = dog AND PY = 2001-2010", "TS = dog AND PY = 2011-2018"); results <- lapply(queries, pull_wos)`.
 
+### There are some fields that I'm interested in that `pull_wos()` doesn't return. How do I get them?
+
+Open up an issue on `wosr`'s [issue page](https://github.com/vt-arc/wosr/issues) describing the field(s) that you want to be added.
+
 [^1]: To accommodate this limit, `pull_incites()` sleeps for one minute after it gets a throttling error from the server, then tries to send another request. It will do this up to 30 times. 

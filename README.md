@@ -98,7 +98,22 @@ uts <- c("000272272000015", "000272366800025", "000272877700013")
 
 # Download InCites data for those UTs
 head(pull_incites(uts))
-#> NULL
+#>                      ut article_type tot_cites journal_expected_citations
+#> 1.1 WOS:000272272000015           AA         2                        8.5
+#> 1.2 WOS:000272366800025           AA         4                        4.1
+#> 1.3 WOS:000272877700013           AA         1                        3.2
+#>     journal_act_exp_citations impact_factor avg_expected_rate percentile
+#> 1.1                      0.24          1.28                19         77
+#> 1.2                      0.97          0.80                19         62
+#> 1.3                      0.31          0.47                19         87
+#>      nci esi_most_cited_article hot_paper is_international_collab
+#> 1.1 0.11                  FALSE     FALSE                   FALSE
+#> 1.2 0.21                  FALSE     FALSE                   FALSE
+#> 1.3 0.05                  FALSE     FALSE                   FALSE
+#>     is_institution_collab is_industry_collab oa_flag
+#> 1.1                 FALSE              FALSE   FALSE
+#> 1.2                 FALSE              FALSE   FALSE
+#> 1.3                 FALSE              FALSE   FALSE
 ```
 
 Web of Science and InCites
@@ -110,7 +125,34 @@ wos <- pull_wos('TS = ("dog welfare")', sid = sid)
 
 # Download InCites data
 head(pull_incites(wos$publication$ut))
-#> NULL
+#>                      ut article_type tot_cites journal_expected_citations
+#> 1.1 WOS:000173967900005           AA         0                          5
+#> 1.2 WOS:000247216100018           AA        19                         16
+#> 1.3 WOS:000249481000004           AA        20                         18
+#> 1.4 WOS:000255700900005           AA        28                         22
+#> 1.5 WOS:000258136200005           AA        10                         12
+#> 1.6 WOS:000261541300005           AA        22                         19
+#>     journal_act_exp_citations impact_factor avg_expected_rate percentile
+#> 1.1                      0.00          -1.0                14        100
+#> 1.2                      1.15           1.5                13         18
+#> 1.3                      1.09           1.8                15         17
+#> 1.4                      1.29           2.0                10          9
+#> 1.5                      0.86           1.5                12         35
+#> 1.6                      1.14           1.8                14         14
+#>      nci esi_most_cited_article hot_paper is_international_collab
+#> 1.1 0.00                  FALSE     FALSE                   FALSE
+#> 1.2 1.48                  FALSE     FALSE                   FALSE
+#> 1.3 1.36                  FALSE     FALSE                    TRUE
+#> 1.4 2.71                  FALSE     FALSE                   FALSE
+#> 1.5 0.85                  FALSE     FALSE                    TRUE
+#> 1.6 1.60                  FALSE     FALSE                   FALSE
+#>     is_institution_collab is_industry_collab oa_flag
+#> 1.1                 FALSE              FALSE   FALSE
+#> 1.2                 FALSE              FALSE   FALSE
+#> 1.3                  TRUE              FALSE   FALSE
+#> 1.4                 FALSE              FALSE   FALSE
+#> 1.5                  TRUE              FALSE   FALSE
+#> 1.6                 FALSE              FALSE   FALSE
 ```
 
 Learning more

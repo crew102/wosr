@@ -106,6 +106,11 @@ data<span class="op">$</span>author <span class="op">%&gt;%</span><span class="s
 <a href="#how-do-i-download-data-for-a-query-that-returns-more-than-100000-records" class="anchor"></a>How do I download data for a query that returns more than 100,000 records?</h3>
 <p>The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (<code>PY</code>). For example, if you have a broad query like <code>"TS = dog"</code> (which matches over 250,000 records), you could break it up into four sub-queries that have contiguous date ranges (and which return fewer than 100,000 records each). E.g., <code>queries &lt;- c("TS = dog AND PY = 1900-1980", "TS = dog AND PY = 1981-2000", "TS = dog AND PY = 2001-2010", "TS = dog AND PY = 2011-2018"); results &lt;- lapply(queries, pull_wos)</code>.</p>
 </div>
+<div id="there-are-some-fields-that-im-interested-in-that-pull_wos-doesnt-return--how-do-i-get-them" class="section level3">
+<h3 class="hasAnchor">
+<a href="#there-are-some-fields-that-im-interested-in-that-pull_wos-doesnt-return--how-do-i-get-them" class="anchor"></a>There are some fields that I’m interested in that <code><a href="../reference/pull_wos.html">pull_wos()</a></code> doesn’t return. How do I get them?</h3>
+<p>Open up an issue on <code>wosr</code>’s <a href="https://github.com/vt-arc/wosr/issues">issue page</a> describing the field(s) that you want to be added.</p>
+</div>
 <div class="footnotes">
 <hr>
 <ol>
