@@ -24,7 +24,8 @@ get_dfs <- function(one_set) {
     jsc = ut_value_dfs$jsc,
     keyword = ut_value_dfs$keyword,
     keywords_plus = ut_value_dfs$keywords_plus,
-    grant = grant
+    grant = grant,
+    doc_type = ut_value_dfs$doc_type
   )
 }
 
@@ -32,7 +33,7 @@ get_dfs <- function(one_set) {
 get_pub_df <- function(pub_list) {
 
   pub_level <- c(
-    "ut", "title", "journal", "sortdate", "doc_type", "value", "local_count"
+    "ut", "title", "journal", "sortdate", "value", "local_count"
   )
 
   cols <- lapply(pub_list, function(x) {
@@ -76,7 +77,9 @@ one_ut_value_df <- function(one_list) {
   )
 }
 
-ut_val_flds <- c("jsc", "keyword", "keywords_plus", "grant_number", "grant_agency")
+ut_val_flds <- c(
+  "jsc", "keyword", "keywords_plus", "grant_number", "grant_agency", "doc_type"
+)
 
 nested_list_to_df <- function(list, ut_vec) {
   times <- vapply(list, function(x) if (is.matrix(x)) nrow(x) else 0, numeric(1))

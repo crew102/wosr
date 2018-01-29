@@ -29,7 +29,7 @@ parse_gen_pub_data <- function(doc_list) {
     ut = ".//uid[1]", # document id
     title = ".//summary//title[@type='item'][1]", # title
     journal = ".//summary//title[@type='source'][1]", # journal
-    doc_type = ".//summary//doctype[1]", # doc type
+    doc_type = ".//summary//doctype", # doc type
     abstract = ".//fullrecord_metadata//p[ancestor::abstract_text]", # abstract
     jsc = ".//fullrecord_metadata//subject[@ascatype='traditional']", # JSCs
     keyword = ".//fullrecord_metadata//keyword", # keywords

@@ -91,13 +91,12 @@ query &lt;-<span class="st"> 'TS = ("animal welfare") AND PY = (2002-2003)'</spa
 <span class="co">#&gt; Matching records: 548</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download data (this may take some time)</span>
 <span class="kw"><a href="reference/pull_wos.html">pull_wos</a></span>(query, <span class="dt">sid =</span> sid)
-<span class="co">#&gt; List of 8</span>
-<span class="co">#&gt;  $ publication   :'data.frame':  548 obs. of  8 variables:</span>
+<span class="co">#&gt; List of 9</span>
+<span class="co">#&gt;  $ publication   :'data.frame':  548 obs. of  7 variables:</span>
 <span class="co">#&gt;   ..$ ut       : chr [1:548] "WOS:000173956100001" ...</span>
 <span class="co">#&gt;   ..$ title    : chr [1:548] "FMD and animal welfare" ...</span>
 <span class="co">#&gt;   ..$ journal  : chr [1:548] "Veterinary Record" ...</span>
 <span class="co">#&gt;   ..$ date     : Date[1:548], format: "2002-01-26" ...</span>
-<span class="co">#&gt;   ..$ doc_type : chr [1:548] "Editorial Material" ...</span>
 <span class="co">#&gt;   ..$ doi      : chr [1:548] NA ...</span>
 <span class="co">#&gt;   ..$ tot_cites: num [1:548] 0 0 ...</span>
 <span class="co">#&gt;   ..$ abstract : chr [1:548] NA ...</span>
@@ -133,7 +132,10 @@ query &lt;-<span class="st"> 'TS = ("animal welfare") AND PY = (2002-2003)'</spa
 <span class="co">#&gt;  $ grant         :'data.frame':  1 obs. of  3 variables:</span>
 <span class="co">#&gt;   ..$ ut          : chr "WOS:000208574800048"</span>
 <span class="co">#&gt;   ..$ grant_agency: chr "Selcuk University Research Foundation"</span>
-<span class="co">#&gt;   ..$ grant_id    : chr "2000/062"</span></code></pre></div>
+<span class="co">#&gt;   ..$ grant_id    : chr "2000/062"</span>
+<span class="co">#&gt;  $ doc_type      :'data.frame':  642 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut      : chr [1:642] "WOS:000173956100001" ...</span>
+<span class="co">#&gt;   ..$ doc_type: chr [1:642] "Editorial Material" ...</span></code></pre></div>
 </div>
 <div id="incites" class="section level2">
 <h2 class="hasAnchor">

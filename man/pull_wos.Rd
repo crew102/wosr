@@ -64,6 +64,9 @@ database:
    publication/grant agency/grant ID triplet. Not all publications acknowledge
    a specific grant number in the funding acknowledgement section, hence the
    \code{grant_id} field can be \code{NA}.}
+
+   \item{doc_type}{A data frame where each row corresponds to a different
+   publication/document type pair.}
  }
 }
 \description{
