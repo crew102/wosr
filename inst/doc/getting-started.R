@@ -85,7 +85,7 @@ data$grant %>%
 #      slice(1:100) %>%
 #      .$ut
 #  
-#  head(pull_incites(top_100_pubs, key = "your_incites_key"), n = 20)
+#  head(pull_incites(top_100_pubs, key = "your_incites_key"))
 
 ## ---- echo = FALSE-------------------------------------------------------
 top_100_pubs <- 
@@ -94,5 +94,5 @@ top_100_pubs <-
     slice(1:100) %>% 
     .$ut
 
-head(pull_incites(top_100_pubs), n = 20)
+head(pull_incites(top_100_pubs))
 
