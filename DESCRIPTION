@@ -5,7 +5,7 @@ Description: An R client to the Web of Science and InCites
   <https://clarivate.com/products/data-integration/> web services.
 URL: https://vt-arc.github.io/wosr/index.html
 BugReports: https://github.com/vt-arc/wosr/issues
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Christopher", "Baker", email = "chriscrewbaker@gmail.com",
   role = c("aut", "cre"))
 License: MIT + file LICENSE
