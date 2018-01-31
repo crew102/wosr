@@ -25,4 +25,3 @@ Suggests:
   knitr,
   rmarkdown,
   dplyr
-VignetteBuilder: knitr
