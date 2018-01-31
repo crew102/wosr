@@ -88,8 +88,8 @@
     </div>
 
     
-    <p><code>auth</code> asks the API's server for a session ID (SID), which will later be
-passed to either <code><a href='query_wos.html'>query_wos</a></code> or <code><a href='pull_wos.html'>pull_wos</a></code>. Note,
+    <p><code>auth</code> asks the API's server for a session ID (SID), which you can then
+pass along to either <code><a href='query_wos.html'>query_wos</a></code> or <code><a href='pull_wos.html'>pull_wos</a></code>. Note,
 there are limits on how many session IDs you can get in a given period of time
 (roughly 5 SIDs in a 5 minute time period).</p>
     
@@ -120,12 +120,11 @@ there are limits on how many session IDs you can get in a given period of time
 <span class='co'># Pass user credentials in manually:</span>
 <span class='fu'>auth</span>(<span class='st'>"some_username"</span>, <span class='kw'>password</span> <span class='kw'>=</span> <span class='st'>"some_password"</span>)
 
-<span class='co'># Use default of looking for username and password in env variables, so you</span>
+<span class='co'># Use default of looking for username and password in envvars, so you</span>
 <span class='co'># don't have to keep specifying them in your code:</span>
 <span class='fu'>Sys.setenv</span>(<span class='kw'>WOS_USERNAME</span> <span class='kw'>=</span> <span class='st'>"some_username"</span>, <span class='kw'>WOS_PASSWORD</span> <span class='kw'>=</span> <span class='st'>"some_password"</span>)
 <span class='fu'>auth</span>()
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

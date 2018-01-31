@@ -102,12 +102,12 @@ processing the Web of Science data that the API serves.</p>
     <tr>
       <th>query</th>
       <td><p>Query string. See the <a href='https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence'>WoS query documentation</a> page
-for details on how to write a query and the list of <a href='http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html'>example queries</a>.</p></td>
+for details on how to write a query as well as a the list of <a href='http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html'>example queries</a>.</p></td>
     </tr>
     <tr>
       <th>editions</th>
       <td><p>Web of Science editions to query. Possible values are listed
-<a href='http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html'>online</a>.</p></td>
+<a href='http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html'>here</a>.</p></td>
     </tr>
     <tr>
       <th>sid</th>
@@ -128,7 +128,7 @@ run into the throttling limits placed on new sessions.</p></td>
 database:</p><dl class='dl-horizontal'>
    <dt>publication</dt><dd><p>A data frame where each row corresponds to a different
    publication. Note that each publication has a distinct <code>ut</code>. There is
-   a one-to-one relationship between a <code>ut</code> and each of the fields given
+   a one-to-one relationship between a <code>ut</code> and each of the fields
    in this table.</p></dd>
 
    <dt>author</dt><dd><p>A data frame where each row corresponds to a different
@@ -150,8 +150,8 @@ database:</p><dl class='dl-horizontal'>
    be used to link the <code>author</code> and <code>address</code> tables together.</p></dd>
 
    <dt>jsc</dt><dd><p>A data frame where each row corresponds to a different
-   publication/jsc (journal subject category). There is a many-to-many
-   relationship between <code>ut</code> and <code>jsc</code>.</p></dd>
+   publication/jsc (journal subject category) pair. There is a many-to-many
+   relationship between <code>ut</code>'s and <code>jsc</code>'s.</p></dd>
 
    <dt>keyword</dt><dd><p>A data frame where each row corresponds to a different
    publication/keyword pair. These keywords are the author-assigned keywords.</p></dd>
@@ -183,12 +183,11 @@ database:</p><dl class='dl-horizontal'>
 <span class='fu'>pull_wos</span>(<span class='st'>"TI = \"pet welfare\""</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='fu'><a href='auth.html'>auth</a></span>(<span class='st'>"your_username"</span>, <span class='st'>"your_password"</span>))
 
 <span class='co'># It's best to see how many records your query matches before actually</span>
-<span class='co'># downloading the data. To do that, call query_wos before running pull_wos:</span>
+<span class='co'># downloading the data. To do this, call query_wos before running pull_wos:</span>
 <span class='no'>query</span> <span class='kw'>&lt;-</span> <span class='st'>"TS = ((cadmium AND gill*) NOT Pisces)"</span>
 <span class='fu'><a href='query_wos.html'>query_wos</a></span>(<span class='no'>query</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>) <span class='co'># shows that there are 1,611 matching publications</span>
 <span class='fu'>pull_wos</span>(<span class='no'>query</span>, <span class='kw'>sid</span> <span class='kw'>=</span> <span class='no'>sid</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

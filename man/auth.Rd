@@ -16,8 +16,8 @@ auth(username = Sys.getenv("WOS_USERNAME"),
 A session ID
 }
 \description{
-\code{auth} asks the API's server for a session ID (SID), which will later be
-passed to either \code{\link{query_wos}} or \code{\link{pull_wos}}. Note,
+\code{auth} asks the API's server for a session ID (SID), which you can then
+pass along to either \code{\link{query_wos}} or \code{\link{pull_wos}}. Note,
 there are limits on how many session IDs you can get in a given period of time
 (roughly 5 SIDs in a 5 minute time period).
 }
@@ -27,10 +27,9 @@ there are limits on how many session IDs you can get in a given period of time
 # Pass user credentials in manually:
 auth("some_username", password = "some_password")
 
-# Use default of looking for username and password in env variables, so you
+# Use default of looking for username and password in envvars, so you
 # don't have to keep specifying them in your code:
 Sys.setenv(WOS_USERNAME = "some_username", WOS_PASSWORD = "some_password")
 auth()
 }
-
 }

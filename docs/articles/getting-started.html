@@ -59,7 +59,8 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><link href="getting-started_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="getting-started_files/pagedtable-1.1/js/pagedtable.js"></script><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>Getting started</h1>
@@ -70,12 +71,12 @@
     
 <div class="contents">
 <ol style="list-style-type: decimal">
-<li>The first step is to open up a session with the WoS API. To do this, you call <code><a href="../reference/auth.html">auth()</a></code>, which authenticates the user with the API’s server and returns a session ID (SID).</li>
+<li>The first step is to open up a session with the WoS API. <code><a href="../reference/auth.html">auth()</a></code> will authenticate your credentials with the the API’s server and return a session ID (SID).</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wosr)
 sid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auth.html">auth</a></span>(<span class="dt">username =</span> <span class="st">"your_username"</span>, <span class="dt">password =</span> <span class="st">"your_password"</span>)</code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Now we can query WoS to see how many records match our query string.</li>
+<li>Now we can query the Web of Science to see how many records match our query string.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Find all publications that contain "animal welfare" in their titles (TI tag)</span>
 <span class="co"># and have the words "dog" and "welfare" somewhere in their titles, abstracts, or</span>
@@ -149,79 +150,57 @@ top_jscs &lt;-<span class="st"> </span>
 <span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">head</span>()
 
-top_jscs
-<span class="co">#&gt; # A tibble: 6 x 2</span>
-<span class="co">#&gt; # Groups: jsc [6]</span>
-<span class="co">#&gt;   jsc                                     n</span>
-<span class="co">#&gt;   &lt;chr&gt;                               &lt;int&gt;</span>
-<span class="co">#&gt; 1 Veterinary Sciences                    67</span>
-<span class="co">#&gt; 2 Zoology                                 9</span>
-<span class="co">#&gt; 3 Agriculture, Dairy &amp; Animal Science     5</span>
-<span class="co">#&gt; 4 Behavioral Sciences                     4</span>
-<span class="co">#&gt; 5 History &amp; Philosophy of Science         3</span>
-<span class="co">#&gt; 6 Sociology                               3</span></code></pre></div>
+top_jscs</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["jsc"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Veterinary Sciences","2":"67"},{"1":"Zoology","2":"9"},{"1":"Agriculture, Dairy & Animal Science","2":"5"},{"1":"Behavioral Sciences","2":"4"},{"1":"History & Philosophy of Science","2":"3"},{"1":"Sociology","2":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>jsc <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">inner_join</span>(top_jscs, <span class="dt">by =</span> <span class="st">"jsc"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>publication, <span class="dt">by =</span> <span class="st">"ut"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(title) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">head</span>()
-<span class="co">#&gt;                                              title</span>
-<span class="co">#&gt; 1         ANIMAL WELFARE Brachycephalic dog breeds</span>
-<span class="co">#&gt; 2                Reporting animal welfare concerns</span>
-<span class="co">#&gt; 3 Animal welfare activist injured while aiding dog</span>
-<span class="co">#&gt; 4            Animal Welfare in Veterinary Practice</span>
-<span class="co">#&gt; 5                  PET BREEDING AND ANIMAL-WELFARE</span>
-<span class="co">#&gt; 6           Science, sentience, and animal welfare</span></code></pre></div>
+<span class="st">  </span><span class="kw">head</span>()</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["title"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"ANIMAL WELFARE Brachycephalic dog breeds","_rn_":"1"},{"1":"Reporting animal welfare concerns","_rn_":"2"},{"1":"Animal welfare activist injured while aiding dog","_rn_":"3"},{"1":"Animal Welfare in Veterinary Practice","_rn_":"4"},{"1":"PET BREEDING AND ANIMAL-WELFARE","_rn_":"5"},{"1":"Science, sentience, and animal welfare","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <ul>
-<li>Which publications have “cat” in their abstracts, who are the authors on these publications, and which organizations are they from?</li>
+<li>Which publications have “cat” in their abstracts, who are the authors on those publications, and which organizations are those authors from?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_pubs &lt;-<span class="st"> </span>
 <span class="st">  </span>data<span class="op">$</span>publication <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">bcat</span><span class="ch">\\</span><span class="st">b"</span>, abstract, <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">select</span>(ut, title)
 
-cat_pubs
-<span class="co">#&gt;                    ut</span>
-<span class="co">#&gt; 1 WOS:000346849200008</span>
-<span class="co">#&gt; 2 WOS:000256104000004</span>
-<span class="co">#&gt; 3 WOS:000317556100002</span>
-<span class="co">#&gt; 4 WOS:000282006600007</span>
-<span class="co">#&gt;                                                                                      title</span>
-<span class="co">#&gt; 1                         Introducing breathlessness as a significant animal welfare issue</span>
-<span class="co">#&gt; 2                  Assessment of animal welfare aspects in extreme breeds of dogs and cats</span>
-<span class="co">#&gt; 3 Redesigning the Donation Box: The Effect of Animal Banks on Donations for Animal Welfare</span>
-<span class="co">#&gt; 4           Public awareness in New Zealand of animal welfare legislation relating to cats</span></code></pre></div>
+cat_pubs</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["title"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000346849200008","2":"Introducing breathlessness as a significant animal welfare issue"},{"1":"WOS:000256104000004","2":"Assessment of animal welfare aspects in extreme breeds of dogs and cats"},{"1":"WOS:000317556100002","2":"Redesigning the Donation Box: The Effect of Animal Banks on Donations for Animal Welfare"},{"1":"WOS:000282006600007","2":"Public awareness in New Zealand of animal welfare legislation relating to cats"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_authors &lt;-<span class="st"> </span>
 <span class="st">  </span>data<span class="op">$</span>author <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">semi_join</span>(cat_pubs, <span class="dt">by =</span> <span class="st">"ut"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">select</span>(ut, author_no, display_name)
 
-cat_authors
-<span class="co">#&gt;                     ut author_no      display_name</span>
-<span class="co">#&gt; 1  WOS:000346849200008         1 Beausoleil, N. J.</span>
-<span class="co">#&gt; 2  WOS:000346849200008         2     Mellor, D. J.</span>
-<span class="co">#&gt; 3  WOS:000256104000004         1       Steiger, A.</span>
-<span class="co">#&gt; 4  WOS:000256104000004         2        Stucki, E.</span>
-<span class="co">#&gt; 5  WOS:000256104000004         3         Peyer, N.</span>
-<span class="co">#&gt; 6  WOS:000256104000004         4        Keller, P.</span>
-<span class="co">#&gt; 7  WOS:000317556100002         1  Gueguen, Nicolas</span>
-<span class="co">#&gt; 8  WOS:000282006600007         1  Farnworth, M. J.</span>
-<span class="co">#&gt; 9  WOS:000282006600007         2      Campbell, J.</span>
-<span class="co">#&gt; 10 WOS:000282006600007         3      Adams, N. J.</span></code></pre></div>
+cat_authors</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["author_no"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["display_name"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000346849200008","2":"1","3":"Beausoleil, N. J."},{"1":"WOS:000346849200008","2":"2","3":"Mellor, D. J."},{"1":"WOS:000256104000004","2":"1","3":"Steiger, A."},{"1":"WOS:000256104000004","2":"2","3":"Stucki, E."},{"1":"WOS:000256104000004","2":"3","3":"Peyer, N."},{"1":"WOS:000256104000004","2":"4","3":"Keller, P."},{"1":"WOS:000317556100002","2":"1","3":"Gueguen, Nicolas"},{"1":"WOS:000282006600007","2":"1","3":"Farnworth, M. J."},{"1":"WOS:000282006600007","2":"2","3":"Campbell, J."},{"1":"WOS:000282006600007","2":"3","3":"Adams, N. J."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_authors <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>author_address, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"ut"</span>, <span class="st">"author_no"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>address, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"ut"</span>, <span class="st">"addr_no"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(ut, author_no, display_name, org)
-<span class="co">#&gt;                    ut author_no      display_name                 org</span>
-<span class="co">#&gt; 1 WOS:000346849200008         1 Beausoleil, N. J.         Massey Univ</span>
-<span class="co">#&gt; 2 WOS:000346849200008         2     Mellor, D. J.         Massey Univ</span>
-<span class="co">#&gt; 3 WOS:000256104000004         1       Steiger, A.           Univ Bern</span>
-<span class="co">#&gt; 4 WOS:000256104000004         2        Stucki, E.       Bundesamt Vet</span>
-<span class="co">#&gt; 5 WOS:000256104000004         3         Peyer, N.       Bundesamt Vet</span>
-<span class="co">#&gt; 6 WOS:000282006600007         1  Farnworth, M. J. Unitec Inst Technol</span>
-<span class="co">#&gt; 7 WOS:000282006600007         2      Campbell, J. Unitec Inst Technol</span>
-<span class="co">#&gt; 8 WOS:000282006600007         3      Adams, N. J. Unitec Inst Technol</span></code></pre></div>
+<span class="st">  </span><span class="kw">select</span>(ut, author_no, display_name, org)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["author_no"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["display_name"],"name":[3],"type":["chr"],"align":["left"]},{"label":["org"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000346849200008","2":"1","3":"Beausoleil, N. J.","4":"Massey Univ"},{"1":"WOS:000346849200008","2":"2","3":"Mellor, D. J.","4":"Massey Univ"},{"1":"WOS:000256104000004","2":"1","3":"Steiger, A.","4":"Univ Bern"},{"1":"WOS:000256104000004","2":"2","3":"Stucki, E.","4":"Bundesamt Vet"},{"1":"WOS:000256104000004","2":"3","3":"Peyer, N.","4":"Bundesamt Vet"},{"1":"WOS:000282006600007","2":"1","3":"Farnworth, M. J.","4":"Unitec Inst Technol"},{"1":"WOS:000282006600007","2":"2","3":"Campbell, J.","4":"Unitec Inst Technol"},{"1":"WOS:000282006600007","2":"3","3":"Adams, N. J.","4":"Unitec Inst Technol"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <ul>
 <li>Which funding organizations were responsible for funding publications with top citation counts?</li>
 </ul>
@@ -230,21 +209,12 @@ cat_authors
 <span class="st">  </span><span class="kw">select</span>(ut, tot_cites, grant_agency) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot_cites)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">head</span>()
-<span class="co">#&gt;                    ut tot_cites</span>
-<span class="co">#&gt; 1 WOS:000266414200001        68</span>
-<span class="co">#&gt; 2 WOS:000266414200001        68</span>
-<span class="co">#&gt; 3 WOS:000250058400056        18</span>
-<span class="co">#&gt; 4 WOS:000299252600032        16</span>
-<span class="co">#&gt; 5 WOS:000346849200008        13</span>
-<span class="co">#&gt; 6 WOS:000376588600097        13</span>
-<span class="co">#&gt;                                                                         grant_agency</span>
-<span class="co">#&gt; 1                                                       Ontario Graduate Scholarship</span>
-<span class="co">#&gt; 2                                                     NSERC postgraduate scholarship</span>
-<span class="co">#&gt; 3                                                                 Intramural NIH HHS</span>
-<span class="co">#&gt; 4                     Centre for Animal Welfare and Ethics, University of Queensland</span>
-<span class="co">#&gt; 5                     Animal Welfare Science and Bioethics Centre, Massey University</span>
-<span class="co">#&gt; 6 United States National Science Foundation Division of Social and Economic Sciences</span></code></pre></div>
+<span class="st">  </span><span class="kw">head</span>()</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["tot_cites"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["grant_agency"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000266414200001","2":"69","3":"Ontario Graduate Scholarship","_rn_":"1"},{"1":"WOS:000266414200001","2":"69","3":"NSERC postgraduate scholarship","_rn_":"2"},{"1":"WOS:000250058400056","2":"18","3":"Intramural NIH HHS","_rn_":"3"},{"1":"WOS:000299252600032","2":"16","3":"Centre for Animal Welfare and Ethics, University of Queensland","_rn_":"4"},{"1":"WOS:000346849200008","2":"14","3":"Animal Welfare Science and Bioethics Centre, Massey University","_rn_":"5"},{"1":"WOS:000376588600097","2":"13","3":"United States National Science Foundation Division of Social and Economic Sciences","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <ol start="5" style="list-style-type: decimal">
 <li>Download more detailed citation data (from the InCites API) for the top-cited publications</li>
 </ol>
@@ -255,34 +225,11 @@ cat_authors
 <span class="st">    </span>.<span class="op">$</span>ut
 
 <span class="kw">head</span>(<span class="kw"><a href="../reference/pull_incites.html">pull_incites</a></span>(top_100_pubs, <span class="dt">key =</span> <span class="st">"your_incites_key"</span>))</code></pre></div>
-<pre><code>#&gt;                      ut article_type tot_cites journal_expected_citations
-#&gt; 1.1 WOS:000072696200007           AA         3                       8.81
-#&gt; 1.2 WOS:000073134100006            5         0                       0.13
-#&gt; 1.3 WOS:000073615900005           AA         7                       5.54
-#&gt; 1.4 WOS:000073615900017           AA         0                       5.54
-#&gt; 1.5 WOS:000075834700001           AA         3                       4.20
-#&gt; 1.6 WOS:000083395700002            E         0                       1.50
-#&gt;     journal_act_exp_citations impact_factor avg_expected_rate percentile
-#&gt; 1.1                      0.34         -1.00             12.88         66
-#&gt; 1.2                      0.00         -1.00              0.03        100
-#&gt; 1.3                      1.26         -1.00             12.94         48
-#&gt; 1.4                      0.00         -1.00             12.94        100
-#&gt; 1.5                      0.72          0.59             12.94         65
-#&gt; 1.6                      0.00          1.46              1.37        100
-#&gt;      nci esi_most_cited_article hot_paper is_international_collab
-#&gt; 1.1 0.23                  FALSE     FALSE                   FALSE
-#&gt; 1.2 0.00                  FALSE     FALSE                   FALSE
-#&gt; 1.3 0.54                  FALSE     FALSE                   FALSE
-#&gt; 1.4 0.00                  FALSE     FALSE                   FALSE
-#&gt; 1.5 0.23                  FALSE     FALSE                   FALSE
-#&gt; 1.6 0.00                  FALSE     FALSE                   FALSE
-#&gt;     is_institution_collab is_industry_collab oa_flag
-#&gt; 1.1                 FALSE              FALSE   FALSE
-#&gt; 1.2                 FALSE              FALSE   FALSE
-#&gt; 1.3                 FALSE              FALSE   FALSE
-#&gt; 1.4                 FALSE              FALSE   FALSE
-#&gt; 1.5                 FALSE              FALSE   FALSE
-#&gt; 1.6                 FALSE              FALSE   FALSE</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["article_type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["tot_cites"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["journal_expected_citations"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["journal_act_exp_citations"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["impact_factor"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["avg_expected_rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["percentile"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["nci"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["esi_most_cited_article"],"name":[10],"type":["lgl"],"align":["right"]},{"label":["hot_paper"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["is_international_collab"],"name":[12],"type":["lgl"],"align":["right"]},{"label":["is_institution_collab"],"name":[13],"type":["lgl"],"align":["right"]},{"label":["is_industry_collab"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["oa_flag"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"WOS:000072696200007","2":"AA","3":"3","4":"8.81","5":"0.34","6":"-1.00","7":"12.88","8":"66","9":"0.23","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.1"},{"1":"WOS:000073134100006","2":"5","3":"0","4":"0.13","5":"0.00","6":"-1.00","7":"0.03","8":"100","9":"0.00","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.2"},{"1":"WOS:000073615900005","2":"AA","3":"7","4":"5.54","5":"1.26","6":"-1.00","7":"12.94","8":"48","9":"0.54","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.3"},{"1":"WOS:000073615900017","2":"AA","3":"0","4":"5.54","5":"0.00","6":"-1.00","7":"12.94","8":"100","9":"0.00","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.4"},{"1":"WOS:000075834700001","2":"AA","3":"3","4":"4.20","5":"0.72","6":"0.59","7":"12.94","8":"65","9":"0.23","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.5"},{"1":"WOS:000083395700002","2":"E","3":"0","4":"1.50","5":"0.00","6":"1.46","7":"1.37","8":"100","9":"0.00","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
   </div>
 

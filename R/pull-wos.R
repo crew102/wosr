@@ -10,7 +10,7 @@
 #'  \describe{
 #'    \item{publication}{A data frame where each row corresponds to a different
 #'    publication. Note that each publication has a distinct \code{ut}. There is
-#'    a one-to-one relationship between a \code{ut} and each of the fields given
+#'    a one-to-one relationship between a \code{ut} and each of the fields
 #'    in this table.}
 #'
 #'    \item{author}{A data frame where each row corresponds to a different
@@ -32,8 +32,8 @@
 #'    be used to link the \code{author} and \code{address} tables together.}
 #'
 #'    \item{jsc}{A data frame where each row corresponds to a different
-#'    publication/jsc (journal subject category). There is a many-to-many
-#'    relationship between \code{ut} and \code{jsc}.}
+#'    publication/jsc (journal subject category) pair. There is a many-to-many
+#'    relationship between \code{ut}'s and \code{jsc}'s.}
 #'
 #'    \item{keyword}{A data frame where each row corresponds to a different
 #'    publication/keyword pair. These keywords are the author-assigned keywords.}
@@ -64,12 +64,11 @@
 #' pull_wos("TI = \"pet welfare\"", sid = auth("your_username", "your_password"))
 #'
 #' # It's best to see how many records your query matches before actually
-#' # downloading the data. To do that, call query_wos before running pull_wos:
+#' # downloading the data. To do this, call query_wos before running pull_wos:
 #' query <- "TS = ((cadmium AND gill*) NOT Pisces)"
 #' query_wos(query, sid = sid) # shows that there are 1,611 matching publications
 #' pull_wos(query, sid = sid)
 #'}
-#'
 #' @export
 pull_wos <- function(query,
                      editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",

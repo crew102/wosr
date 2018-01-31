@@ -36,7 +36,7 @@ devtools::install_github("vt-arc/wosr")
 ```{r, eval = FALSE}
 library(wosr)
 
-# Save your WoS API username and password in environment vars
+# Save your WoS API username and password in environment variables
 Sys.setenv(WOS_USERNAME = "your_username", WOS_PASSWORD = "your_password")
 
 # Get session ID
@@ -49,13 +49,13 @@ sid <- auth()
 ```
 
 ```{r}
-# Query WoS to see how many results there are for a particular query
+# Query WoS to see how many results match your query
 query <- 'TS = ("animal welfare") AND PY = (2002-2003)'
 query_wos(query, sid = sid)
 ```
 
 ```{r}
-# Download data (this may take some time)
+# Download data
 pull_wos(query, sid = sid)
 ```
 
@@ -71,7 +71,7 @@ Sys.setenv(INCITES_KEY = "your_key")
 uts <- c("000272272000015", "000272366800025", "000272877700013")
 
 # Download InCites data for those UTs
-head(pull_incites(uts))
+pull_incites(uts)
 ```
 
 ## Web of Science and InCites

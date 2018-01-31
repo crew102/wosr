@@ -7,13 +7,12 @@
 pull_incites(uts, key = Sys.getenv("INCITES_KEY"), ...)
 }
 \arguments{
-\item{uts}{A vector of UTs whose InCites data you would like to get from the
-API's server. Each UT is a 15-digit identifier for a given publication. You
-can specify the UT using only these 15 digits, or you can append the 15 digits
+\item{uts}{A vector of UTs whose InCites data you would like to download.
+Each UT is a 15-digit identifier for a given publication. You
+can specify the UT using only these 15 digits or you can append the 15 digits
 with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").}
 
-\item{key}{The developer key that the server will use to authenticate your
-account.}
+\item{key}{The developer key that the server will use for authentication.}
 
 \item{...}{Arguments passed along to \code{\link[httr]{GET}}.}
 }
@@ -22,28 +21,27 @@ A data frame where each row corresponds to a different publication.
 The definitions for the columns in this data frame can be found online at
 the API's documentation \href{http://about.incites.thomsonreuters.com/api/#/}{page}
 (see the \code{DocumentLevelMetricsByUT} method details for definitions).
-Note that the column names are all converted to lower case by
-\code{pull_incites} and the 0/1 flag variables converted to booleans). Also note
-that not all publications that are indexed in WoS are also indexed in
-InCites, so you may not receive data back for some UTs.
+Note that the column names are all converted to lowercase by
+\code{pull_incites} and the 0/1 flag variables are converted to booleans).
+Also note that not all publications indexed in WoS are also indexed in
+InCites, so you may not get data back for some UTs.
 }
 \description{
 \strong{Important note:} The throttling limits on the InCites API are not
 documented anywhere and are difficult to determine from experience. As such,
-whenever \code{pull_incites} receives a throttling error from the
-server, it sleeps for 1 minute then retries the request. It does this up
-to 30 times for each unique HTTP request it makes to the server.
+whenever \code{pull_incites} receives a throttling error from the server, it
+uses exponential backoff (with a maximum wait time of 45 minutes) to determine
+how long to wait before retrying.
 }
 \examples{
 \dontrun{
 
 uts <- c(
-"WOS:000346263300011", "WOS:000362312600021", "WOS:000279885800004",
-"WOS:000294667500003", "WOS:000294946900020", "WOS:000412659200006"
+  "WOS:000346263300011", "WOS:000362312600021", "WOS:000279885800004",
+  "WOS:000294667500003", "WOS:000294946900020", "WOS:000412659200006"
 )
 pull_incites(uts, key = "some_key")
 
 pull_incites(c("000346263300011", "000362312600021"), key = "some_key")
 }
-
 }

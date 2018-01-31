@@ -10,10 +10,10 @@ pull_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI",
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
-for details on how to write a query and the list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
+for details on how to write a query as well as a the list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
-\href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{online}.}
+\href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
 
 \item{sid}{Session identifier (SID). The default setting is to get a fresh
 SID each time you query the WoS, via a call to \code{\link{auth}}. However,
@@ -28,7 +28,7 @@ database:
  \describe{
    \item{publication}{A data frame where each row corresponds to a different
    publication. Note that each publication has a distinct \code{ut}. There is
-   a one-to-one relationship between a \code{ut} and each of the fields given
+   a one-to-one relationship between a \code{ut} and each of the fields
    in this table.}
 
    \item{author}{A data frame where each row corresponds to a different
@@ -50,8 +50,8 @@ database:
    be used to link the \code{author} and \code{address} tables together.}
 
    \item{jsc}{A data frame where each row corresponds to a different
-   publication/jsc (journal subject category). There is a many-to-many
-   relationship between \code{ut} and \code{jsc}.}
+   publication/jsc (journal subject category) pair. There is a many-to-many
+   relationship between \code{ut}'s and \code{jsc}'s.}
 
    \item{keyword}{A data frame where each row corresponds to a different
    publication/keyword pair. These keywords are the author-assigned keywords.}
@@ -86,10 +86,9 @@ pull_wos("TI = \\"dog welfare\\"", sid = sid)
 pull_wos("TI = \\"pet welfare\\"", sid = auth("your_username", "your_password"))
 
 # It's best to see how many records your query matches before actually
-# downloading the data. To do that, call query_wos before running pull_wos:
+# downloading the data. To do this, call query_wos before running pull_wos:
 query <- "TS = ((cadmium AND gill*) NOT Pisces)"
 query_wos(query, sid = sid) # shows that there are 1,611 matching publications
 pull_wos(query, sid = sid)
 }
-
 }

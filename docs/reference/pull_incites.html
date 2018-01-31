@@ -90,9 +90,9 @@
     
     <p><strong>Important note:</strong> The throttling limits on the InCites API are not
 documented anywhere and are difficult to determine from experience. As such,
-whenever <code>pull_incites</code> receives a throttling error from the
-server, it sleeps for 1 minute then retries the request. It does this up
-to 30 times for each unique HTTP request it makes to the server.</p>
+whenever <code>pull_incites</code> receives a throttling error from the server, it
+uses exponential backoff (with a maximum wait time of 45 minutes) to determine
+how long to wait before retrying.</p>
     
 
     <pre class="usage"><span class='fu'>pull_incites</span>(<span class='no'>uts</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"INCITES_KEY"</span>), <span class='no'>...</span>)</pre>
@@ -102,15 +102,14 @@ to 30 times for each unique HTTP request it makes to the server.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>uts</th>
-      <td><p>A vector of UTs whose InCites data you would like to get from the
-API's server. Each UT is a 15-digit identifier for a given publication. You
-can specify the UT using only these 15 digits, or you can append the 15 digits
+      <td><p>A vector of UTs whose InCites data you would like to download.
+Each UT is a 15-digit identifier for a given publication. You
+can specify the UT using only these 15 digits or you can append the 15 digits
 with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").</p></td>
     </tr>
     <tr>
       <th>key</th>
-      <td><p>The developer key that the server will use to authenticate your
-account.</p></td>
+      <td><p>The developer key that the server will use for authentication.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -124,23 +123,22 @@ account.</p></td>
 The definitions for the columns in this data frame can be found online at
 the API's documentation <a href='http://about.incites.thomsonreuters.com/api/#/'>page</a>
 (see the <code>DocumentLevelMetricsByUT</code> method details for definitions).
-Note that the column names are all converted to lower case by
-<code>pull_incites</code> and the 0/1 flag variables converted to booleans). Also note
-that not all publications that are indexed in WoS are also indexed in
-InCites, so you may not receive data back for some UTs.</p>
+Note that the column names are all converted to lowercase by
+<code>pull_incites</code> and the 0/1 flag variables are converted to booleans).
+Also note that not all publications indexed in WoS are also indexed in
+InCites, so you may not get data back for some UTs.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='no'>uts</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(
-<span class='st'>"WOS:000346263300011"</span>, <span class='st'>"WOS:000362312600021"</span>, <span class='st'>"WOS:000279885800004"</span>,
-<span class='st'>"WOS:000294667500003"</span>, <span class='st'>"WOS:000294946900020"</span>, <span class='st'>"WOS:000412659200006"</span>
+  <span class='st'>"WOS:000346263300011"</span>, <span class='st'>"WOS:000362312600021"</span>, <span class='st'>"WOS:000279885800004"</span>,
+  <span class='st'>"WOS:000294667500003"</span>, <span class='st'>"WOS:000294946900020"</span>, <span class='st'>"WOS:000412659200006"</span>
 )
 <span class='fu'>pull_incites</span>(<span class='no'>uts</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"some_key"</span>)
 
 <span class='fu'>pull_incites</span>(<span class='fu'>c</span>(<span class='st'>"000346263300011"</span>, <span class='st'>"000362312600021"</span>), <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"some_key"</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

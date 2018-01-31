@@ -10,10 +10,10 @@ query_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI",
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
-for details on how to write a query and the list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
+for details on how to write a query as well as a the list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
-\href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{online}.}
+\href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
 
 \item{sid}{Session identifier (SID). The default setting is to get a fresh
 SID each time you query the WoS, via a call to \code{\link{auth}}. However,
@@ -31,7 +31,7 @@ internally.
 \description{
 Returns the number of records that match a given query. It's best to call
 this function before calling \code{\link{pull_wos}}, so that you know how
-many records you are trying to download before you attempt to download them.
+many records you are trying to download before you attempt to do so.
 }
 \examples{
 \dontrun{
@@ -41,17 +41,10 @@ sid <- auth("some_username", password = "some_password")
 
 query_wos("TS = (\\"dog welfare\\") AND PY = (1990-2007)", sid = sid)
 
-# The following queries were taken from the online examples:
-
-# Finds records in which Max Planck appears in the Address field.
+# Finds records in which Max Planck appears in the address field.
 query_wos("AD = Max Planck", sid = sid)
 
 # Finds records in which Max Planck appears in the same address as Mainz
 query_wos("AD = (Max Planck SAME Mainz)", sid = sid)
-
-# Finds records in which this grant number appears in the Grant Number field
-# within the Funding Acknowledgment table
-query_wos("FG = IRG-58-00*", sid = sid)
 }
-
 }

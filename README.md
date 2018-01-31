@@ -22,7 +22,7 @@ Web of Science
 ``` r
 library(wosr)
 
-# Save your WoS API username and password in environment vars
+# Save your WoS API username and password in environment variables
 Sys.setenv(WOS_USERNAME = "your_username", WOS_PASSWORD = "your_password")
 
 # Get session ID
@@ -30,14 +30,14 @@ sid <- auth()
 ```
 
 ``` r
-# Query WoS to see how many results there are for a particular query
+# Query WoS to see how many results match your query
 query <- 'TS = ("animal welfare") AND PY = (2002-2003)'
 query_wos(query, sid = sid)
 #> Matching records: 548
 ```
 
 ``` r
-# Download data (this may take some time)
+# Download data
 pull_wos(query, sid = sid)
 #> List of 9
 #>  $ publication   :'data.frame':  548 obs. of  7 variables:
@@ -99,7 +99,7 @@ Sys.setenv(INCITES_KEY = "your_key")
 uts <- c("000272272000015", "000272366800025", "000272877700013")
 
 # Download InCites data for those UTs
-head(pull_incites(uts))
+pull_incites(uts)
 #>                      ut article_type tot_cites journal_expected_citations
 #> 1.1 WOS:000272272000015           AA         2                        8.5
 #> 1.2 WOS:000272366800025           AA         4                        4.1
