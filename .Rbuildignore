@@ -10,3 +10,4 @@
 ^docs$
 ^index\.Rmd$
 ^cran-comments.md$
+^vignettes$
