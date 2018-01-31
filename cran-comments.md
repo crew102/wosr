@@ -1,6 +1,6 @@
 ## Test environments
 
-* Windows Server 2012 R2 (64-bit) on AppVeyor, R 3.4.2
+* Windows Server 2008 (64-bit) on win-builder, R-devel
 * Ubuntu 14.04.5 (64-bit) on Travis-CI, R 3.3.3, 3.4.2, R-devel
 
 ## R CMD check results
