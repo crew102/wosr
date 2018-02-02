@@ -17,7 +17,7 @@ download_wos <- function(query_result, ...) {
   count <- rep(100, times = length(from))
   count[length(count)] <- rec_cnt - from[length(count)] + 1
 
-  pbapply::pblapply(seq_len(length(from)), function(x) {
+  pbapply::pblapply(seq_len(length(from)), function(x, ...) {
     response <- one_pull(
       query_result$query_id,
       first_record = from[x],
@@ -54,12 +54,13 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
   )
 
   # Function to send a request to the API
-  one_post <- function() {
+  one_post <- function(...) {
     httr::POST(
       "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
       body = body,
       httr::add_headers("cookie" = paste0("SID=", sid)),
-      ua(), ...
+      ua(),
+      ...
     )
   }
 
