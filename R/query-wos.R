@@ -80,7 +80,6 @@ query_wos <- function(query,
   query_id <- parse_el_txt(doc, xpath = "//queryid")
   rec_cnt <- parse_el_txt(doc, xpath = "//recordsfound")
 
-  # need to add print method
   structure(
     list(
       query_id = as.numeric(query_id),
@@ -105,5 +104,4 @@ paste_eds <- function(editions) {
   paste(edition_vec, collapse = " ")
 }
 
-# make sure this works
 escape_query <- function(query) gsub("&", "&amp;", query)

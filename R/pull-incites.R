@@ -61,14 +61,14 @@ get_url <- function(uts, key) {
   )
 }
 
-backup_wait <- function(try) {
+backoff_wait <- function(try) {
   exp_backoff <- ceiling((2^try - 1) / 2)
   ifelse(exp_backoff > 32, 45, exp_backoff)
 }
 
 try_incites_req <- function(url, ...) {
 
-  # Try making the HTTP request up to 30 times (spaced 1 minute apart)
+  # Try making the HTTP request up to 10 times (spaced apart based on exponential backoff)
   for (i in 1:10) {
     maybe_data <- try(one_incites_req(url, ...), silent = TRUE)
     if (!("try-error" %in% class(maybe_data))) {
@@ -76,7 +76,7 @@ try_incites_req <- function(url, ...) {
       return(maybe_data)
     } else {
       if (grepl("limit", maybe_data[1])) {
-        minutes <- backup_wait(i)
+        minutes <- backoff_wait(i)
         mins_txt <- if (minutes == 1) " minute." else " mintues."
         message(
           "\nRan into throttling limit. Retrying request in ",
@@ -89,7 +89,7 @@ try_incites_req <- function(url, ...) {
     }
   }
 
-  stop("\n\nRan into throttling limit 30 times, stopping")
+  stop("\n\nRan into throttling limit 10 times, stopping")
 }
 
 one_incites_req <- function(url, ...) {

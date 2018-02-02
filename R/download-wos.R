@@ -6,7 +6,8 @@ download_wos <- function(query_result, ...) {
   if (rec_cnt >= 100000) {
     stop(
         "Can't download result sets that have 100,000 or more records.
-        Break your query into pieces using the PY tag." # add pointer to documentation
+        Try breaking your query into pieces using the PY tag
+        (see FAQs at https://vt-arc.github.io/wosr/articles/faqs.html#how-do-i-download-data-for-a-query-that-returns-more-than-100000-records for details)"
     )
   }
 
