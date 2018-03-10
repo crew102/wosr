@@ -1,0 +1,59 @@
+---
+title: "Frequently asked questions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FAQs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+### Why does the WoS API sometimes return a different number of records than the WoS web interface?
+
+The API does not conduct lemmatization before applying your query, while the web app does. This means that the API will typically return a smaller result set than the web app.
+
+### What are the throttling limits on the WoS and InCites APIs?
+
+There are two important rate limits that the user of `wosr` should be aware of:
+
+* For the WoS API, you can't request more than 5 session IDs (SIDs) in a 5 minute period (i.e., you can't call `auth()` more than 5 times in a five minute period). You can reuse a SID across queries, though, so this limit isn't a big deal.
+
+* According to the documentation, the InCites API limits users to 1,000 requests per 24 hour period, where each request can contain up to 100 UTs. That would suggest that you can download up to 100,000 publications-worth of data from the InCites API each day. However, based on my experience, there may another (undocumented) throttling limit which restricts the user to requesting no more than ~ 1,500 publications per 30 minute period.[^1]
+
+### Why doesn't `pull_incites()` return data for all of my publications?
+
+Not all publications that are indexed in the Web of Science database are also indexed in InCites.
+
+### How do I link together the `author` and `address` data frames returned by `pull_wos()`?
+
+You can join the data frames using the `author_address` linking table, like so:
+
+```{r, eval = FALSE}
+library(wosr)
+library(dplyr)
+
+data <- pull_wos("TS = \"dog welfare\"")
+
+data$author %>% 
+  left_join(data$author_address, by = c("ut", "author_no")) %>% 
+  left_join(data$address, by = c("ut", "addr_no"))
+```
+
+### How do I download data for a query that returns more than 100,000 records?
+
+The WoS API does not allow you to download data for a query that matches 100,000 or more publications. You can get around this by breaking your query into pieces using the publication year tag (`PY`). For example, if you have a broad query like `"TS = dog"` (which matches over 250,000 records), you could break it up into four sub-queries that have contiguous date ranges (and which return fewer than 100,000 records each). For example:
+
+```{r, eval = FALSE}
+queries <- c(
+  "TS = dog AND PY = 1900-1980", 
+  "TS = dog AND PY = 1981-2000", 
+  "TS = dog AND PY = 2001-2010", 
+  "TS = dog AND PY = 2011-2018"
+)
+results <- lapply(queries, pull_wos)
+```
+
+### There are some fields that I'm interested in that `pull_wos()` doesn't return. How do I get them?
+
+Open up an issue on `wosr`'s [issue page](https://github.com/vt-arc/wosr/issues) describing the field(s) that you want to be added.
+
+[^1]: To accommodate this limit, `pull_incites()` sleeps for a given amount of time (determined by how many times it has received a throttling error for the request it is trying to make) before retrying the request.
