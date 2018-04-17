@@ -36,14 +36,14 @@
 #' @export
 pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), ...) {
   uts <- gsub("^WOS:", "", uts)
-  urls <- get_urls(uts = gsub("^WOS:", "", uts), key = key)
-  out_list <- pbapply::pblapply(urls, try_incites_req, ... = ...)
+  urls <- get_urls(uts = gsub("^WOS:", "", uts))
+  out_list <- pbapply::pblapply(urls, try_incites_req, key = key, ... = ...)
   unique(process_incites(do.call("rbind", out_list)))
 }
 
-get_urls <- function(uts, key) {
+get_urls <- function(uts) {
   ut_list <- split_uts(uts)
-  lapply(ut_list, get_url, key = key)
+  lapply(ut_list, get_url)
 }
 
 split_uts <- function(uts) {
@@ -52,11 +52,9 @@ split_uts <- function(uts) {
   split(uts, f = f)
 }
 
-get_url <- function(uts, key) {
+get_url <- function(uts) {
   paste0(
-    "https://api.thomsonreuters.com/incites_ps/v1/DocumentLevelMetricsByUT/json?X-TR-API-APP-ID=",
-    key,
-    "&UT=",
+    "https://api.clarivate.com/api/incites/DocumentLevelMetricsByUT/json?UT=",
     paste0(uts, collapse = ",")
   )
 }
@@ -66,11 +64,11 @@ backoff_wait <- function(try) {
   ifelse(exp_backoff > 32, 45, exp_backoff)
 }
 
-try_incites_req <- function(url, ...) {
+try_incites_req <- function(url, key, ...) {
 
   # Try making the HTTP request up to 10 times (spaced apart based on exponential backoff)
   for (i in 1:10) {
-    maybe_data <- try(one_incites_req(url, ...), silent = TRUE)
+    maybe_data <- try(one_incites_req(url, key, ...), silent = TRUE)
     if (!("try-error" %in% class(maybe_data))) {
       Sys.sleep(2)
       return(maybe_data)
@@ -92,8 +90,8 @@ try_incites_req <- function(url, ...) {
   stop("\n\nRan into throttling limit 10 times, stopping")
 }
 
-one_incites_req <- function(url, ...) {
-  response <- httr::GET(url, ua(), ...)
+one_incites_req <- function(url, key, ...) {
+  response <- httr::GET(url, ua(), httr::add_headers(c("X-TR-API-APP-ID" = key)), ...)
   raw_txt <- httr::content(response, as = "text", encoding = "UTF-8")
   if (grepl("rate limit quota violation", raw_txt, ignore.case = TRUE))
     stop("limit")
