@@ -1,7 +1,9 @@
 all: doc README.md site
 
 # Render README.Rmd to README.md
-README.md: README.Rmd
+# Removed dep on README.Rmd b/c want to re-render each time (don't care about
+# changes in README.Rmd)
+README.md:
 	Rscript -e "rmarkdown::render('README.Rmd', output_file = 'README.md', output_dir = getwd(), output_format = 'github_document', quiet = TRUE)"
 	rm README.html
 
@@ -14,7 +16,7 @@ test:
 	Rscript -e "devtools::test()"
 
 # Build site
-site: _pkgdown.yml inst/site/*
+site:
 	Rscript -e "source('inst/site/build-site.R'); build_site()"
 
 # Clean
