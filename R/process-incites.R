@@ -13,7 +13,7 @@ process_incites <- function(incites_df) {
   incites_df$ut <- paste0("WOS:", incites_df$ut)
   incites_df[, 3:16] <- apply(incites_df[, 3:16], MARGIN = 2, FUN = as.numeric)
   incites_df[, 11:16] <- apply(
-    incites_df[, 11:16], MARGIN = 2, FUN = function(x) ifelse(x == 1, TRUE, FALSE)
+    incites_df[, 11:16], MARGIN = 2, FUN = function(x) x == 1
   )
   incites_df
 }
