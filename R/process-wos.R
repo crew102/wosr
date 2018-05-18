@@ -1,6 +1,13 @@
 process_wos_apply <- function(df_list) {
 
-  proc_out <- lapply(df_list, function(x) process_wos(x))
+  proc_out <- lapply(
+    df_list, function(x) {
+      if (is.data.frame(x))
+        if (nrow(x) != 0) process_wos(x)
+      else
+        NULL
+    }
+  )
 
   # Pull out data frames in proc_out$author and reorder dfs
   temp_out <- c(
@@ -13,7 +20,9 @@ process_wos_apply <- function(df_list) {
 
   # have to remove _df classes on data frames and add back wos_data class
   # on list of data frames so that printing is nice
-  wos_data <- lapply(temp_out, structure, class = "data.frame")
+  wos_data <- lapply(
+    temp_out, function(x) if (!is.null(x)) append_class(x, "data.frame")
+  )
   append_class(wos_data, "wos_data")
 }
 
