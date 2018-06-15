@@ -4,7 +4,7 @@
 \alias{pull_incites}
 \title{Pull data from the InCites API}
 \usage{
-pull_incites(uts, key = Sys.getenv("INCITES_KEY"), ...)
+pull_incites(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...)
 }
 \arguments{
 \item{uts}{A vector of UTs whose InCites data you would like to download.
@@ -13,6 +13,12 @@ can specify the UT using only these 15 digits or you can append the 15 digits
 with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").}
 
 \item{key}{The developer key that the server will use for authentication.}
+
+\item{as_raw}{Do you want the data frame that is returned by the API to be
+returned to you in its raw form? This option can be useful if the API has
+changed the format of the data that it is serving, in which case specifying
+\code{as_raw = TRUE} may avoid an error that would otherwise occur during
+\code{pull_incites}'s data processing step.}
 
 \item{...}{Arguments passed along to \code{\link[httr]{GET}}.}
 }

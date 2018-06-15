@@ -11,6 +11,11 @@
 #' can specify the UT using only these 15 digits or you can append the 15 digits
 #' with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").
 #' @param key The developer key that the server will use for authentication.
+#' @param as_raw Do you want the data frame that is returned by the API to be
+#' returned to you in its raw form? This option can be useful if the API has
+#' changed the format of the data that it is serving, in which case specifying
+#' \code{as_raw = TRUE} may avoid an error that would otherwise occur during
+#' \code{pull_incites}'s data processing step.
 #' @param ... Arguments passed along to \code{\link[httr]{GET}}.
 #'
 #' @return A data frame where each row corresponds to a different publication.
@@ -34,11 +39,11 @@
 #' pull_incites(c("000346263300011", "000362312600021"), key = "some_key")
 #'}
 #' @export
-pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), ...) {
+pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...) {
   uts <- gsub("^WOS:", "", uts)
   urls <- get_urls(uts = gsub("^WOS:", "", uts))
   out_list <- pbapply::pblapply(urls, try_incites_req, key = key, ... = ...)
-  unique(process_incites(do.call("rbind", out_list)))
+  unique(process_incites(do.call("rbind", out_list), as_raw))
 }
 
 get_urls <- function(uts) {

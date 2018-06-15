@@ -1,5 +1,6 @@
-process_incites <- function(incites_df) {
+process_incites <- function(incites_df, as_raw = FALSE) {
   if (!is.data.frame(incites_df)) return(NULL)
+  if (as_raw) return(incites_df)
   colnames(incites_df) <- tolower(colnames(incites_df))
   cols <- c(
     "isi_loc", "article_type", "tot_cites", "journal_expected_citations",
