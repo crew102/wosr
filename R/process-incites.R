@@ -9,6 +9,15 @@ process_incites <- function(incites_df, as_raw = FALSE) {
     "hot_paper", "is_international_collab", "is_institution_collab",
     "is_industry_collab", "oa_flag"
   )
+
+  bad_cols <- cols[!cols %in% colnames(incites_df)]
+  if (length(bad_cols) != 0) {
+    stop(
+      "API isn't serving these columns anymore: ",
+      paste0(bad_cols, collapse = ", ")
+    )
+  }
+
   incites_df <- incites_df[, cols]
   colnames(incites_df)[1] <- "ut"
   incites_df$ut <- paste0("WOS:", incites_df$ut)
