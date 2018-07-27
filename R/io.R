@@ -37,7 +37,7 @@ write_wos_data <- function(wos_data, dir) {
 
   lapply(
     names(wos_data),
-    function(x) write.csv(
+    function(x) utils::write.csv(
       wos_data[[x]], full_path(dir, x), row.names = FALSE
     )
   )
@@ -82,7 +82,8 @@ read_wos_data <- function(dir) {
     )
 
   wos_data <- lapply2(
-    dfs, function(x) read.csv(full_path(dir, x), stringsAsFactors = FALSE)
+    dfs, function(x)
+      utils::read.csv(full_path(dir, x), stringsAsFactors = FALSE)
   )
   append_class(wos_data, "wos_data")
 }
