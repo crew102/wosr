@@ -22,3 +22,4 @@ site:
 clean:
 	rm -R README.md docs
 
+.PHONY: doc README.md site test clean
