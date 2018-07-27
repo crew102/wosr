@@ -1,4 +1,4 @@
-# wosr 0.2.0
+# wosr 0.1.2
 
 ## New functions
 
