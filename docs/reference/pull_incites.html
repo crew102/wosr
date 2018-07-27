@@ -95,7 +95,7 @@ uses exponential backoff (with a maximum wait time of 45 minutes) to determine
 how long to wait before retrying.</p>
     
 
-    <pre class="usage"><span class='fu'>pull_incites</span>(<span class='no'>uts</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"INCITES_KEY"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>pull_incites</span>(<span class='no'>uts</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"INCITES_KEY"</span>), <span class='kw'>as_raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -110,6 +110,14 @@ with "WOS:" (e.g., "000346263300011" or "WOS:000346263300011").</p></td>
     <tr>
       <th>key</th>
       <td><p>The developer key that the server will use for authentication.</p></td>
+    </tr>
+    <tr>
+      <th>as_raw</th>
+      <td><p>Do you want the data frame that is returned by the API to be
+returned to you in its raw form? This option can be useful if the API has
+changed the format of the data that it is serving, in which case specifying
+<code>as_raw = TRUE</code> may avoid an error that would otherwise occur during
+<code>pull_incites</code>'s data processing step.</p></td>
     </tr>
     <tr>
       <th>...</th>
