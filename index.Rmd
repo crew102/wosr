@@ -27,7 +27,8 @@ install.packages("wosr")
 Or the development version from GitHub
 
 ```r
-if (!require(devtools)) install.packages("devtools")
+if (!"devtools" %in% rownames(installed.packages())) 
+  install.packages("devtools")
 
 devtools::install_github("vt-arc/wosr")
 ```
