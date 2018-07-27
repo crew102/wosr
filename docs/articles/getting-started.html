@@ -90,8 +90,7 @@ query &lt;-<span class="st"> 'TI = ("animal welfare") AND TS = (dog welfare)'</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pull_wos.html">pull_wos</a></span>(query, <span class="dt">sid =</span> sid)
 data
 <span class="co">#&gt; List of 9</span>
-<span class="co">#&gt;  $ publication   :Classes 'publication_df' and 'data.frame': 85 obs. of  ..</span>
-<span class="co">#&gt; Classes 'publication_df' and 'data.frame':   85 obs. of  7 variables:</span>
+<span class="co">#&gt;  $ publication   :'data.frame':  85 obs. of  7 variables:</span>
 <span class="co">#&gt;   ..$ ut       : chr [1:85] "WOS:000377031100025" ...</span>
 <span class="co">#&gt;   ..$ title    : chr [1:85] "ANIMAL WELFARE Brachycephalic dog breeds" ...</span>
 <span class="co">#&gt;   ..$ journal  : chr [1:85] "Veterinary Record" ...</span>
@@ -99,8 +98,7 @@ data
 <span class="co">#&gt;   ..$ doi      : chr [1:85] "10.1136/vr.i2991" ...</span>
 <span class="co">#&gt;   ..$ tot_cites: num [1:85] 0 0 ...</span>
 <span class="co">#&gt;   ..$ abstract : chr [1:85] NA ...</span>
-<span class="co">#&gt;  $ author        :Classes 'author_df' and 'data.frame':  221 obs. of  7 va..</span>
-<span class="co">#&gt; Classes 'author_df' and 'data.frame':    221 obs. of  7 variables:</span>
+<span class="co">#&gt;  $ author        :'data.frame':  221 obs. of  7 variables:</span>
 <span class="co">#&gt;   ..$ ut          : chr [1:221] "WOS:000377031100025" ...</span>
 <span class="co">#&gt;   ..$ author_no   : num [1:221] 1 1 ...</span>
 <span class="co">#&gt;   ..$ display_name: chr [1:221] "Goddard, Philip" ...</span>
@@ -108,8 +106,7 @@ data
 <span class="co">#&gt;   ..$ last_name   : chr [1:221] "Goddard" ...</span>
 <span class="co">#&gt;   ..$ email       : chr [1:221] "PGoddard@goddardvetgroup.co.uk" ...</span>
 <span class="co">#&gt;   ..$ daisng_id   : num [1:221] 3500908 ...</span>
-<span class="co">#&gt;  $ address       :Classes 'address_df' and 'data.frame': 127 obs. of  7 v..</span>
-<span class="co">#&gt; Classes 'address_df' and 'data.frame':   127 obs. of  7 variables:</span>
+<span class="co">#&gt;  $ address       :'data.frame':  127 obs. of  7 variables:</span>
 <span class="co">#&gt;   ..$ ut      : chr [1:127] "WOS:000377031100025" ...</span>
 <span class="co">#&gt;   ..$ addr_no : num [1:127] 1 1 ...</span>
 <span class="co">#&gt;   ..$ org_pref: chr [1:127] NA ...</span>
@@ -118,29 +115,23 @@ data
 <span class="co">#&gt;   ..$ state   : chr [1:127] NA ...</span>
 <span class="co">#&gt;   ..$ country : chr [1:127] "England" ...</span>
 <span class="co">#&gt;  $ author_address:'data.frame':  136 obs. of  3 variables:</span>
-<span class="co">#&gt; 'data.frame':    136 obs. of  3 variables:</span>
 <span class="co">#&gt;   ..$ ut       : chr [1:136] "WOS:000377031100025" ...</span>
 <span class="co">#&gt;   ..$ author_no: num [1:136] 1 1 ...</span>
 <span class="co">#&gt;   ..$ addr_no  : num [1:136] 1 1 ...</span>
-<span class="co">#&gt;  $ jsc           :Classes 'jsc_df' and 'data.frame': 121 obs. of  2 varia..</span>
-<span class="co">#&gt; Classes 'jsc_df' and 'data.frame':   121 obs. of  2 variables:</span>
+<span class="co">#&gt;  $ jsc           :'data.frame':  121 obs. of  2 variables:</span>
 <span class="co">#&gt;   ..$ ut : chr [1:121] "WOS:000377031100025" ...</span>
 <span class="co">#&gt;   ..$ jsc: chr [1:121] "Veterinary Sciences" ...</span>
-<span class="co">#&gt;  $ keyword       :Classes 'keyword_df' and 'data.frame': 266 obs. of  2 v..</span>
-<span class="co">#&gt; Classes 'keyword_df' and 'data.frame':   266 obs. of  2 variables:</span>
+<span class="co">#&gt;  $ keyword       :'data.frame':  266 obs. of  2 variables:</span>
 <span class="co">#&gt;   ..$ ut     : chr [1:266] "WOS:000314027500001" ...</span>
 <span class="co">#&gt;   ..$ keyword: chr [1:266] "animal" ...</span>
-<span class="co">#&gt;  $ keywords_plus :Classes 'keywords_plus_df' and 'data.frame':   318 obs. o..</span>
-<span class="co">#&gt; Classes 'keywords_plus_df' and 'data.frame': 318 obs. of  2 variables:</span>
+<span class="co">#&gt;  $ keywords_plus :'data.frame':  318 obs. of  2 variables:</span>
 <span class="co">#&gt;   ..$ ut           : chr [1:318] "WOS:000412686200005" ...</span>
 <span class="co">#&gt;   ..$ keywords_plus: chr [1:318] "nonaccidental injury" ...</span>
-<span class="co">#&gt;  $ grant         :Classes 'grant_df' and 'data.frame':   22 obs. of  3 vari..</span>
-<span class="co">#&gt; Classes 'grant_df' and 'data.frame': 22 obs. of  3 variables:</span>
+<span class="co">#&gt;  $ grant         :'data.frame':  22 obs. of  3 variables:</span>
 <span class="co">#&gt;   ..$ ut          : chr [1:22] "WOS:000314027500001" ...</span>
 <span class="co">#&gt;   ..$ grant_agency: chr [1:22] "Animal and Society Institute-Wesleyan An"..</span>
 <span class="co">#&gt;   ..$ grant_id    : chr [1:22] NA ...</span>
-<span class="co">#&gt;  $ doc_type      :Classes 'doc_type_df' and 'data.frame':    89 obs. of  2 v..</span>
-<span class="co">#&gt; Classes 'doc_type_df' and 'data.frame':  89 obs. of  2 variables:</span>
+<span class="co">#&gt;  $ doc_type      :'data.frame':  89 obs. of  2 variables:</span>
 <span class="co">#&gt;   ..$ ut      : chr [1:89] "WOS:000377031100025" ...</span>
 <span class="co">#&gt;   ..$ doc_type: chr [1:89] "Letter" ...</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
@@ -236,7 +227,7 @@ cat_authors</code></pre></div>
 <span class="kw">head</span>(<span class="kw"><a href="../reference/pull_incites.html">pull_incites</a></span>(top_100_pubs, <span class="dt">key =</span> <span class="st">"your_incites_key"</span>))</code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["article_type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["tot_cites"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["journal_expected_citations"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["journal_act_exp_citations"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["impact_factor"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["avg_expected_rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["percentile"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["nci"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["esi_most_cited_article"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["hot_paper"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["is_international_collab"],"name":[12],"type":["lgl"],"align":["right"]},{"label":["is_institution_collab"],"name":[13],"type":["lgl"],"align":["right"]},{"label":["is_industry_collab"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["oa_flag"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"WOS:A1997YD63900007","2":"AA","3":"12","4":"29.79","5":"0.40","6":"1.462","7":"16.8","8":"34","9":"0.71","10":"0","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.1"},{"1":"WOS:A1994PU81000001","2":"AA","3":"1","4":"3.04","5":"0.33","6":"0.042","7":"14.0","8":"84","9":"0.07","10":"0","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.2"},{"1":"WOS:A1993KW33000003","2":"AA","3":"9","4":"2.39","5":"3.76","6":"-1.000","7":"14.0","8":"45","9":"0.64","10":"0","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.3"},{"1":"WOS:A1993KT16900015","2":"E","3":"0","4":"0.53","5":"0.00","6":"-1.000","7":"1.2","8":"100","9":"0.00","10":"0","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.4"},{"1":"WOS:A1993KR46800009","2":"AA","3":"6","4":"5.15","5":"1.17","6":"-1.000","7":"14.0","8":"54","9":"0.43","10":"0","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.5"},{"1":"WOS:A1990BS37S00006","2":"P","3":"1","4":"NA","5":"NA","6":"-1.000","7":"2.1","8":"26","9":"0.47","10":"0","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["article_type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["tot_cites"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["journal_expected_citations"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["journal_act_exp_citations"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["impact_factor"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["avg_expected_rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["percentile"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["nci"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["esi_most_cited_article"],"name":[10],"type":["lgl"],"align":["right"]},{"label":["hot_paper"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["is_international_collab"],"name":[12],"type":["lgl"],"align":["right"]},{"label":["is_institution_collab"],"name":[13],"type":["lgl"],"align":["right"]},{"label":["is_industry_collab"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["oa_flag"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"WOS:A1997YD63900007","2":"AA","3":"12","4":"29.79","5":"0.40","6":"1.462","7":"16.8","8":"34","9":"0.71","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.1"},{"1":"WOS:A1994PU81000001","2":"AA","3":"1","4":"3.04","5":"0.33","6":"0.042","7":"14.0","8":"84","9":"0.07","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.2"},{"1":"WOS:A1993KW33000003","2":"AA","3":"9","4":"2.39","5":"3.76","6":"-1.000","7":"14.0","8":"45","9":"0.64","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.3"},{"1":"WOS:A1993KT16900015","2":"E","3":"0","4":"0.53","5":"0.00","6":"-1.000","7":"1.2","8":"100","9":"0.00","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.4"},{"1":"WOS:A1993KR46800009","2":"AA","3":"6","4":"5.15","5":"1.17","6":"-1.000","7":"14.0","8":"54","9":"0.43","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.5"},{"1":"WOS:A1990BS37S00006","2":"P","3":"1","4":"NA","5":"NA","6":"-1.000","7":"2.1","8":"26","9":"0.47","10":"FALSE","11":"FALSE","12":"FALSE","13":"FALSE","14":"FALSE","15":"FALSE","_rn_":"1.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>

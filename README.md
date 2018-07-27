@@ -47,8 +47,7 @@ query_wos(query, sid = sid)
 # Download data
 pull_wos(query, sid = sid)
 #> List of 9
-#>  $ publication   :Classes 'publication_df' and 'data.frame': 548 obs. of ..
-#> Classes 'publication_df' and 'data.frame':   548 obs. of  7 variables:
+#>  $ publication   :'data.frame':  548 obs. of  7 variables:
 #>   ..$ ut       : chr [1:548] "WOS:000173956100001" ...
 #>   ..$ title    : chr [1:548] "FMD and animal welfare" ...
 #>   ..$ journal  : chr [1:548] "Veterinary Record" ...
@@ -56,8 +55,7 @@ pull_wos(query, sid = sid)
 #>   ..$ doi      : chr [1:548] NA ...
 #>   ..$ tot_cites: num [1:548] 0 0 ...
 #>   ..$ abstract : chr [1:548] NA ...
-#>  $ author        :Classes 'author_df' and 'data.frame':  1438 obs. of  7 v..
-#> Classes 'author_df' and 'data.frame':    1438 obs. of  7 variables:
+#>  $ author        :'data.frame':  1438 obs. of  7 variables:
 #>   ..$ ut          : chr [1:1438] "WOS:000176714800003" ...
 #>   ..$ author_no   : num [1:1438] 1 1 ...
 #>   ..$ display_name: chr [1:1438] "Nolen, RS" ...
@@ -65,8 +63,7 @@ pull_wos(query, sid = sid)
 #>   ..$ last_name   : chr [1:1438] "Nolen" ...
 #>   ..$ email       : chr [1:1438] NA ...
 #>   ..$ daisng_id   : num [1:1438] 25184 ...
-#>  $ address       :Classes 'address_df' and 'data.frame': 838 obs. of  7 v..
-#> Classes 'address_df' and 'data.frame':   838 obs. of  7 variables:
+#>  $ address       :'data.frame':  838 obs. of  7 variables:
 #>   ..$ ut      : chr [1:838] "WOS:000182036200014" ...
 #>   ..$ addr_no : num [1:838] 1 1 ...
 #>   ..$ org_pref: chr [1:838] "University of Prince Edward Island" ...
@@ -75,29 +72,23 @@ pull_wos(query, sid = sid)
 #>   ..$ state   : chr [1:838] "PE" ...
 #>   ..$ country : chr [1:838] "Canada" ...
 #>  $ author_address:'data.frame':  18 obs. of  3 variables:
-#> 'data.frame':    18 obs. of  3 variables:
 #>   ..$ ut       : chr [1:18] "WOS:000208276800197" ...
 #>   ..$ author_no: num [1:18] 1 2 ...
 #>   ..$ addr_no  : num [1:18] 1 1 ...
-#>  $ jsc           :Classes 'jsc_df' and 'data.frame': 901 obs. of  2 varia..
-#> Classes 'jsc_df' and 'data.frame':   901 obs. of  2 variables:
+#>  $ jsc           :'data.frame':  901 obs. of  2 variables:
 #>   ..$ ut : chr [1:901] "WOS:000173956100001" ...
 #>   ..$ jsc: chr [1:901] "Veterinary Sciences" ...
-#>  $ keyword       :Classes 'keyword_df' and 'data.frame': 2096 obs. of  2 ..
-#> Classes 'keyword_df' and 'data.frame':   2096 obs. of  2 variables:
+#>  $ keyword       :'data.frame':  2096 obs. of  2 variables:
 #>   ..$ ut     : chr [1:2096] "WOS:000177154900014" ...
 #>   ..$ keyword: chr [1:2096] "animality" ...
-#>  $ keywords_plus :Classes 'keywords_plus_df' and 'data.frame':   2020 obs. ..
-#> Classes 'keywords_plus_df' and 'data.frame': 2020 obs. of  2 variables:
+#>  $ keywords_plus :'data.frame':  2020 obs. of  2 variables:
 #>   ..$ ut           : chr [1:2020] "WOS:000180265600060" ...
 #>   ..$ keywords_plus: chr [1:2020] "housing conditions" ...
-#>  $ grant         :Classes 'grant_df' and 'data.frame':   1 obs. of  3 varia..
-#> Classes 'grant_df' and 'data.frame': 1 obs. of  3 variables:
+#>  $ grant         :'data.frame':  1 obs. of  3 variables:
 #>   ..$ ut          : chr "WOS:000208574800048"
 #>   ..$ grant_agency: chr "Selcuk University Research Foundation"
 #>   ..$ grant_id    : chr "2000/062"
-#>  $ doc_type      :Classes 'doc_type_df' and 'data.frame':    642 obs. of  2 ..
-#> Classes 'doc_type_df' and 'data.frame':  642 obs. of  2 variables:
+#>  $ doc_type      :'data.frame':  642 obs. of  2 variables:
 #>   ..$ ut      : chr [1:642] "WOS:000173956100001" ...
 #>   ..$ doc_type: chr [1:642] "Editorial Material" ...
 ```
@@ -125,9 +116,9 @@ pull_incites(uts)
 #> 1.2                      0.95          0.80                20         62
 #> 1.3                      0.23          1.28                20         77
 #>      nci esi_most_cited_article hot_paper is_international_collab
-#> 1.1 0.05                      0     FALSE                   FALSE
-#> 1.2 0.20                      0     FALSE                   FALSE
-#> 1.3 0.10                      0     FALSE                   FALSE
+#> 1.1 0.05                  FALSE     FALSE                   FALSE
+#> 1.2 0.20                  FALSE     FALSE                   FALSE
+#> 1.3 0.10                  FALSE     FALSE                   FALSE
 #>     is_institution_collab is_industry_collab oa_flag
 #> 1.1                 FALSE              FALSE   FALSE
 #> 1.2                 FALSE              FALSE   FALSE
@@ -158,12 +149,12 @@ head(pull_incites(wos$publication$ut))
 #> 1.5                      6.00          -1.0             0.940        9.8
 #> 1.6                      0.46          -1.0             3.624       72.8
 #>      nci esi_most_cited_article hot_paper is_international_collab
-#> 1.1 0.95                      0     FALSE                   FALSE
-#> 1.2 0.00                      0     FALSE                   FALSE
-#> 1.3 0.00                      0     FALSE                   FALSE
-#> 1.4 0.00                      0     FALSE                   FALSE
-#> 1.5 3.19                      0     FALSE                   FALSE
-#> 1.6 0.28                      0     FALSE                   FALSE
+#> 1.1 0.95                  FALSE     FALSE                   FALSE
+#> 1.2 0.00                  FALSE     FALSE                   FALSE
+#> 1.3 0.00                  FALSE     FALSE                   FALSE
+#> 1.4 0.00                  FALSE     FALSE                   FALSE
+#> 1.5 3.19                  FALSE     FALSE                   FALSE
+#> 1.6 0.28                  FALSE     FALSE                   FALSE
 #>     is_institution_collab is_industry_collab oa_flag
 #> 1.1                 FALSE              FALSE   FALSE
 #> 1.2                 FALSE              FALSE   FALSE
