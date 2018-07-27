@@ -1,8 +1,12 @@
 check_resp <- function(response, message) {
   if (httr::http_error(response)) {
-    doc <- get_xml(response)
-    stop(message, parse_el_txt(doc, xpath = "//faultstring"), call. = FALSE)
+    stop(message, parse_er(response), call. = FALSE)
   }
+}
+
+parse_er <- function(response) {
+  doc <- get_xml(response)
+  parse_el_txt(doc, xpath = "//faultstring")
 }
 
 lapply2 <- function(...) sapply(..., simplify = FALSE, USE.NAMES = TRUE)

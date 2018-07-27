@@ -26,6 +26,7 @@ download_wos <- function(query_result, ...) {
       sid = query_result$sid,
       ...
     )
+
     check_resp(
       response,
       message = "Got the following error when downloading data:\n\n"
@@ -65,16 +66,19 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
     )
   }
 
-  # If you run into throttling error (2 calls per second per SID), just make
-  # request again (up to three tries)
+  # If you run into throttling error (2 calls per second per SID), just sleep
+  # for a second and try again (up to three tries)
   for (i in 1:3) {
     response <- one_post()
-    maybe_error <- try(check_resp(response, ""), silent = TRUE)
-    if (!("try-error" %in% class(maybe_error))) {
-      return(response)
+    if (httr::http_error(response)) {
+      er <- parse_er(response)
+      if (grepl("throttle", er, ignore.case = TRUE)) {
+        Sys.sleep(1)
+      }
     } else {
-      if (!grepl("throttle", maybe_error[1], ignore.case = TRUE))
-        return(response)
+      return(response)
     }
   }
+
+  response
 }
