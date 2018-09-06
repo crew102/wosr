@@ -25,6 +25,13 @@
 auth <- function(username = Sys.getenv("WOS_USERNAME"),
                  password = Sys.getenv("WOS_PASSWORD")) {
 
+  if (username == "" || password == "") {
+    stop(
+      "You need to provide a username and password to use the API",
+      call. = FALSE
+    )
+  }
+
   body <-
     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
     xmlns:auth="http://auth.cxf.wokmws.thomsonreuters.com">
