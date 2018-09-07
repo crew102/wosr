@@ -3,14 +3,14 @@ process_wos_apply <- function(df_list) {
   proc_out <- lapply(
     df_list, function(x) {
       if (is.data.frame(x))
-        if (nrow(x) != 0) process_wos(x)
+        if (nrow(x) != 0) process_wos(x) else NULL
       else
         NULL
     }
   )
 
   # Pull out data frames in proc_out$author and reorder dfs
-  temp_out <- c(
+  wos_data <- c(
     proc_out[1], # publication
     proc_out$author[1], # author
     proc_out[3], # address
@@ -18,11 +18,6 @@ process_wos_apply <- function(df_list) {
     proc_out[4:length(proc_out)] # rest of columns
   )
 
-  # have to remove _df classes on data frames and add back wos_data class
-  # on list of data frames so that printing is nice
-  wos_data <- lapply(
-    temp_out, function(x) if (!is.null(x)) append_class(x, "data.frame")
-  )
   append_class(wos_data, "wos_data")
 }
 
@@ -35,20 +30,19 @@ process_wos.publication_df <- function(x) {
   colnames(x)[colnames(x) == "value"] <- "doi"
   colnames(x)[colnames(x) == "sortdate"] <- "date"
   x$journal <- to_title_case(x$journal)
-  x$date <- as.Date(x$date)
-  x$tot_cites <- as.numeric(x$tot_cites)
   x
 }
 
 # Have to convert to lower first if you want to use toTitleCase for strings that
 # are in all caps
-to_title_case <- function(x) tools::toTitleCase(tolower(x))
+to_title_case <- function(x) {
+  ifelse(is.na(x), NA, tools::toTitleCase(tolower(x)))
+}
 
+# split author data frame into two data frames to make data relational
 process_wos.author_df <- function(x) {
 
   colnames(x)[colnames(x) == "seq_no"] <- "author_no"
-  x$author_no <- as.numeric(x$author_no)
-  x$daisng_id <- as.numeric(x$daisng_id)
 
   splt <- strsplit(x$addr_no, " ")
   times <- vapply(splt, function(x) if (is.na(x[1])) 0 else length(x), numeric(1))
@@ -56,15 +50,15 @@ process_wos.author_df <- function(x) {
   author_no <- rep(x$author_no, times)
   addr_no <- unlist(splt[vapply(splt, function(x) !is.na(x[1]), logical(1))])
 
-  if (sum(times) != 0)  # if there is a need for a author_address table b/c data exists
+  if (sum(times) != 0)
     author_address <- data.frame(
       ut = ut,
       author_no = author_no,
-      addr_no = as.numeric(addr_no),
+      addr_no = addr_no,
       stringsAsFactors = FALSE
     )
   else
-    author_address <- NA
+    author_address <- NULL
 
   author_cols <- c(
     "ut", "author_no", "display_name", "first_name", "last_name",
@@ -77,7 +71,6 @@ process_wos.author_df <- function(x) {
 }
 
 process_wos.address_df <- function(x) {
-  x$addr_no <- as.numeric(x$addr_no)
   x[, c("ut", "addr_no", "org_pref", "org", "city", "state", "country")]
 }
 

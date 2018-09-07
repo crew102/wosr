@@ -81,21 +81,25 @@ pull_wos <- function(query,
   # up the downloading of the data
   qr_out <- query_wos(query, editions = editions, sid = sid, ...)
 
-  # Return NA if query didn't match any results
-  if (qr_out$rec_cnt == 0) return(NA)
+  # Create empty list enforce_schema will fill with empty data frames
+  if (qr_out$rec_cnt == 0) {
+    dfs <- unique(schema$df)
+    wos_unenforced <- vector("list", length = length(dfs))
+    names(wos_unenforced) <- dfs
+  } else {
+    # Download the raw XML and put it in a list
+    message("Downloading data\n")
+    all_resps <- download_wos(qr_out, ...)
+    all_resps <- all_resps[vapply(all_resps, length, numeric(1)) > 1]
 
-  # Download the raw XML and put it in a list
-  message("Downloading data\n")
-  all_resps <- download_wos(qr_out, ...)
-  all_resps <- all_resps[vapply(all_resps, length, numeric(1)) > 1]
+    # Parse out various fields
+    message("\nParsing XML\n")
+    parse_list <- parse_wos(all_resps)
 
-  # Parse out various fields
-  message("\nParsing XML\n")
-  parse_list <- parse_wos(all_resps)
-
-  # Create data frames from list of parsed fields
-  df_list <- data_frame_wos(parse_list)
-  wos_unenforced <- process_wos_apply(df_list)
+    # Create data frames from list of parsed fields
+    df_list <- data_frame_wos(parse_list)
+    wos_unenforced <- process_wos_apply(df_list)
+  }
   wos_data <- enforce_schema(wos_unenforced)
   append_class(wos_data, "wos_data")
 }

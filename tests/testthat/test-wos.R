@@ -27,18 +27,14 @@ test_that("Wos clients work as expected for regular result sets", {
 
 test_that("pull_wos works as expected for small result sets", {
   skip_if_no_auth()
-  out <- pull_wos("UT=(000272366800025 OR 000272877700013)", sid = sid)
+  out <- pull_wos("UT=(000259281900002)", sid = sid)
   expect_true(is.list(out))
+  expect_true(is_empty_df(out$grant))
 })
 
-test_that("pull_wos returns na for empty result sets", {
+test_that("pull_wos returns list of zero-length dfs when query doesn't match", {
   skip_if_no_auth()
   out <- pull_wos("UT=(0002723668000)", sid = sid)
-  expect_true(is.na(out))
-})
-
-test_that("pull_wos returns data frames with NAs when data frame has no data", {
-  skip_if_no_auth()
-  out <- pull_wos("Ti=(\"pet welfare\")", sid = sid)
-  expect_true(is.data.frame(out$keyword) && ncol(out$keyword) == 2)
+  all_e <- vapply(out, is_empty_df, logical(1))
+  expect_true(all(all_e))
 })

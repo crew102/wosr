@@ -4,3 +4,5 @@ skip_if_no_auth <- function() {
     skip("No authentication available")
   }
 }
+
+is_empty_df <- function(x) is.data.frame(x) && nrow(x) == 0
