@@ -85,5 +85,6 @@ read_wos_data <- function(dir) {
     dfs, function(x)
       utils::read.csv(full_path(dir, x), stringsAsFactors = FALSE)
   )
+  wos_data <- enforce_schema(wos_data)
   append_class(wos_data, "wos_data")
 }
