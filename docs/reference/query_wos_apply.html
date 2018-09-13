@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>wosr — wosr • wosr</title>
+<title>Run <code>query_wos</code> across multiple queries — query_wos_apply • wosr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="wosr — wosr" />
+<meta property="og:title" content="Run <code>query_wos</code> across multiple queries — query_wos_apply" />
 
-<meta property="og:description" content="wosr" />
+<meta property="og:description" content="Run query_wos across multiple queries" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,24 +103,69 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>wosr</h1>
+    <h1>Run <code>query_wos</code> across multiple queries</h1>
     
-    <div class="hidden name"><code>wosr.Rd</code></div>
+    <div class="hidden name"><code>query_wos_apply.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>wosr</p>
+    <p>Run <code>query_wos</code> across multiple queries</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>query_wos_apply</span>(<span class='no'>queries</span>, <span class='kw'>editions</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"SCI"</span>, <span class='st'>"SSCI"</span>, <span class='st'>"AHCI"</span>, <span class='st'>"ISTP"</span>,
+  <span class='st'>"ISSHP"</span>, <span class='st'>"BSCI"</span>, <span class='st'>"BHCI"</span>, <span class='st'>"IC"</span>, <span class='st'>"CCR"</span>, <span class='st'>"ESCI"</span>),
+  <span class='kw'>sid</span> <span class='kw'>=</span> <span class='fu'><a href='auth.html'>auth</a></span>(<span class='fu'>Sys.getenv</span>(<span class='st'>"WOS_USERNAME"</span>), <span class='fu'>Sys.getenv</span>(<span class='st'>"WOS_PASSWORD"</span>)),
+  <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>queries</th>
+      <td><p>Vector of queries to issue to the WoS API.</p></td>
+    </tr>
+    <tr>
+      <th>editions</th>
+      <td><p>Web of Science editions to query. Possible values are listed
+<a href='http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html'>here</a>.</p></td>
+    </tr>
+    <tr>
+      <th>sid</th>
+      <td><p>Session identifier (SID). The default setting is to get a fresh
+SID each time you query the WoS, via a call to <code><a href='auth.html'>auth</a></code>. However,
+you should try to reuse SID values over multiple queries so that you don't
+run into the throttling limits placed on new sessions.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments passed along to <code><a href='http://www.rdocumentation.org/packages/httr/topics/POST'>POST</a></code>.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A data frame which lists the number of records returned by each of
+the queries in your <code>queries</code> vector.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>queries</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>'TS="dog welfare"'</span>, <span class='st'>'TS="cat welfare"'</span>)
+<span class='fu'>query_wos_apply</span>(<span class='no'>queries</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

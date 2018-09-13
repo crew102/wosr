@@ -4,9 +4,10 @@
 \alias{query_wos}
 \title{Query the Web of Science}
 \usage{
-query_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI",
-  "BHCI", "IC", "CCR", "ESCI"), sid = auth(Sys.getenv("WOS_USERNAME"),
-  Sys.getenv("WOS_PASSWORD")), ...)
+query_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
+  "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+  sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
+  ...)
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
