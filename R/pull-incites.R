@@ -38,6 +38,7 @@
 #'
 #' pull_incites(c("000346263300011", "000362312600021"), key = "some_key")
 #'}
+#'
 #' @export
 pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...) {
   uts <- gsub("^WOS:", "", uts)

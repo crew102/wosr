@@ -69,6 +69,7 @@
 #' query_wos(query, sid = sid) # shows that there are 1,611 matching publications
 #' pull_wos(query, sid = sid)
 #'}
+#'
 #' @export
 pull_wos <- function(query,
                      editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
