@@ -70,3 +70,54 @@ one_pull_wos_apply <- function(query_name, queries, editions, sid, ...) {
   wos_out$query <- query_df
   wos_out
 }
+
+#' Run \code{query_wos} across multiple queries
+#'
+#' @inheritParams query_wos
+#' @param queries Vector of queries to issue to the WoS API.
+#'
+#' @return A data frame which lists the number of records returned by each of
+#' the queries in your \code{queries} vector.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' queries <- c('TS = "dog welfare"', 'TS = "cat welfare"')
+#' query_wos_apply(queries)
+#'}
+#'
+#' @export
+query_wos_apply <- function(queries,
+                            editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
+                                         "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+                            sid = auth(Sys.getenv("WOS_USERNAME"),
+                                       Sys.getenv("WOS_PASSWORD")),
+                            ...) {
+
+  if (is.null(names(queries))) {
+    names(queries) <- queries
+  }
+  query_names <- names(queries)
+  if (length(query_names) != length(unique(query_names))) {
+    stop("The names of your queries must be unique", call. = FALSE)
+  }
+
+  rec_cnt <- vapply(
+    queries, one_query_wos_apply,
+    editions = editions,
+    sid = sid,
+    ... = ...,
+    FUN.VALUE = numeric(1)
+  )
+
+  data.frame(
+    query = query_names,
+    rec_cnt = unname(rec_cnt),
+    stringsAsFactors = FALSE
+  )
+}
+
+one_query_wos_apply <- function(query, editions, sid, ...) {
+  q_out <- query_wos(query, editions, sid, ...)
+  q_out$rec_cnt
+}
