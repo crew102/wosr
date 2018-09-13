@@ -1,3 +1,22 @@
+#' Run \code{pull_wos} across multiple queries
+#'
+#' @inheritParams query_wos
+#' @param queries Vector of queries to issue to the WoS API and pull data for.
+#'
+#' @return The same set of data frames that \code{\link{pull_wos}} returns, with
+#' the addition of a data frame named \code{query}. This data frame contains a
+#' mapping of queries to publications that were returned by those queries.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' queries <- c('TS = "dog welfare"', 'TS = "cat welfare"')
+#' # we can name the queries so that these names appear in the queries data
+#' # frame returned by pull_wos_apply():
+#' names(queries) <- c("dog welfare", "cat welfare")
+#' pull_wos_apply(queries)
+#'}
+#'
 #' @export
 pull_wos_apply <- function(queries,
                            editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
