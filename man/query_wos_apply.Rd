@@ -32,8 +32,7 @@ Run \code{query_wos} across multiple queries
 \examples{
 \dontrun{
 
-queries <- c('TS="dog welfare"', 'TS="cat welfare"')
+queries <- c('TS = "dog welfare"', 'TS = "cat welfare"')
 query_wos_apply(queries)
 }
-
 }

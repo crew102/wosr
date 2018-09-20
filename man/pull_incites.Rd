@@ -50,5 +50,4 @@ pull_incites(uts, key = "some_key")
 
 pull_incites(c("000346263300011", "000362312600021"), key = "some_key")
 }
-
 }

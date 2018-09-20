@@ -33,11 +33,10 @@ Run \code{pull_wos} across multiple queries
 \examples{
 \dontrun{
 
-queries <- c('TS="dog welfare"', 'TS="cat welfare"')
+queries <- c('TS = "dog welfare"', 'TS = "cat welfare"')
 # we can name the queries so that these names appear in the queries data
 # frame returned by pull_wos_apply():
 names(queries) <- c("dog welfare", "cat welfare")
 pull_wos_apply(queries)
 }
-
 }

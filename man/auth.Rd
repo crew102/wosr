@@ -34,5 +34,4 @@ auth("some_username", password = "some_password")
 Sys.setenv(WOS_USERNAME = "some_username", WOS_PASSWORD = "some_password")
 auth()
 }
-
 }

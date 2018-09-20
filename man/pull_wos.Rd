@@ -92,5 +92,4 @@ query <- "TS = ((cadmium AND gill*) NOT Pisces)"
 query_wos(query, sid = sid) # shows that there are 1,611 matching publications
 pull_wos(query, sid = sid)
 }
-
 }

@@ -32,5 +32,4 @@ write_wos_data(wos_data, ".")
 dir.create("wos-data")
 write_wos_data(wos_data, "wos-data")
 }
-
 }

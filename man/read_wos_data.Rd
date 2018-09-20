@@ -28,5 +28,4 @@ write_wos_data(wos_data, ".")
 # Read data back into R
 wos_data <- read_wos_data(".")
 }
-
 }
