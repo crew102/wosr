@@ -23,7 +23,6 @@
 #' Sys.setenv(WOS_USERNAME = "some_username", WOS_PASSWORD = "some_password")
 #' auth()
 #'}
-#'
 #' @export
 auth <- function(username = Sys.getenv("WOS_USERNAME"),
                  password = Sys.getenv("WOS_PASSWORD")) {

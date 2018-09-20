@@ -16,7 +16,6 @@
 #' names(queries) <- c("dog welfare", "cat welfare")
 #' pull_wos_apply(queries)
 #'}
-#'
 #' @export
 pull_wos_apply <- function(queries,
                            editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
@@ -85,7 +84,6 @@ one_pull_wos_apply <- function(query_name, queries, editions, sid, ...) {
 #' queries <- c('TS = "dog welfare"', 'TS = "cat welfare"')
 #' query_wos_apply(queries)
 #'}
-#'
 #' @export
 query_wos_apply <- function(queries,
                             editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",

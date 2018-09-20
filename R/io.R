@@ -22,7 +22,6 @@
 #' dir.create("wos-data")
 #' write_wos_data(wos_data, "wos-data")
 #'}
-#'
 #' @export
 write_wos_data <- function(wos_data, dir) {
 
@@ -67,7 +66,6 @@ full_path <- function(dir, x) file.path(dir, paste0(x, ".csv"))
 #' # Read data back into R
 #' wos_data <- read_wos_data(".")
 #' }
-#'
 #' @export
 read_wos_data <- function(dir) {
 
