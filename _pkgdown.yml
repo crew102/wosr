@@ -24,7 +24,11 @@ reference:
     contents:
     - auth
     - query_wos
+    - query_wos_apply
     - pull_wos
+    - pull_wos_apply
+    - read_wos_data
+    - write_wos_data
   - title: InCites API
     contents:
     - pull_incites
