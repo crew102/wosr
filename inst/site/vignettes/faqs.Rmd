@@ -49,7 +49,7 @@ queries <- c(
   "TS = dog AND PY = 2001-2010", 
   "TS = dog AND PY = 2011-2018"
 )
-results <- lapply(queries, pull_wos)
+results <- pull_wos_apply(queries)
 ```
 
 ### There are some fields that I'm interested in that `pull_wos()` doesn't return. How do I get them?
