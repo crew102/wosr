@@ -40,6 +40,12 @@
 #'}
 #' @export
 pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...) {
+  if (key == "") {
+    stop(
+      "You need to provide an InCites API key to use `pull_incites()`",
+      call. = FALSE
+    )
+  }
   uts <- gsub("^WOS:", "", uts)
   urls <- get_urls(uts = gsub("^WOS:", "", uts))
   out_list <- pbapply::pblapply(urls, try_incites_req, key = key, ... = ...)
