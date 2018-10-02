@@ -53,7 +53,7 @@ parse_author_node_data <- function(doc_list) {
 
   author_list <- split_nodes(
     doc_list,
-    xpath = ".//summary//names//name[@role='author' and child::wos_standard and string-length(@seq_no)>0]"
+    xpath = ".//summary//names//name[@role='author' and string-length(@seq_no)>0]"
   )
 
   el_xpath <- c(
