@@ -55,6 +55,7 @@ parse_author_node_data <- function(doc_list) {
     doc_list,
     xpath = ".//summary//names//name[@role='author' and string-length(@seq_no)>0]"
   )
+  message_long_parse(author_list, "authors")
 
   el_xpath <- c(
     display_name = "display_name[1]", # display name (e.g., baker, chris)
@@ -79,6 +80,7 @@ parse_address_node_data <- function(doc_list) {
     doc_list,
     xpath = ".//fullrecord_metadata//addresses/address_name/address_spec"
   )
+  message_long_parse(address_list, "addresses")
 
   el_xpath <- c(
     org_pref = "organizations/organization[@pref='Y'][1]", # preferred name of org
@@ -107,7 +109,6 @@ get_xml <- function(response) {
 }
 
 unescape_xml <- function(x) {
-  # x <- gsub("&apos;", "'", x)
   x <- gsub("&lt;", "<", x)
   x <- gsub("&gt;", ">", x)
   gsub("&amp;", "&", x)
@@ -165,3 +166,14 @@ na_if_missing <- function(x) if (is.null(x) || length(x) == 0) NA else x
 
 bind_el_atr <- function(el_list, atr_list)
   lapply(seq_along(el_list), function(x) c(el_list[[x]], atr_list[[x]]))
+
+message_long_parse <- function(list, entity) {
+  num_ents <- vapply(list, length, numeric(1))
+  if (any(num_ents >= 100)) {
+    message(
+      "At least one of your publications has more than 100 ", entity,
+      " listed on it. Parsing the data from these publications will take",
+      " some time."
+    )
+  }
+}
