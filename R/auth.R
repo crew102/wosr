@@ -26,12 +26,15 @@
 #' @export
 auth <- function(username = Sys.getenv("WOS_USERNAME"),
                  password = Sys.getenv("WOS_PASSWORD")) {
+  ip_based <- is.null(username) && is.null(password)
 
-  if (username == "" || password == "") {
-    stop(
-      "You need to provide a username and password to use the API",
-      call. = FALSE
-    )
+  if (!ip_based) {
+    if (username == "" || password == "") {
+      stop(
+        "You need to provide a username and password to use the API",
+        call. = FALSE
+      )
+    }
   }
 
   body <-
