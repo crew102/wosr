@@ -1,6 +1,6 @@
-check_resp <- function(response, message) {
+check_resp <- function(response) {
   if (httr::http_error(response)) {
-    stop(message, parse_er(response), call. = FALSE)
+    stop(parse_er(response), call. = FALSE)
   }
 }
 

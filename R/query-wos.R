@@ -73,7 +73,7 @@ query_wos <- function(query,
   )
 
   # Confirm server didn't throw an error
-  check_resp(response, message = "Download threw the following error:\n\n")
+  check_resp(response)
 
   # Pull out metadata from XML
   doc <- get_xml(response)

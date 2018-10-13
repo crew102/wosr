@@ -67,10 +67,7 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
   }
 
   # Confirm server didn't throw an error
-  check_resp(
-    response,
-    message = "Received the following error when authenticating with server:\n\n"
-  )
+  check_resp(response)
 
   # Pull out SID from XML
   doc <- get_xml(response)

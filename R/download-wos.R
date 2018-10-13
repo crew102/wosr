@@ -27,10 +27,7 @@ download_wos <- function(query_result, ...) {
       ...
     )
 
-    check_resp(
-      response,
-      message = "Got the following error when downloading data:\n\n"
-    )
+    check_resp(response)
     response
   })
 
