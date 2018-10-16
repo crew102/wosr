@@ -25,3 +25,5 @@ format_num <- function(x) format(
 )
 
 append_class <- function(x, class) structure(x, class = c(class(x), class))
+
+trim_uts <- function(x) gsub("^WOS:", "", x, ignore.case = TRUE)

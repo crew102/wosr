@@ -46,8 +46,7 @@ pull_incites <- function(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, .
       call. = FALSE
     )
   }
-  uts <- gsub("^WOS:", "", uts)
-  urls <- get_urls(uts = gsub("^WOS:", "", uts))
+  urls <- get_urls(trim_uts(uts))
   out_list <- pbapply::pblapply(urls, try_incites_req, key = key, ... = ...)
   unique(process_incites(do.call("rbind", out_list), as_raw))
 }
