@@ -27,3 +27,22 @@ format_num <- function(x) format(
 append_class <- function(x, class) structure(x, class = c(class(x), class))
 
 trim_uts <- function(x) gsub("^WOS:", "", x, ignore.case = TRUE)
+
+retry_throttle <- function(expr) {
+  tryCatch(
+    expr = expr,
+    error = function(e) {
+      throt_er <- grepl(
+        "throttle|limit of [0-9] requests per period", e$message,
+        ignore.case = TRUE
+      )
+      if (throt_er) {
+        Sys.sleep(3)
+        message("\nRan into throttling error. Sleeping and then trying again.")
+        expr
+      } else {
+        stop(e$message)
+      }
+    }
+  )
+}
