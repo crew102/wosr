@@ -52,21 +52,10 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
     </soap:Envelope>'
   )
 
-  # Function to send a request to the API
-  one_post <- function(...) {
-    httr::POST(
-      "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
-      body = body,
-      httr::add_headers("cookie" = paste0("SID=", sid)),
-      ua(),
-      ...
-    )
-  }
-
   # If you run into throttling error (2 calls per second per SID), just sleep
   # for a second and try again (up to three tries)
   for (i in 1:3) {
-    response <- one_post()
+    response <- wok_search(body, sid, ...)
     if (httr::http_error(response)) {
       er <- parse_er(response)
       if (grepl("throttle", er, ignore.case = TRUE)) {
@@ -78,4 +67,14 @@ one_pull <- function(query_id, first_record, count, sid, ...) {
   }
 
   response
+}
+
+wok_search <- function(body, sid, ...) {
+  httr::POST(
+    "http://search.webofknowledge.com/esti/wokmws/ws/WokSearch",
+    body = body,
+    httr::add_headers("cookie" = paste0("SID=", sid)),
+    ua(),
+    ...
+  )
 }
