@@ -11,17 +11,22 @@ pull_one_ut_of_cited_refs <- function(ut, sid, ...) {
   if ("try-error" %in% class(qry_res)) {
     msg <- attributes(qry_res)$condition$message
     if (grepl("No document found for requested UID", msg, ignore.case = TRUE)) {
+      Sys.sleep(1)
       return(NULL)
     } else {
       stop(msg)
     }
   }
+  if (qry_res$rec_cnt == 0) {
+    Sys.sleep(1)
+    return(NULL)
+  }
 
   first_records <- (ceiling(qry_res$rec_cnt / 100) - 1) * 100 + 1
-
   list_of_lists <- lapply(first_records, function(x, ...) {
     retry_throttle(pull_one_set_of_cited_refs(qry_res$query_id, x, sid, ...))
   })
+
   res_list <- do.call(c, list_of_lists)
   res_df <- do.call(rbind, lapply(res_list, unlist))
   res_df <- cbind(rep(paste0("WOS:", ut), nrow(res_df)), res_df)
