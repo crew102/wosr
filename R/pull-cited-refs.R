@@ -113,7 +113,4 @@ cast_cited_ref_df <- function(df) {
   } else {
     df <- data.frame(matrix(ncol = 9, nrow = 0))
   }
-  df[, 6:9] <- apply(df[, 6:9], MARGIN = 2, FUN = as.numeric)
-  df$doc_id <- as.numeric(df$doc_id)
-  df
 }
