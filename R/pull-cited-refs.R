@@ -109,8 +109,9 @@ cast_cited_ref_df <- function(df) {
     "tot_cites", "year", "page", "volume"
   )
   if (nrow(df)) {
-    df <- df[ , cols]
+    df[, cols]
   } else {
-    df <- data.frame(matrix(ncol = 9, nrow = 0))
+    lst <- setNames(vector("list", length(cols)), cols)
+    as.data.frame(lapply(lst, as.character), stringsAsFactors = FALSE)
   }
 }
