@@ -73,3 +73,22 @@ test_that("query_wos_apply returns data frame with query results", {
   expect_true(nrow(out) == 2)
   expect_true(all(out$rec_cnt > 10))
 })
+
+test_that("pull_cited_refs returns data for pubs with cited refs", {
+  skip_if_no_auth()
+
+  uts <- c("WOS:000362312600021", "WOS:000439855300030", "WOS:000294946900020")
+  out <- pull_cited_refs(uts, sid)
+
+  expect_true(all(uts %in% out$ut))
+  Sys.sleep(1)
+})
+
+test_that("pull_cited_refs returns no data for pubs with no cited refs", {
+  skip_if_no_auth()
+
+  uts <- c("WOS:000346263300011", "WOS:000279885800004", "11")
+  out <- pull_cited_refs(uts, sid)
+
+  expect_true(nrow(out) == 0)
+})
