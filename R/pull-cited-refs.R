@@ -90,27 +90,26 @@ pull_one_set_of_cited_refs <- function(query_id, first_record, sid, ...) {
 
   xpath <- c(
     doc_id = ".//docid[1]",
-    cited_author = ".//citedauthor[1]",
+    title = ".//citedtitle[1]",
+    journal = ".//citedwork[1]",
+    author = ".//citedauthor[1]",
     tot_cites = ".//timescited[1]",
     year = ".//year[1]",
     page = ".//page[1]",
-    volume = ".//volume[1]",
-    cited_tite = ".//citedtitle[1]",
-    cited_work = ".//citedwork[1]"
+    volume = ".//volume[1]"
   )
   parse_els_apply(doc_list, xpath = xpath)
 }
 
 cast_cited_ref_df <- function(df) {
   df <- as.data.frame(df, stringsAsFactors = FALSE)
-  cols <- c(
-    "ut", "doc_id",
-    "cited_tite", "cited_work", "cited_author",
-    "tot_cites", "year", "page", "volume"
-  )
   if (nrow(df)) {
-    df[, cols]
+    df
   } else {
+    cols <- c(
+      "ut", "doc_id", "title", "journal", "author",
+      "tot_cites", "year", "page", "volume"
+    )
     lst <- setNames(vector("list", length(cols)), cols)
     as.data.frame(lapply(lst, as.character), stringsAsFactors = FALSE)
   }
