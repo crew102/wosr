@@ -35,7 +35,7 @@
 <meta property="og:title" content="Query the Web of Science — query_wos" />
 
 <meta property="og:description" content="Returns the number of records that match a given query. It's best to call
-this function before calling pull_wos, so that you know how
+this function before calling pull_wos so that you know how
 many records you are trying to download before you attempt to do so." />
 <meta name="twitter:card" content="summary" />
 
@@ -113,7 +113,7 @@ many records you are trying to download before you attempt to do so." />
     <div class="ref-description">
     
     <p>Returns the number of records that match a given query. It's best to call
-this function before calling <code><a href='pull_wos.html'>pull_wos</a></code>, so that you know how
+this function before calling <code><a href='pull_wos.html'>pull_wos</a></code> so that you know how
 many records you are trying to download before you attempt to do so.</p>
     
     </div>
@@ -139,9 +139,9 @@ for details on how to write a query as well as a the list of <a href='http://ima
     <tr>
       <th>sid</th>
       <td><p>Session identifier (SID). The default setting is to get a fresh
-SID each time you query the WoS, via a call to <code><a href='auth.html'>auth</a></code>. However,
-you should try to reuse SID values over multiple queries so that you don't
-run into the throttling limits placed on new sessions.</p></td>
+SID each time you query WoS via a call to <code><a href='auth.html'>auth</a></code>. However,
+you should try to reuse SIDs across queries so that you don't run into the
+throttling limits placed on new sessions.</p></td>
     </tr>
     <tr>
       <th>...</th>

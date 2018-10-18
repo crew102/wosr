@@ -110,11 +110,11 @@ pull_incites(uts)
 #>                      ut article_type tot_cites journal_expected_citations
 #> 1.1 WOS:000272877700013           AA         1                        3.4
 #> 1.2 WOS:000272366800025           AA         4                        4.3
-#> 1.3 WOS:000272272000015           AA         3                        8.9
+#> 1.3 WOS:000272272000015           AA         3                        9.0
 #>     journal_act_exp_citations impact_factor avg_expected_rate percentile
-#> 1.1                      0.30          0.49                20         87
-#> 1.2                      0.94          0.85                20         63
-#> 1.3                      0.34          1.90                20         69
+#> 1.1                      0.29          0.49                20         87
+#> 1.2                      0.93          0.85                20         63
+#> 1.3                      0.33          1.90                20         69
 #>      nci esi_most_cited_article hot_paper is_international_collab
 #> 1.1 0.05                  FALSE     FALSE                   FALSE
 #> 1.2 0.20                  FALSE     FALSE                   FALSE
@@ -135,33 +135,33 @@ wos <- pull_wos('TS = ("dog welfare")', sid = sid)
 # Download InCites data
 head(pull_incites(wos$publication$ut))
 #>                      ut article_type tot_cites journal_expected_citations
-#> 1.1 WOS:A1996VH04300002           AA        18                      30.07
-#> 1.2 WOS:000435128900013            R         2                       1.50
-#> 1.3 WOS:000432234000011           AA         0                       0.12
-#> 1.4 WOS:000425564500005           AA         0                       0.12
-#> 1.5 WOS:000425532500001            R         0                       0.67
-#> 1.6 WOS:000422961700001           AA         0                       0.64
+#> 1.1 WOS:A1996VH04300002           AA        19                      30.22
+#> 1.2 WOS:000438259600009           AA         1                       1.12
+#> 1.3 WOS:000438259600004           AA         1                       1.12
+#> 1.4 WOS:000436270600004           AA         0                       0.26
+#> 1.5 WOS:000435128900013            R         3                       2.00
+#> 1.6 WOS:000432234000011           AA         0                       0.14
 #>     journal_act_exp_citations impact_factor avg_expected_rate percentile
-#> 1.1                       0.6           1.5             19.07       23.9
-#> 1.2                       1.3           1.6              0.25        2.1
-#> 1.3                       0.0           1.5              0.11      100.0
-#> 1.4                       0.0           1.5              0.11      100.0
-#> 1.5                       0.0           2.8              0.40      100.0
-#> 1.6                       0.0           1.7              0.69      100.0
+#> 1.1                      0.63           1.5             19.15       22.8
+#> 1.2                      0.90           1.6              0.17       10.9
+#> 1.3                      0.90           1.6              0.17       10.9
+#> 1.4                      0.00           1.7              0.13      100.0
+#> 1.5                      1.50           1.6              0.32        1.2
+#> 1.6                      0.00           1.5              0.15      100.0
 #>      nci esi_most_cited_article hot_paper is_international_collab
-#> 1.1 0.94                  FALSE     FALSE                   FALSE
-#> 1.2 8.07                  FALSE     FALSE                    TRUE
-#> 1.3 0.00                  FALSE     FALSE                   FALSE
+#> 1.1 0.99                  FALSE     FALSE                   FALSE
+#> 1.2 5.72                  FALSE     FALSE                   FALSE
+#> 1.3 5.72                  FALSE     FALSE                   FALSE
 #> 1.4 0.00                  FALSE     FALSE                   FALSE
-#> 1.5 0.00                  FALSE     FALSE                   FALSE
+#> 1.5 9.35                  FALSE     FALSE                    TRUE
 #> 1.6 0.00                  FALSE     FALSE                   FALSE
 #>     is_institution_collab is_industry_collab oa_flag
 #> 1.1                 FALSE              FALSE   FALSE
-#> 1.2                  TRUE              FALSE   FALSE
+#> 1.2                 FALSE              FALSE   FALSE
 #> 1.3                 FALSE              FALSE   FALSE
-#> 1.4                 FALSE              FALSE   FALSE
-#> 1.5                 FALSE              FALSE   FALSE
-#> 1.6                 FALSE              FALSE    TRUE
+#> 1.4                 FALSE              FALSE    TRUE
+#> 1.5                  TRUE              FALSE   FALSE
+#> 1.6                 FALSE              FALSE   FALSE
 ```
 
 Learning more

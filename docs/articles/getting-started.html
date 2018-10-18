@@ -92,57 +92,57 @@ sid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auth.ht
 <span class="co"># list of keywords (TS tag).</span>
 query &lt;-<span class="st"> 'TI = ("animal welfare") AND TS = (dog welfare)'</span>
 <span class="kw"><a href="../reference/query_wos.html">query_wos</a></span>(query, <span class="dt">sid =</span> sid)
-<span class="co">#&gt; Matching records: 88</span></code></pre></div>
+<span class="co">#&gt; Matching records: 89</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Pull the data.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pull_wos.html">pull_wos</a></span>(query, <span class="dt">sid =</span> sid)
 data
 <span class="co">#&gt; List of 9</span>
-<span class="co">#&gt;  $ publication   :'data.frame':  88 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ ut       : chr [1:88] "WOS:000377031100025" ...</span>
-<span class="co">#&gt;   ..$ title    : chr [1:88] "ANIMAL WELFARE Brachycephalic dog breeds" ...</span>
-<span class="co">#&gt;   ..$ journal  : chr [1:88] "Veterinary Record" ...</span>
-<span class="co">#&gt;   ..$ date     : Date[1:88], format: "2016-05-28" ...</span>
-<span class="co">#&gt;   ..$ doi      : chr [1:88] "10.1136/vr.i2991" ...</span>
-<span class="co">#&gt;   ..$ tot_cites: int [1:88] 0 0 ...</span>
-<span class="co">#&gt;   ..$ abstract : chr [1:88] NA ...</span>
-<span class="co">#&gt;  $ author        :'data.frame':  230 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ ut          : chr [1:230] "WOS:000377031100025" ...</span>
-<span class="co">#&gt;   ..$ author_no   : int [1:230] 1 1 ...</span>
-<span class="co">#&gt;   ..$ display_name: chr [1:230] "Goddard, Philip" ...</span>
-<span class="co">#&gt;   ..$ first_name  : chr [1:230] "Philip" ...</span>
-<span class="co">#&gt;   ..$ last_name   : chr [1:230] "Goddard" ...</span>
-<span class="co">#&gt;   ..$ email       : chr [1:230] "PGoddard@goddardvetgroup.co.uk" ...</span>
-<span class="co">#&gt;   ..$ daisng_id   : int [1:230] 2079012 692918 ...</span>
-<span class="co">#&gt;  $ address       :'data.frame':  132 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ ut      : chr [1:132] "WOS:000377031100025" ...</span>
-<span class="co">#&gt;   ..$ addr_no : int [1:132] 1 1 ...</span>
-<span class="co">#&gt;   ..$ org_pref: chr [1:132] NA ...</span>
-<span class="co">#&gt;   ..$ org     : chr [1:132] NA ...</span>
-<span class="co">#&gt;   ..$ city    : chr [1:132] "London" ...</span>
-<span class="co">#&gt;   ..$ state   : chr [1:132] NA ...</span>
-<span class="co">#&gt;   ..$ country : chr [1:132] "England" ...</span>
-<span class="co">#&gt;  $ author_address:'data.frame':  145 obs. of  3 variables:</span>
-<span class="co">#&gt;   ..$ ut       : chr [1:145] "WOS:000377031100025" ...</span>
-<span class="co">#&gt;   ..$ author_no: int [1:145] 1 1 ...</span>
-<span class="co">#&gt;   ..$ addr_no  : int [1:145] 1 1 ...</span>
-<span class="co">#&gt;  $ jsc           :'data.frame':  124 obs. of  2 variables:</span>
-<span class="co">#&gt;   ..$ ut : chr [1:124] "WOS:000377031100025" ...</span>
-<span class="co">#&gt;   ..$ jsc: chr [1:124] "Veterinary Sciences" ...</span>
+<span class="co">#&gt;  $ publication   :'data.frame':  89 obs. of  7 variables:</span>
+<span class="co">#&gt;   ..$ ut       : chr [1:89] "WOS:000377031100025" ...</span>
+<span class="co">#&gt;   ..$ title    : chr [1:89] "ANIMAL WELFARE Brachycephalic dog breeds" ...</span>
+<span class="co">#&gt;   ..$ journal  : chr [1:89] "Veterinary Record" ...</span>
+<span class="co">#&gt;   ..$ date     : Date[1:89], format: "2016-05-28" ...</span>
+<span class="co">#&gt;   ..$ doi      : chr [1:89] "10.1136/vr.i2991" ...</span>
+<span class="co">#&gt;   ..$ tot_cites: int [1:89] 0 0 ...</span>
+<span class="co">#&gt;   ..$ abstract : chr [1:89] NA ...</span>
+<span class="co">#&gt;  $ author        :'data.frame':  238 obs. of  7 variables:</span>
+<span class="co">#&gt;   ..$ ut          : chr [1:238] "WOS:000377031100025" ...</span>
+<span class="co">#&gt;   ..$ author_no   : int [1:238] 1 1 ...</span>
+<span class="co">#&gt;   ..$ display_name: chr [1:238] "Goddard, Philip" ...</span>
+<span class="co">#&gt;   ..$ first_name  : chr [1:238] "Philip" ...</span>
+<span class="co">#&gt;   ..$ last_name   : chr [1:238] "Goddard" ...</span>
+<span class="co">#&gt;   ..$ email       : chr [1:238] "PGoddard@goddardvetgroup.co.uk" ...</span>
+<span class="co">#&gt;   ..$ daisng_id   : int [1:238] 2079012 692918 ...</span>
+<span class="co">#&gt;  $ address       :'data.frame':  137 obs. of  7 variables:</span>
+<span class="co">#&gt;   ..$ ut      : chr [1:137] "WOS:000377031100025" ...</span>
+<span class="co">#&gt;   ..$ addr_no : int [1:137] 1 1 ...</span>
+<span class="co">#&gt;   ..$ org_pref: chr [1:137] NA ...</span>
+<span class="co">#&gt;   ..$ org     : chr [1:137] NA ...</span>
+<span class="co">#&gt;   ..$ city    : chr [1:137] "London" ...</span>
+<span class="co">#&gt;   ..$ state   : chr [1:137] NA ...</span>
+<span class="co">#&gt;   ..$ country : chr [1:137] "England" ...</span>
+<span class="co">#&gt;  $ author_address:'data.frame':  154 obs. of  3 variables:</span>
+<span class="co">#&gt;   ..$ ut       : chr [1:154] "WOS:000377031100025" ...</span>
+<span class="co">#&gt;   ..$ author_no: int [1:154] 1 1 ...</span>
+<span class="co">#&gt;   ..$ addr_no  : int [1:154] 1 1 ...</span>
+<span class="co">#&gt;  $ jsc           :'data.frame':  125 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut : chr [1:125] "WOS:000377031100025" ...</span>
+<span class="co">#&gt;   ..$ jsc: chr [1:125] "Veterinary Sciences" ...</span>
 <span class="co">#&gt;  $ keyword       :'data.frame':  279 obs. of  2 variables:</span>
 <span class="co">#&gt;   ..$ ut     : chr [1:279] "WOS:000223297300005" ...</span>
 <span class="co">#&gt;   ..$ keyword: chr [1:279] "animal welfare" ...</span>
-<span class="co">#&gt;  $ keywords_plus :'data.frame':  322 obs. of  2 variables:</span>
-<span class="co">#&gt;   ..$ ut           : chr [1:322] "WOS:000412686200005" ...</span>
-<span class="co">#&gt;   ..$ keywords_plus: chr [1:322] "nonaccidental injury" ...</span>
-<span class="co">#&gt;  $ grant         :'data.frame':  22 obs. of  3 variables:</span>
-<span class="co">#&gt;   ..$ ut          : chr [1:22] "WOS:000314027500001" ...</span>
-<span class="co">#&gt;   ..$ grant_agency: chr [1:22] "Animal and Society Institute-Wesleyan An"..</span>
-<span class="co">#&gt;   ..$ grant_id    : chr [1:22] NA ...</span>
-<span class="co">#&gt;  $ doc_type      :'data.frame':  92 obs. of  2 variables:</span>
-<span class="co">#&gt;   ..$ ut      : chr [1:92] "WOS:000377031100025" ...</span>
-<span class="co">#&gt;   ..$ doc_type: chr [1:92] "Letter" ...</span></code></pre></div>
+<span class="co">#&gt;  $ keywords_plus :'data.frame':  332 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut           : chr [1:332] "WOS:000412686200005" ...</span>
+<span class="co">#&gt;   ..$ keywords_plus: chr [1:332] "nonaccidental injury" ...</span>
+<span class="co">#&gt;  $ grant         :'data.frame':  23 obs. of  3 variables:</span>
+<span class="co">#&gt;   ..$ ut          : chr [1:23] "WOS:000314027500001" ...</span>
+<span class="co">#&gt;   ..$ grant_agency: chr [1:23] "Animal and Society Institute-Wesleyan An"..</span>
+<span class="co">#&gt;   ..$ grant_id    : chr [1:23] NA ...</span>
+<span class="co">#&gt;  $ doc_type      :'data.frame':  93 obs. of  2 variables:</span>
+<span class="co">#&gt;   ..$ ut      : chr [1:93] "WOS:000377031100025" ...</span>
+<span class="co">#&gt;   ..$ doc_type: chr [1:93] "Letter" ...</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>
 <code><a href="../reference/pull_wos.html">pull_wos()</a></code> returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have. For example:</li>
@@ -249,16 +249,16 @@ cat_authors
 <span class="co">#&gt; 1 WOS:000266414200001        80</span>
 <span class="co">#&gt; 2 WOS:000266414200001        80</span>
 <span class="co">#&gt; 3 WOS:000346849200008        25</span>
-<span class="co">#&gt; 4 WOS:000376588600097        20</span>
-<span class="co">#&gt; 5 WOS:000376588600097        20</span>
-<span class="co">#&gt; 6 WOS:000299252600032        19</span>
+<span class="co">#&gt; 4 WOS:000376588600097        21</span>
+<span class="co">#&gt; 5 WOS:000376588600097        21</span>
+<span class="co">#&gt; 6 WOS:000250058400056        21</span>
 <span class="co">#&gt;                                                                         grant_agency</span>
 <span class="co">#&gt; 1                                                       Ontario Graduate Scholarship</span>
 <span class="co">#&gt; 2                                                     NSERC postgraduate scholarship</span>
 <span class="co">#&gt; 3                     Animal Welfare Science and Bioethics Centre, Massey University</span>
 <span class="co">#&gt; 4 United States National Science Foundation Division of Social and Economic Sciences</span>
 <span class="co">#&gt; 5              National Science Foundation, Science, Technology, and Society program</span>
-<span class="co">#&gt; 6                     Centre for Animal Welfare and Ethics, University of Queensland</span></code></pre></div>
+<span class="co">#&gt; 6                                                                 Intramural NIH HHS</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Download more detailed citation data (from the InCites API) for the top-cited publications</li>
 </ol>
@@ -270,14 +270,14 @@ cat_authors
 
 <span class="kw">head</span>(<span class="kw"><a href="../reference/pull_incites.html">pull_incites</a></span>(top_100_pubs, <span class="dt">key =</span> <span class="st">"your_incites_key"</span>))</code></pre></div>
 <pre><code>#&gt;                      ut article_type tot_cites journal_expected_citations
-#&gt; 1.1 WOS:A1997YD63900007           AA        12                      30.18
-#&gt; 1.2 WOS:A1994PU81000001           AA         1                       3.04
+#&gt; 1.1 WOS:A1997YD63900007           AA        12                      30.29
+#&gt; 1.2 WOS:A1994PU81000001           AA         1                       3.06
 #&gt; 1.3 WOS:A1993KW33000003           AA         9                       2.39
 #&gt; 1.4 WOS:A1993KT16900015            E         0                       0.53
-#&gt; 1.5 WOS:A1993KR46800009           AA         6                       5.17
+#&gt; 1.5 WOS:A1993KR46800009           AA         6                       5.18
 #&gt; 1.6 WOS:A1990BS37S00006            P         1                         NA
 #&gt;     journal_act_exp_citations impact_factor avg_expected_rate percentile
-#&gt; 1.1                      0.40         1.573              16.9         34
+#&gt; 1.1                      0.40         1.573              17.0         34
 #&gt; 1.2                      0.33         0.043              14.1         84
 #&gt; 1.3                      3.76        -1.000              14.1         45
 #&gt; 1.4                      0.00        -1.000               1.2        100
@@ -288,7 +288,7 @@ cat_authors
 #&gt; 1.2 0.07                  FALSE     FALSE                   FALSE
 #&gt; 1.3 0.64                  FALSE     FALSE                   FALSE
 #&gt; 1.4 0.00                  FALSE     FALSE                   FALSE
-#&gt; 1.5 0.43                  FALSE     FALSE                   FALSE
+#&gt; 1.5 0.42                  FALSE     FALSE                   FALSE
 #&gt; 1.6 0.46                  FALSE     FALSE                   FALSE
 #&gt;     is_institution_collab is_industry_collab oa_flag
 #&gt; 1.1                 FALSE              FALSE   FALSE

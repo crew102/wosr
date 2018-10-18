@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pull data from the WoS API — pull_wos • wosr</title>
+<title>Pull data from the Web of Science — pull_wos • wosr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Pull data from the WoS API — pull_wos" />
+<meta property="og:title" content="Pull data from the Web of Science — pull_wos" />
 
 <meta property="og:description" content="pull_wos wraps the process of querying, downloading, parsing, and
 processing the Web of Science data that the API serves." />
@@ -104,7 +104,7 @@ processing the Web of Science data that the API serves." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pull data from the WoS API</h1>
+    <h1>Pull data from the Web of Science</h1>
     
     <div class="hidden name"><code>pull_wos.Rd</code></div>
     </div>
@@ -137,9 +137,9 @@ for details on how to write a query as well as a the list of <a href='http://ima
     <tr>
       <th>sid</th>
       <td><p>Session identifier (SID). The default setting is to get a fresh
-SID each time you query the WoS, via a call to <code><a href='auth.html'>auth</a></code>. However,
-you should try to reuse SID values over multiple queries so that you don't
-run into the throttling limits placed on new sessions.</p></td>
+SID each time you query WoS via a call to <code><a href='auth.html'>auth</a></code>. However,
+you should try to reuse SIDs across queries so that you don't run into the
+throttling limits placed on new sessions.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -149,8 +149,7 @@ run into the throttling limits placed on new sessions.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of data frames, which can be joined together like a relational
-database:</p><dl class='dl-horizontal'>
+    <p>A list of the following data frames:</p><dl class='dl-horizontal'>
    <dt>publication</dt><dd><p>A data frame where each row corresponds to a different
    publication. Note that each publication has a distinct <code>ut</code>. There is
    a one-to-one relationship between a <code>ut</code> and each of the fields

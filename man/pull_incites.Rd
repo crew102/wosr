@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull-incites.R
 \name{pull_incites}
 \alias{pull_incites}
-\title{Pull data from the InCites API}
+\title{Pull data from InCites}
 \usage{
 pull_incites(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...)
 }

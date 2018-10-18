@@ -17,9 +17,9 @@ for details on how to write a query as well as a the list of \href{http://images
 \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
 
 \item{sid}{Session identifier (SID). The default setting is to get a fresh
-SID each time you query the WoS, via a call to \code{\link{auth}}. However,
-you should try to reuse SID values over multiple queries so that you don't
-run into the throttling limits placed on new sessions.}
+SID each time you query WoS via a call to \code{\link{auth}}. However,
+you should try to reuse SIDs across queries so that you don't run into the
+throttling limits placed on new sessions.}
 
 \item{...}{Arguments passed along to \code{\link[httr]{POST}}.}
 }
@@ -31,7 +31,7 @@ internally.
 }
 \description{
 Returns the number of records that match a given query. It's best to call
-this function before calling \code{\link{pull_wos}}, so that you know how
+this function before calling \code{\link{pull_wos}} so that you know how
 many records you are trying to download before you attempt to do so.
 }
 \examples{

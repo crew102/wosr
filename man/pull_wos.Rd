@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull-wos.R
 \name{pull_wos}
 \alias{pull_wos}
-\title{Pull data from the WoS API}
+\title{Pull data from the Web of Science}
 \usage{
 pull_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
   "BSCI", "BHCI", "IC", "CCR", "ESCI"),
@@ -17,15 +17,14 @@ for details on how to write a query as well as a the list of \href{http://images
 \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
 
 \item{sid}{Session identifier (SID). The default setting is to get a fresh
-SID each time you query the WoS, via a call to \code{\link{auth}}. However,
-you should try to reuse SID values over multiple queries so that you don't
-run into the throttling limits placed on new sessions.}
+SID each time you query WoS via a call to \code{\link{auth}}. However,
+you should try to reuse SIDs across queries so that you don't run into the
+throttling limits placed on new sessions.}
 
 \item{...}{Arguments passed along to \code{\link[httr]{POST}}.}
 }
 \value{
-A list of data frames, which can be joined together like a relational
-database:
+A list of the following data frames:
  \describe{
    \item{publication}{A data frame where each row corresponds to a different
    publication. Note that each publication has a distinct \code{ut}. There is

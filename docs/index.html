@@ -160,13 +160,13 @@ uts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"00
 <span class="co"># Download InCites data for those UTs</span>
 <span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(uts)
 <span class="co">#&gt;                      ut article_type tot_cites journal_expected_citations</span>
-<span class="co">#&gt; 1.1 WOS:000272877700013           AA         1                   3.375948</span>
-<span class="co">#&gt; 1.2 WOS:000272366800025           AA         4                   4.267191</span>
-<span class="co">#&gt; 1.3 WOS:000272272000015           AA         3                   8.945631</span>
+<span class="co">#&gt; 1.1 WOS:000272877700013           AA         1                   3.397616</span>
+<span class="co">#&gt; 1.2 WOS:000272366800025           AA         4                   4.288802</span>
+<span class="co">#&gt; 1.3 WOS:000272272000015           AA         3                   9.031068</span>
 <span class="co">#&gt;     journal_act_exp_citations impact_factor avg_expected_rate percentile</span>
-<span class="co">#&gt; 1.1                      0.30         0.493           19.9964      87.37</span>
-<span class="co">#&gt; 1.2                      0.94         0.847           19.9964      62.59</span>
-<span class="co">#&gt; 1.3                      0.34         1.902           19.9964      69.25</span>
+<span class="co">#&gt; 1.1                      0.29         0.493           20.1665      87.43</span>
+<span class="co">#&gt; 1.2                      0.93         0.847           20.1665      62.69</span>
+<span class="co">#&gt; 1.3                      0.33         1.902           20.1665      69.35</span>
 <span class="co">#&gt;      nci esi_most_cited_article hot_paper is_international_collab</span>
 <span class="co">#&gt; 1.1 0.05                  FALSE     FALSE                   FALSE</span>
 <span class="co">#&gt; 1.2 0.20                  FALSE     FALSE                   FALSE</span>
@@ -185,33 +185,33 @@ wos &lt;-<span class="st"> </span><span class="kw"><a href="reference/pull_wos.h
 <span class="co"># Download InCites data</span>
 <span class="kw">head</span>(<span class="kw"><a href="reference/pull_incites.html">pull_incites</a></span>(wos<span class="op">$</span>publication<span class="op">$</span>ut))
 <span class="co">#&gt;                      ut article_type tot_cites journal_expected_citations</span>
-<span class="co">#&gt; 1.1 WOS:A1996VH04300002           AA        18                  30.074766</span>
-<span class="co">#&gt; 1.2 WOS:000435128900013            R         2                   1.500000</span>
-<span class="co">#&gt; 1.3 WOS:000432234000011           AA         0                   0.120879</span>
-<span class="co">#&gt; 1.4 WOS:000425564500005           AA         0                   0.120879</span>
-<span class="co">#&gt; 1.5 WOS:000425532500001            R         0                   0.666667</span>
-<span class="co">#&gt; 1.6 WOS:000422961700001           AA         0                   0.635294</span>
+<span class="co">#&gt; 1.1 WOS:A1996VH04300002           AA        19                  30.224299</span>
+<span class="co">#&gt; 1.2 WOS:000438259600009           AA         1                   1.116279</span>
+<span class="co">#&gt; 1.3 WOS:000438259600004           AA         1                   1.116279</span>
+<span class="co">#&gt; 1.4 WOS:000436270600004           AA         0                   0.261905</span>
+<span class="co">#&gt; 1.5 WOS:000435128900013            R         3                   2.000000</span>
+<span class="co">#&gt; 1.6 WOS:000432234000011           AA         0                   0.138889</span>
 <span class="co">#&gt;     journal_act_exp_citations impact_factor avg_expected_rate percentile</span>
-<span class="co">#&gt; 1.1                      0.60         1.548           19.0718      23.92</span>
-<span class="co">#&gt; 1.2                      1.33         1.554            0.2477       2.09</span>
-<span class="co">#&gt; 1.3                      0.00         1.548            0.1140     100.00</span>
-<span class="co">#&gt; 1.4                      0.00         1.548            0.1140     100.00</span>
-<span class="co">#&gt; 1.5                      0.00         2.805            0.3980     100.00</span>
-<span class="co">#&gt; 1.6                      0.00         1.654            0.6919     100.00</span>
+<span class="co">#&gt; 1.1                      0.63         1.548           19.1474      22.78</span>
+<span class="co">#&gt; 1.2                      0.90         1.554            0.1747      10.89</span>
+<span class="co">#&gt; 1.3                      0.90         1.554            0.1747      10.89</span>
+<span class="co">#&gt; 1.4                      0.00         1.654            0.1270     100.00</span>
+<span class="co">#&gt; 1.5                      1.50         1.554            0.3210       1.16</span>
+<span class="co">#&gt; 1.6                      0.00         1.548            0.1498     100.00</span>
 <span class="co">#&gt;      nci esi_most_cited_article hot_paper is_international_collab</span>
-<span class="co">#&gt; 1.1 0.94                  FALSE     FALSE                   FALSE</span>
-<span class="co">#&gt; 1.2 8.07                  FALSE     FALSE                    TRUE</span>
-<span class="co">#&gt; 1.3 0.00                  FALSE     FALSE                   FALSE</span>
+<span class="co">#&gt; 1.1 0.99                  FALSE     FALSE                   FALSE</span>
+<span class="co">#&gt; 1.2 5.72                  FALSE     FALSE                   FALSE</span>
+<span class="co">#&gt; 1.3 5.72                  FALSE     FALSE                   FALSE</span>
 <span class="co">#&gt; 1.4 0.00                  FALSE     FALSE                   FALSE</span>
-<span class="co">#&gt; 1.5 0.00                  FALSE     FALSE                   FALSE</span>
+<span class="co">#&gt; 1.5 9.35                  FALSE     FALSE                    TRUE</span>
 <span class="co">#&gt; 1.6 0.00                  FALSE     FALSE                   FALSE</span>
 <span class="co">#&gt;     is_institution_collab is_industry_collab oa_flag</span>
 <span class="co">#&gt; 1.1                 FALSE              FALSE   FALSE</span>
-<span class="co">#&gt; 1.2                  TRUE              FALSE   FALSE</span>
+<span class="co">#&gt; 1.2                 FALSE              FALSE   FALSE</span>
 <span class="co">#&gt; 1.3                 FALSE              FALSE   FALSE</span>
-<span class="co">#&gt; 1.4                 FALSE              FALSE   FALSE</span>
-<span class="co">#&gt; 1.5                 FALSE              FALSE   FALSE</span>
-<span class="co">#&gt; 1.6                 FALSE              FALSE    TRUE</span></code></pre></div>
+<span class="co">#&gt; 1.4                 FALSE              FALSE    TRUE</span>
+<span class="co">#&gt; 1.5                  TRUE              FALSE   FALSE</span>
+<span class="co">#&gt; 1.6                 FALSE              FALSE   FALSE</span></code></pre></div>
 </div>
   </div>
 
