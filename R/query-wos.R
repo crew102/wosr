@@ -1,7 +1,7 @@
 #' Query the Web of Science
 #'
 #' Returns the number of records that match a given query. It's best to call
-#' this function before calling \code{\link{pull_wos}}, so that you know how
+#' this function before calling \code{\link{pull_wos}} so that you know how
 #' many records you are trying to download before you attempt to do so.
 #'
 #' @param query Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
@@ -9,9 +9,9 @@
 #' @param editions Web of Science editions to query. Possible values are listed
 #' \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.
 #' @param sid Session identifier (SID). The default setting is to get a fresh
-#' SID each time you query the WoS, via a call to \code{\link{auth}}. However,
-#' you should try to reuse SID values over multiple queries so that you don't
-#' run into the throttling limits placed on new sessions.
+#' SID each time you query WoS via a call to \code{\link{auth}}. However,
+#' you should try to reuse SIDs across queries so that you don't run into the
+#' throttling limits placed on new sessions.
 #' @param ... Arguments passed along to \code{\link[httr]{POST}}.
 #'
 #' @return An object of class \code{query_result}. This object has the number

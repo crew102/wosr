@@ -1,12 +1,11 @@
-#' Pull data from the WoS API
+#' Pull data from the Web of Science
 #'
 #' \code{pull_wos} wraps the process of querying, downloading, parsing, and
 #' processing the Web of Science data that the API serves.
 #'
 #' @inheritParams query_wos
 #'
-#' @return A list of data frames, which can be joined together like a relational
-#' database:
+#' @return A list of the following data frames:
 #'  \describe{
 #'    \item{publication}{A data frame where each row corresponds to a different
 #'    publication. Note that each publication has a distinct \code{ut}. There is

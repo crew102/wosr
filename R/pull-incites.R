@@ -1,4 +1,4 @@
-#' Pull data from the InCites API
+#' Pull data from InCites
 #'
 #' \strong{Important note:} The throttling limits on the InCites API are not
 #' documented anywhere and are difficult to determine from experience. As such,

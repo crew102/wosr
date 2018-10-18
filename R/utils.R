@@ -38,7 +38,7 @@ retry_throttle <- function(expr) {
       )
       if (throt_er) {
         Sys.sleep(3)
-        message("\nRan into throttling error. Sleeping and then trying again.")
+        message("\nRan into throttling error. Sleeping and trying again.")
         expr
       } else {
         stop(e$message)
