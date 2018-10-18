@@ -142,14 +142,15 @@ pull_one_set_of_cited_refs <- function(query_id, first_record, sid, ...) {
 
 cast_cited_ref_df <- function(df) {
   df <- as.data.frame(df, stringsAsFactors = FALSE)
-  if (nrow(df)) {
-    df
-  } else {
+  if (!nrow(df)) {
     cols <- c(
       "ut", "doc_id", "title", "journal", "author",
       "tot_cites", "year", "page", "volume"
     )
     lst <- setNames(vector("list", length(cols)), cols)
-    as.data.frame(lapply(lst, as.character), stringsAsFactors = FALSE)
+    df <- as.data.frame(lapply(lst, as.character), stringsAsFactors = FALSE)
   }
+  df$tot_cites <- as.numeric(df$tot_cites)
+  df$year <- as.numeric(df$year)
+  df
 }
