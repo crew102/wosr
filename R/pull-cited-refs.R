@@ -1,4 +1,43 @@
-pull_cited_refs <- function(uts, sid, ...) {
+#' Pull cited references data from the Web of Science
+#'
+#' @inheritParams query_wos
+#' @param uts Vector of UTs (i.e., publications) whose cited references you want.
+#'
+#' @return A data frame with the following columns:
+#'  \describe{
+#'    \item{ut}{The publication that is doing the citing. These are the UTs that
+#'    you submitted to \code{pull_cited_refs}. If one of your publications does
+#'    not have any cited refs, it will not appear in this column.}
+#'
+#'    \item{doc_id}{The cited ref's document identifier (similar to a UT).}
+#'
+#'    \item{title}{Roughly equivalent to the cited ref's title.}
+#'
+#'    \item{journal}{Roughly equivalent to the cited ref's journal.}
+#'
+#'    \item{author}{The cited ref's first author.}
+#'
+#'    \item{tot_cites}{The total number of citations the cited ref has received.}
+#'
+#'    \item{year}{The cited ref's publication year.}
+#'
+#'    \item{page}{The cited ref's page number.}
+#'
+#'    \item{volume}{The cited ref's journal volume.}
+#'  }
+#'
+#' @examples
+#' \dontrun{
+#'
+#' sid <- auth("your_username", password = "your_password")
+#' uts <- c("WOS:000362312600021", "WOS:000439855300030", "WOS:000294946900020")
+#' pull_cited_refs(uts, sid)
+#'}
+#' @export
+pull_cited_refs <- function(uts,
+                            sid = auth(Sys.getenv("WOS_USERNAME"),
+                                       Sys.getenv("WOS_PASSWORD")),
+                            ...) {
   uts <- trim_uts(uts)
   out <- pbapply::pblapply(uts, pull_one_ut_of_cited_refs, sid = sid, ... = ...)
   full_df <- do.call(rbind, out)
