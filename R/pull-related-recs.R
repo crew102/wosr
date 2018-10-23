@@ -1,18 +1,18 @@
 pull_related_recs <- function(uts,
-                              num_refs,
+                              num_recs,
                               editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
                                            "BSCI", "BHCI", "IC", "CCR", "ESCI"),
                               sid = auth(Sys.getenv("WOS_USERNAME"),
                                          Sys.getenv("WOS_PASSWORD")),
                               ...) {
 
-  if (num_refs > 100) {
-    stop("num_refs cannot be greater than 100", call. = FALSE)
+  if (num_recs > 100) {
+    stop("num_recs cannot be greater than 100", call. = FALSE)
   }
   uts <- trim_uts(uts)
   out <- pbapply::pblapply(
     uts, pull_one_ut_of_related_recs,
-    num_refs = num_refs,
+    num_recs = num_recs,
     editions = editions,
     sid = sid,
     ... = ...
@@ -21,8 +21,8 @@ pull_related_recs <- function(uts,
   cast_related_recs(full_mat)
 }
 
-pull_one_ut_of_related_recs <- function(ut, num_refs, editions, sid, ...) {
-  body <- get_rr_body(ut, num_refs, editions)
+pull_one_ut_of_related_recs <- function(ut, num_recs, editions, sid, ...) {
+  body <- get_rr_body(ut, num_recs, editions)
   response <- retry_throttle(wok_search(body, sid, ...))
 
   # if the record doesn't have any citations, the API will return an HTTP error
@@ -51,7 +51,7 @@ pull_one_ut_of_related_recs <- function(ut, num_refs, editions, sid, ...) {
   out
 }
 
-get_rr_body <- function(ut, num_refs, editions) {
+get_rr_body <- function(ut, num_recs, editions) {
   paste0(
     '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
     xmlns:woksearch="http://woksearch.v3.wokmws.thomsonreuters.com">
@@ -64,7 +64,7 @@ get_rr_body <- function(ut, num_refs, editions) {
     '<queryLanguage>en</queryLanguage>
     <retrieveParameters>
     <firstRecord>1</firstRecord>
-    <count>', num_refs, '</count>
+    <count>', num_recs, '</count>
     <option>
     <key>RecordIDs</key>
     <value>On</value>
