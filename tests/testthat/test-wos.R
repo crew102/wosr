@@ -92,3 +92,20 @@ test_that("pull_cited_refs returns no data for pubs with no cited refs", {
 
   expect_true(nrow(out) == 0)
 })
+
+test_that("pull_related_recs returns data for pubs with related recs", {
+  skip_if_no_auth()
+
+  uts <- c("WOS:000272877700013", "WOS:000272366800025")
+  out <- pull_related_recs(uts, 5, sid = sid)
+
+  expect_true(nrow(out) == 10 && all(uts %in% out$ut))
+  Sys.sleep(1)
+})
+
+test_that("pull_related_recs returns no data for pubs with no related recs", {
+  skip_if_no_auth()
+
+  out <- pull_related_recs("000346263300011", 5, sid = sid)
+  expect_true(nrow(out) == 0)
+})
