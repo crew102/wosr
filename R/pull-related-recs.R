@@ -1,3 +1,32 @@
+#' Pull related records
+#'
+#' Pull the records that have at least one citation in common with a publication
+#' of interest
+#'
+#' @inheritParams query_wos
+#' @param num_recs Number of related records to pull for each UT
+#'
+#' @return A data frame with the following columns:
+#'  \describe{
+#'    \item{ut}{The publications that you passed into \code{pull_related_rds}.
+#'    If one of your publications doesn't have any related records, it won't
+#'    appear here.}
+#'
+#'    \item{related_rec}{The publication that is related to \code{ut}.}
+#'
+#'    \item{rec_num}{The related record's ordering in the result set returned
+#'    by the API. Records that share more citations with your UTs will have
+#'    lower \code{rec_num}s.}
+#'  }
+#'
+#' @examples
+#' \dontrun{
+#'
+#' sid <- auth("your_username", password = "your_password")
+#' uts <- c("WOS:000272877700013", "WOS:000272366800025")
+#' out <- pull_related_recs(uts, 5, sid = sid)
+#'}
+#' @export
 pull_related_recs <- function(uts,
                               num_recs,
                               editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
