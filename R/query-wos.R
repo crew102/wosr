@@ -105,3 +105,35 @@ paste_eds <- function(editions) {
 }
 
 escape_query <- function(query) gsub("&", "&amp;", query)
+
+#' Create a list of UT-based queries
+#'
+#' Use this function when you have a bunch of UTs whose data you want to pull
+#' and you need to write a series of UT-based queries to do so (i.e., queries
+#' in the form "UT = (WOS:000186387100005 OR WOS:000179260700001)").
+#'
+#' @param uts Vector of UTs that will be placed inside the UT-based queries.
+#' @param uts_per_query Number of UTs to include in each query. Note, there is
+#' a limit on how long your query can be, so you probably want to keep this set
+#' to around 200.
+#'
+#' @return A vector of queries. You can feed these queries to
+#' \code{\link{pull_wos_apply}} to download data for each query.
+#'
+#' @examples
+#' \dontrun{
+#'
+#' data <- pull_wos('TS = ("animal welfare") AND PY = (2002-2003)')
+#' queries <- create_ut_queries(data$publication$ut)
+#' pull_wos_apply(queries)
+#'}
+#' @export
+create_ut_queries <- function(uts, uts_per_query = 200) {
+  ut_list <- split(uts, ceiling(seq_along(uts) / uts_per_query))
+  vapply(
+    ut_list,
+    function(x) sprintf("UT = (%s)", paste0(x, collapse = " OR ")),
+    character(1)
+  )
+}
+
