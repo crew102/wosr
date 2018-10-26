@@ -4,6 +4,7 @@
 #' of interest
 #'
 #' @inheritParams query_wos
+#' @param uts The documents you want to find related records for
 #' @param num_recs Number of related records to pull for each UT
 #'
 #' @return A data frame with the following columns:
