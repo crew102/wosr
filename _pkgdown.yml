@@ -31,7 +31,7 @@ reference:
     - read_wos_data
     - write_wos_data
     - pull_cited_refs
-    - pull_related_refs
+    - pull_related_recs
   - title: InCites API
     contents:
     - pull_incites
