@@ -1,4 +1,4 @@
-#' Pull cited references data from the Web of Science
+#' Pull cited references
 #'
 #' @inheritParams query_wos
 #' @param uts Vector of UTs (i.e., publications) whose cited references you want.

@@ -18,24 +18,13 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
-
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
-
-
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Function reference" />
-
-
-
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -58,12 +47,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">wosr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
-      </span>
+      <a class="navbar-brand" href="../index.html">wosr</a>
     </div>
-
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -89,7 +74,6 @@
   </a>
 </li>
       </ul>
-      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -97,92 +81,108 @@
       
       </header>
 
-<div class="row">
-  <div class="contents col-md-9">
+      <div class="row">
+  <div class="col-md-9">
     <div class="page-header">
-      <h1>Reference</h1>
+      <h1>
+        Reference
+        <small>version&nbsp;0.2.0</small>
+      </h1>
     </div>
 
-    <table class="ref-index">
+    <div class="contents">
+      <table class="ref-index">
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+      <colgroup>
+        <col class="alias" />
+        <col class="title" />
+      </colgroup>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-wos-api" class="hasAnchor"><a href="#section-wos-api" class="anchor"></a>WoS API</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="auth.html">auth()</a></code> </p>
-        </td>
-        <td><p>Authenticate user credentials</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="query_wos.html">query_wos()</a></code> </p>
-        </td>
-        <td><p>Query the Web of Science</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="query_wos_apply.html">query_wos_apply()</a></code> </p>
-        </td>
-        <td><p>Run <code>query_wos</code> across multiple queries</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pull_wos.html">pull_wos()</a></code> </p>
-        </td>
-        <td><p>Pull data from the Web of Science</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pull_wos_apply.html">pull_wos_apply()</a></code> </p>
-        </td>
-        <td><p>Run <code>pull_wos</code> across multiple queries</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_wos_data.html">read_wos_data()</a></code> </p>
-        </td>
-        <td><p>Read WoS data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_wos_data.html">write_wos_data()</a></code> </p>
-        </td>
-        <td><p>Write WoS data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pull_cited_refs.html">pull_cited_refs()</a></code> </p>
-        </td>
-        <td><p>Pull cited references data from the Web of Science</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-incites-api" class="hasAnchor"><a href="#section-incites-api" class="anchor"></a>InCites API</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="pull_incites.html">pull_incites()</a></code> </p>
-        </td>
-        <td><p>Pull data from InCites</p></td>
-      </tr>
-    </tbody>
-    </table>
+      <tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-wos-api" class="hasAnchor"><a href="#section-wos-api" class="anchor"></a>WoS API</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="auth.html">auth</a></code> </p>
+          </td>
+          <td><p>Authenticate user credentials</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="query_wos.html">query_wos</a></code> </p>
+          </td>
+          <td><p>Query the Web of Science</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="query_wos_apply.html">query_wos_apply</a></code> </p>
+          </td>
+          <td><p>Run <code>query_wos</code> across multiple queries</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_ut_queries.html">create_ut_queries</a></code> </p>
+          </td>
+          <td><p>Create a list of UT-based queries</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pull_wos.html">pull_wos</a></code> </p>
+          </td>
+          <td><p>Pull data from the Web of Science</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pull_wos_apply.html">pull_wos_apply</a></code> </p>
+          </td>
+          <td><p>Run <code>pull_wos</code> across multiple queries</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="read_wos_data.html">read_wos_data</a></code> </p>
+          </td>
+          <td><p>Read WoS data</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="write_wos_data.html">write_wos_data</a></code> </p>
+          </td>
+          <td><p>Write WoS data</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pull_cited_refs.html">pull_cited_refs</a></code> </p>
+          </td>
+          <td><p>Pull cited references</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pull_related_recs.html">pull_related_recs</a></code> </p>
+          </td>
+          <td><p>Pull related records</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-incites-api" class="hasAnchor"><a href="#section-incites-api" class="anchor"></a>InCites API</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pull_incites.html">pull_incites</a></code> </p>
+          </td>
+          <td><p>Pull data from InCites</p></td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -200,14 +200,11 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
-  
-
   </body>
 </html>
-

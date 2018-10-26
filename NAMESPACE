@@ -3,6 +3,7 @@
 S3method(print,query_result)
 S3method(print,wos_data)
 export(auth)
+export(create_ut_queries)
 export(pull_cited_refs)
 export(pull_incites)
 export(pull_related_recs)

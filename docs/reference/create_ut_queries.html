@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authenticate user credentials — auth â€¢ wosr</title>
+<title>Create a list of UT-based queries — create_ut_queries â€¢ wosr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -84,48 +84,43 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Authenticate user credentials</h1>
+    <h1>Create a list of UT-based queries</h1>
     </div>
 
     
-    <p><code>auth</code> asks the API's server for a session ID (SID), which you can then
-pass along to either <code><a href='query_wos.html'>query_wos</a></code> or <code><a href='pull_wos.html'>pull_wos</a></code>. Note,
-there are limits on how many session IDs you can get in a given period of time
-(roughly 5 SIDs in a 5 minute time period).</p>
+    <p>Use this function when you have a bunch of UTs whose data you want to pull
+and you need to write a series of UT-based queries to do so (i.e., queries
+in the form "UT = (WOS:000186387100005 OR WOS:000179260700001)").</p>
     
 
-    <pre class="usage"><span class='fu'>auth</span>(<span class='kw'>username</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"WOS_USERNAME"</span>),
-  <span class='kw'>password</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"WOS_PASSWORD"</span>))</pre>
+    <pre class="usage"><span class='fu'>create_ut_queries</span>(<span class='no'>uts</span>, <span class='kw'>uts_per_query</span> <span class='kw'>=</span> <span class='fl'>200</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>username</th>
-      <td><p>Your username. Specify <code>username = NULL</code> if you want to
-use IP-based authentication.</p></td>
+      <th>uts</th>
+      <td><p>Vector of UTs that will be placed inside the UT-based queries.</p></td>
     </tr>
     <tr>
-      <th>password</th>
-      <td><p>Your password. Specify <code>password = NULL</code> if you want to
-use IP-based authentication.</p></td>
+      <th>uts_per_query</th>
+      <td><p>Number of UTs to include in each query. Note, there is
+a limit on how long your query can be, so you probably want to keep this set
+to around 200.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A session ID</p>
+    <p>A vector of queries. You can feed these queries to
+<code><a href='pull_wos_apply.html'>pull_wos_apply</a></code> to download data for each query.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Pass user credentials in manually:</span>
-<span class='fu'>auth</span>(<span class='st'>"some_username"</span>, <span class='kw'>password</span> <span class='kw'>=</span> <span class='st'>"some_password"</span>)
-
-<span class='co'># Use default of looking for username and password in envvars, so you</span>
-<span class='co'># don't have to keep specifying them in your code:</span>
-<span class='fu'>Sys.setenv</span>(<span class='kw'>WOS_USERNAME</span> <span class='kw'>=</span> <span class='st'>"some_username"</span>, <span class='kw'>WOS_PASSWORD</span> <span class='kw'>=</span> <span class='st'>"some_password"</span>)
-<span class='fu'>auth</span>()
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pull_wos.html'>pull_wos</a></span>(<span class='st'>'TS = ("animal welfare") AND PY = (2002-2003)'</span>)
+<span class='no'>queries</span> <span class='kw'>&lt;-</span> <span class='fu'>create_ut_queries</span>(<span class='no'>data</span>$<span class='no'>publication</span>$<span class='no'>ut</span>)
+<span class='fu'><a href='pull_wos_apply.html'>pull_wos_apply</a></span>(<span class='no'>queries</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

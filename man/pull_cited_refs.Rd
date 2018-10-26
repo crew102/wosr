@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull-cited-refs.R
 \name{pull_cited_refs}
 \alias{pull_cited_refs}
-\title{Pull cited references data from the Web of Science}
+\title{Pull cited references}
 \usage{
 pull_cited_refs(uts, sid = auth(Sys.getenv("WOS_USERNAME"),
   Sys.getenv("WOS_PASSWORD")), ...)
@@ -42,7 +42,7 @@ A data frame with the following columns:
  }
 }
 \description{
-Pull cited references data from the Web of Science
+Pull cited references
 }
 \examples{
 \dontrun{

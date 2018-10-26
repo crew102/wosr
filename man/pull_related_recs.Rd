@@ -4,12 +4,13 @@
 \alias{pull_related_recs}
 \title{Pull related records}
 \usage{
-pull_related_recs(uts, num_recs, editions = c("SCI", "SSCI", "AHCI",
-  "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR", "ESCI"),
-  sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
-  ...)
+pull_related_recs(uts, num_recs, editions = c("SCI", "SSCI", "AHCI", "ISTP",
+  "ISSHP", "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+  sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")), ...)
 }
 \arguments{
+\item{uts}{The documents you want to find related records for}
+
 \item{num_recs}{Number of related records to pull for each UT}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
