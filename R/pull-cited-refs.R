@@ -147,7 +147,8 @@ cast_cited_ref_df <- function(df) {
       "ut", "doc_id", "title", "journal", "author",
       "tot_cites", "year", "page", "volume"
     )
-    lst <- setNames(vector("list", length(cols)), cols)
+    lst <- vector("list", length(cols))
+    names(lst) <- cols
     df <- as.data.frame(lapply(lst, as.character), stringsAsFactors = FALSE)
   }
   df$tot_cites <- as.numeric(df$tot_cites)
