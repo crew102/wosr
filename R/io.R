@@ -21,7 +21,6 @@
 #' write_wos_data(wos_data, ".")
 #'
 #' # Write files to "wos-data" dir
-#' dir.create("wos-data")
 #' write_wos_data(wos_data, "wos-data")
 #'}
 #' @export
@@ -54,7 +53,7 @@ full_path <- function(dir, x) file.path(dir, paste0(x, ".csv"))
 #' \code{\link{write_wos_data}}) and places the data in an object of class
 #' \code{wos_data}.
 #'
-#' @param dir Path the directory where you wrote the CSV files.
+#' @param dir Path to the directory where you wrote the CSV files.
 #'
 #' @return An object of class \code{wos_data}.
 #'

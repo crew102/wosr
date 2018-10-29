@@ -9,7 +9,7 @@ query_wos_apply(queries, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
   Sys.getenv("WOS_PASSWORD")), ...)
 }
 \arguments{
-\item{queries}{Vector of queries to issue to the WoS API.}
+\item{queries}{Vector of queries run.}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
 \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
@@ -23,7 +23,7 @@ throttling limits placed on new sessions.}
 }
 \value{
 A data frame which lists the number of records returned by each of
-the queries in your \code{queries} vector.
+your queries.
 }
 \description{
 Run \code{query_wos} across multiple queries

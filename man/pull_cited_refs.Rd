@@ -21,8 +21,8 @@ throttling limits placed on new sessions.}
 A data frame with the following columns:
  \describe{
    \item{ut}{The publication that is doing the citing. These are the UTs that
-   you submitted to \code{pull_cited_refs}. If one of your publications does
-   not have any cited refs, it will not appear in this column.}
+   you submitted to \code{pull_cited_refs}. If one of your publications
+   doesn't have any cited refs, it will not appear in this column.}
 
    \item{doc_id}{The cited ref's document identifier (similar to a UT).}
 

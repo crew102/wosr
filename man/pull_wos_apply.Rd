@@ -23,8 +23,8 @@ throttling limits placed on new sessions.}
 }
 \value{
 The same set of data frames that \code{\link{pull_wos}} returns, with
-the addition of a data frame named \code{query}. This data frame contains a
-mapping of queries to publications that were returned by those queries.
+the addition of a data frame named \code{query}. This data frame frame tells
+you which publications were returned by a given query.
 }
 \description{
 Run \code{pull_wos} across multiple queries

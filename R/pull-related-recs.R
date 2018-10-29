@@ -1,15 +1,16 @@
 #' Pull related records
 #'
 #' Pull the records that have at least one citation in common with a publication
-#' of interest
+#' of interest.
 #'
 #' @inheritParams query_wos
-#' @param uts The documents you want to find related records for
-#' @param num_recs Number of related records to pull for each UT
+#' @param uts The documents whose related records you want to pull.
+#' @param num_recs Number of related records to pull for each UT. This value
+#' must be <= 100.
 #'
 #' @return A data frame with the following columns:
 #'  \describe{
-#'    \item{ut}{The publications that you passed into \code{pull_related_rds}.
+#'    \item{ut}{The publications that you passed into \code{pull_related_recs}.
 #'    If one of your publications doesn't have any related records, it won't
 #'    appear here.}
 #'
@@ -17,7 +18,7 @@
 #'
 #'    \item{rec_num}{The related record's ordering in the result set returned
 #'    by the API. Records that share more citations with your UTs will have
-#'    lower \code{rec_num}s.}
+#'    smaller \code{rec_num}s.}
 #'  }
 #'
 #' @examples

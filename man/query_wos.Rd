@@ -10,7 +10,7 @@ query_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI",
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
-for details on how to write a query as well as a the list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
+for details on how to write a query as well as this list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
 \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
@@ -23,7 +23,7 @@ throttling limits placed on new sessions.}
 \item{...}{Arguments passed along to \code{\link[httr]{POST}}.}
 }
 \value{
-An object of class \code{query_result}. This object has the number
+An object of class \code{query_result}. This object contains the number
 of publications that are returned by your query (\code{rec_cnt}), as well as
 some info that \code{\link{pull_wos}} uses when it calls \code{query_wos}
 internally.
@@ -31,7 +31,7 @@ internally.
 \description{
 Returns the number of records that match a given query. It's best to call
 this function before calling \code{\link{pull_wos}} so that you know how
-many records you are trying to download before you attempt to do so.
+many records you're trying to download before attempting to do so.
 }
 \examples{
 \dontrun{

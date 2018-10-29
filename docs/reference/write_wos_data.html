@@ -89,7 +89,7 @@
 
     
     <p>Writes each of the data frames in an object of class <code>wos_data</code> to its
-own csv file. Each file will be named after the name of the data frame.</p>
+own csv file.</p>
     
 
     <pre class="usage"><span class='fu'>write_wos_data</span>(<span class='no'>wos_data</span>, <span class='no'>dir</span>)</pre>
@@ -104,7 +104,9 @@ own csv file. Each file will be named after the name of the data frame.</p>
     </tr>
     <tr>
       <th>dir</th>
-      <td><p>Path to the directory where you want to write the files.</p></td>
+      <td><p>Path to the directory where you want to write the files. If the
+directory doesn't yet exist, <code>write_wos_data</code> will create it for you.
+Note, this directory cannot already have WoS data files in it.</p></td>
     </tr>
     </table>
     
@@ -122,7 +124,6 @@ own csv file. Each file will be named after the name of the data frame.</p>
 <span class='fu'>write_wos_data</span>(<span class='no'>wos_data</span>, <span class='st'>"."</span>)
 
 <span class='co'># Write files to "wos-data" dir</span>
-<span class='fu'>dir.create</span>(<span class='st'>"wos-data"</span>)
 <span class='fu'>write_wos_data</span>(<span class='no'>wos_data</span>, <span class='st'>"wos-data"</span>)
 <span class='co'># }</span></pre>
   </div>

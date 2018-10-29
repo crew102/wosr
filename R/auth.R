@@ -3,7 +3,7 @@
 #' \code{auth} asks the API's server for a session ID (SID), which you can then
 #' pass along to either \code{\link{query_wos}} or \code{\link{pull_wos}}. Note,
 #' there are limits on how many session IDs you can get in a given period of time
-#' (roughly 5 SIDs in a 5 minute time period).
+#' (roughly 5 SIDs in a 5 minute period).
 #'
 #' @param username Your username. Specify \code{username = NULL} if you want to
 #' use IP-based authentication.
@@ -18,7 +18,7 @@
 #' # Pass user credentials in manually:
 #' auth("some_username", password = "some_password")
 #'
-#' # Use default of looking for username and password in envvars, so you
+#' # Use the default of looking for username and password in envvars, so you
 #' # don't have to keep specifying them in your code:
 #' Sys.setenv(WOS_USERNAME = "some_username", WOS_PASSWORD = "some_password")
 #' auth()

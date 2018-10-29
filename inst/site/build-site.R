@@ -17,7 +17,8 @@ swap_render_fun <- function() {
         self_contained = FALSE,
         theme = NULL,
         template = path,
-        df_print = "paged" # line added by crew102
+        df_print = "paged", # line added by crew102
+        rownames.print = FALSE
       )
     )
   }

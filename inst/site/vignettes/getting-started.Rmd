@@ -50,7 +50,7 @@ data
 
 4. `pull_wos()` returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have. For example:
 
-- What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications belong to them?
+- What are the top 5 journal subject categories (JSCs) in this set of publications and which publications are classified into these JSCs?
 
 ```{r}
 library(dplyr)
@@ -80,7 +80,7 @@ data$jsc %>%
 cat_pubs <- 
   data$publication %>% 
     filter(grepl("\\bcat\\b", abstract, ignore.case = TRUE)) %>% 
-    select(ut, title)
+    select(ut)
 
 cat_pubs
 ```
@@ -101,12 +101,12 @@ cat_authors %>%
   select(ut, author_no, display_name, org)
 ```
 
-- Which funding organizations were responsible for funding publications with top citation counts?
+- Which funding organizations were responsible for funding top-cited publications?
 
 ```{r}
 data$grant %>% 
   inner_join(data$publication, by = "ut") %>% 
-  select(ut, tot_cites, grant_agency) %>% 
+  select(grant_agency, ut, tot_cites) %>% 
   distinct() %>% 
   arrange(desc(tot_cites)) %>% 
   head()

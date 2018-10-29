@@ -4,8 +4,8 @@
 #' @param queries Vector of queries to issue to the WoS API and pull data for.
 #'
 #' @return The same set of data frames that \code{\link{pull_wos}} returns, with
-#' the addition of a data frame named \code{query}. This data frame contains a
-#' mapping of queries to publications that were returned by those queries.
+#' the addition of a data frame named \code{query}. This data frame frame tells
+#' you which publications were returned by a given query.
 #'
 #' @examples
 #' \dontrun{
@@ -73,10 +73,10 @@ one_pull_wos_apply <- function(query_name, queries, editions, sid, ...) {
 #' Run \code{query_wos} across multiple queries
 #'
 #' @inheritParams query_wos
-#' @param queries Vector of queries to issue to the WoS API.
+#' @param queries Vector of queries run.
 #'
 #' @return A data frame which lists the number of records returned by each of
-#' the queries in your \code{queries} vector.
+#' your queries.
 #'
 #' @examples
 #' \dontrun{

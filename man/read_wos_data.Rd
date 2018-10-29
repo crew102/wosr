@@ -7,7 +7,7 @@
 read_wos_data(dir)
 }
 \arguments{
-\item{dir}{Path the directory where you wrote the CSV files.}
+\item{dir}{Path to the directory where you wrote the CSV files.}
 }
 \value{
 An object of class \code{wos_data}.

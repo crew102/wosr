@@ -2,12 +2,12 @@
 % Please edit documentation in R/query-wos.R
 \name{create_ut_queries}
 \alias{create_ut_queries}
-\title{Create a list of UT-based queries}
+\title{Create a vector of UT-based queries}
 \usage{
 create_ut_queries(uts, uts_per_query = 200)
 }
 \arguments{
-\item{uts}{Vector of UTs that will be placed inside the UT-based queries.}
+\item{uts}{UTs that will be placed inside the UT-based queries.}
 
 \item{uts_per_query}{Number of UTs to include in each query. Note, there is
 a limit on how long your query can be, so you probably want to keep this set

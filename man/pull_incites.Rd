@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull-incites.R
 \name{pull_incites}
 \alias{pull_incites}
-\title{Pull data from InCites}
+\title{Pull data from the InCites API}
 \usage{
 pull_incites(uts, key = Sys.getenv("INCITES_KEY"), as_raw = FALSE, ...)
 }
@@ -28,7 +28,7 @@ The definitions for the columns in this data frame can be found online at
 the API's documentation \href{http://about.incites.thomsonreuters.com/api/#/}{page}
 (see the \code{DocumentLevelMetricsByUT} method details for definitions).
 Note that the column names are all converted to lowercase by
-\code{pull_incites} and the 0/1 flag variables are converted to booleans).
+\code{pull_incites} and the 0/1 flag variables are converted to booleans.
 Also note that not all publications indexed in WoS are also indexed in
 InCites, so you may not get data back for some UTs.
 }

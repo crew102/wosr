@@ -10,7 +10,7 @@ pull_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI",
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
-for details on how to write a query as well as a the list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
+for details on how to write a query as well as this list of \href{http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html}{example queries}.}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
 \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
@@ -27,7 +27,7 @@ A list of the following data frames:
  \describe{
    \item{publication}{A data frame where each row corresponds to a different
    publication. Note that each publication has a distinct \code{ut}. There is
-   a one-to-one relationship between a \code{ut} and each of the fields
+   a one-to-one relationship between a \code{ut} and each of the columns
    in this table.}
 
    \item{author}{A data frame where each row corresponds to a different
@@ -35,14 +35,14 @@ A list of the following data frames:
    other words, each row corresponds to a different author on a publication.
    You can link the authors in this table to the \code{address} and
    \code{author_address} tables to get their addresses (if they exist). See
-   example in vignette for details.}
+   example in FAQs for details.}
 
    \item{address}{A data frame where each row corresponds to a different
    publication/address pair (i.e., a \code{ut}/\code{addr_no} pair). In
    other words, each row corresponds to a different address on a publication.
    You can link the addresses in this table to the \code{author} and
    \code{author_address} tables to see which authors correspond to which
-   addresses. See example in vignette for details.}
+   addresses. See example in FAQs for details.}
 
    \item{author_address}{A data frame that specifies which authors correspond
    to which addresses on a given publication. This data frame is meant to
@@ -53,11 +53,11 @@ A list of the following data frames:
    relationship between \code{ut}'s and \code{jsc}'s.}
 
    \item{keyword}{A data frame where each row corresponds to a different
-   publication/keyword pair. These keywords are the author-assigned keywords.}
+   publication/keyword pair. These are the author-assigned keywords.}
 
    \item{keywords_plus}{A data frame where each row corresponds to a different
    publication/keywords_plus pair. These keywords are the keywords assigned
-   by the Web of Science through an automated process.}
+   by Clarivate Analytics through an automated process.}
 
    \item{grant}{A data frame where each row corresponds to a different
    publication/grant agency/grant ID triplet. Not all publications acknowledge
@@ -70,7 +70,7 @@ A list of the following data frames:
 }
 \description{
 \code{pull_wos} wraps the process of querying, downloading, parsing, and
-processing the Web of Science data that the API serves.
+processing Web of Science data.
 }
 \examples{
 \dontrun{

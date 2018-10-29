@@ -9,9 +9,10 @@ pull_related_recs(uts, num_recs, editions = c("SCI", "SSCI", "AHCI", "ISTP",
   sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")), ...)
 }
 \arguments{
-\item{uts}{The documents you want to find related records for}
+\item{uts}{The documents whose related records you want to pull.}
 
-\item{num_recs}{Number of related records to pull for each UT}
+\item{num_recs}{Number of related records to pull for each UT. This value
+must be <= 100.}
 
 \item{editions}{Web of Science editions to query. Possible values are listed
 \href{http://ipscience-help.thomsonreuters.com/wosWebServicesLite/dbEditionsOptionsGroup/databaseEditionsWos.html}{here}.}
@@ -26,7 +27,7 @@ throttling limits placed on new sessions.}
 \value{
 A data frame with the following columns:
  \describe{
-   \item{ut}{The publications that you passed into \code{pull_related_rds}.
+   \item{ut}{The publications that you passed into \code{pull_related_recs}.
    If one of your publications doesn't have any related records, it won't
    appear here.}
 
@@ -34,12 +35,12 @@ A data frame with the following columns:
 
    \item{rec_num}{The related record's ordering in the result set returned
    by the API. Records that share more citations with your UTs will have
-   lower \code{rec_num}s.}
+   smaller \code{rec_num}s.}
  }
 }
 \description{
 Pull the records that have at least one citation in common with a publication
-of interest
+of interest.
 }
 \examples{
 \dontrun{

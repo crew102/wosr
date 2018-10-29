@@ -1,4 +1,4 @@
-#' Pull data from InCites
+#' Pull data from the InCites API
 #'
 #' \strong{Important note:} The throttling limits on the InCites API are not
 #' documented anywhere and are difficult to determine from experience. As such,
@@ -23,7 +23,7 @@
 #' the API's documentation \href{http://about.incites.thomsonreuters.com/api/#/}{page}
 #' (see the \code{DocumentLevelMetricsByUT} method details for definitions).
 #' Note that the column names are all converted to lowercase by
-#' \code{pull_incites} and the 0/1 flag variables are converted to booleans).
+#' \code{pull_incites} and the 0/1 flag variables are converted to booleans.
 #' Also note that not all publications indexed in WoS are also indexed in
 #' InCites, so you may not get data back for some UTs.
 #'

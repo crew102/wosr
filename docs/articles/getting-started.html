@@ -139,7 +139,7 @@ data
 <code><a href="../reference/pull_wos.html">pull_wos()</a></code> returns a series of data frames that are like tables in a relational database. You an link these data frames together as needed, to answer whatever questions you have. For example:</li>
 </ol>
 <ul>
-<li>What are the 5 most popular journal subject categories (JSCs) in this set of publications and which publications belong to them?</li>
+<li>What are the top 5 journal subject categories (JSCs) in this set of publications and which publications are classified into these JSCs?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 
@@ -173,12 +173,12 @@ top_jscs</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_pubs &lt;-<span class="st"> </span>
 <span class="st">  </span>data<span class="op">$</span>publication <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">bcat</span><span class="ch">\\</span><span class="st">b"</span>, abstract, <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">select</span>(ut, title)
+<span class="st">    </span><span class="kw">select</span>(ut)
 
 cat_pubs</code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["title"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000256104000004","2":"Assessment of animal welfare aspects in extreme breeds of dogs and cats"},{"1":"WOS:000346849200008","2":"Introducing breathlessness as a significant animal welfare issue"},{"1":"WOS:000441200900005","2":"The Cat and Dog Fur Regulation: A Case Study on the European Union's Approach to Animal Welfare"},{"1":"WOS:000317556100002","2":"Redesigning the Donation Box: The Effect of Animal Banks on Donations for Animal Welfare"},{"1":"WOS:000282006600007","2":"Public awareness in New Zealand of animal welfare legislation relating to cats"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000256104000004"},{"1":"WOS:000346849200008"},{"1":"WOS:000441200900005"},{"1":"WOS:000317556100002"},{"1":"WOS:000282006600007"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat_authors &lt;-<span class="st"> </span>
@@ -202,17 +202,17 @@ cat_authors</code></pre></div>
   </script>
 </div>
 <ul>
-<li>Which funding organizations were responsible for funding publications with top citation counts?</li>
+<li>Which funding organizations were responsible for funding top-cited publications?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data<span class="op">$</span>grant <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">inner_join</span>(data<span class="op">$</span>publication, <span class="dt">by =</span> <span class="st">"ut"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(ut, tot_cites, grant_agency) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(grant_agency, ut, tot_cites) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot_cites)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">head</span>()</code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ut"],"name":[1],"type":["chr"],"align":["left"]},{"label":["tot_cites"],"name":[2],"type":["int"],"align":["right"]},{"label":["grant_agency"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"WOS:000266414200001","2":"80","3":"Ontario Graduate Scholarship","_rn_":"1"},{"1":"WOS:000266414200001","2":"80","3":"NSERC postgraduate scholarship","_rn_":"2"},{"1":"WOS:000346849200008","2":"25","3":"Animal Welfare Science and Bioethics Centre, Massey University","_rn_":"3"},{"1":"WOS:000376588600097","2":"21","3":"United States National Science Foundation Division of Social and Economic Sciences","_rn_":"4"},{"1":"WOS:000376588600097","2":"21","3":"National Science Foundation, Science, Technology, and Society program","_rn_":"5"},{"1":"WOS:000250058400056","2":"21","3":"Intramural NIH HHS","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["grant_agency"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ut"],"name":[2],"type":["chr"],"align":["left"]},{"label":["tot_cites"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Ontario Graduate Scholarship","2":"WOS:000266414200001","3":"80","_rn_":"1"},{"1":"NSERC postgraduate scholarship","2":"WOS:000266414200001","3":"80","_rn_":"2"},{"1":"Animal Welfare Science and Bioethics Centre, Massey University","2":"WOS:000346849200008","3":"25","_rn_":"3"},{"1":"United States National Science Foundation Division of Social and Economic Sciences","2":"WOS:000376588600097","3":"21","_rn_":"4"},{"1":"National Science Foundation, Science, Technology, and Society program","2":"WOS:000376588600097","3":"21","_rn_":"5"},{"1":"Intramural NIH HHS","2":"WOS:000250058400056","3":"21","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ol start="5" style="list-style-type: decimal">

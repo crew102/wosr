@@ -8,13 +8,13 @@ wosr
 Installation
 ------------
 
-You can get the stable version from CRAN
+You can get the stable version from CRAN:
 
 ``` r
 install.packages("wosr")
 ```
 
-Or the development version from GitHub
+Or the development version from GitHub:
 
 ``` r
 if (!"devtools" %in% rownames(installed.packages())) 

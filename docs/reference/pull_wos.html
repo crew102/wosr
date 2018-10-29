@@ -89,7 +89,7 @@
 
     
     <p><code>pull_wos</code> wraps the process of querying, downloading, parsing, and
-processing the Web of Science data that the API serves.</p>
+processing Web of Science data.</p>
     
 
     <pre class="usage"><span class='fu'>pull_wos</span>(<span class='no'>query</span>, <span class='kw'>editions</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"SCI"</span>, <span class='st'>"SSCI"</span>, <span class='st'>"AHCI"</span>, <span class='st'>"ISTP"</span>, <span class='st'>"ISSHP"</span>, <span class='st'>"BSCI"</span>,
@@ -102,7 +102,7 @@ processing the Web of Science data that the API serves.</p>
     <tr>
       <th>query</th>
       <td><p>Query string. See the <a href='https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence'>WoS query documentation</a> page
-for details on how to write a query as well as a the list of <a href='http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html'>example queries</a>.</p></td>
+for details on how to write a query as well as this list of <a href='http://images.webofknowledge.com.ezproxy.lib.vt.edu/WOKRS527R13/help/WOS/hp_advanced_examples.html'>example queries</a>.</p></td>
     </tr>
     <tr>
       <th>editions</th>
@@ -127,7 +127,7 @@ throttling limits placed on new sessions.</p></td>
     <p>A list of the following data frames:</p><dl class='dl-horizontal'>
    <dt>publication</dt><dd><p>A data frame where each row corresponds to a different
    publication. Note that each publication has a distinct <code>ut</code>. There is
-   a one-to-one relationship between a <code>ut</code> and each of the fields
+   a one-to-one relationship between a <code>ut</code> and each of the columns
    in this table.</p></dd>
 
    <dt>author</dt><dd><p>A data frame where each row corresponds to a different
@@ -135,14 +135,14 @@ throttling limits placed on new sessions.</p></td>
    other words, each row corresponds to a different author on a publication.
    You can link the authors in this table to the <code>address</code> and
    <code>author_address</code> tables to get their addresses (if they exist). See
-   example in vignette for details.</p></dd>
+   example in FAQs for details.</p></dd>
 
    <dt>address</dt><dd><p>A data frame where each row corresponds to a different
    publication/address pair (i.e., a <code>ut</code>/<code>addr_no</code> pair). In
    other words, each row corresponds to a different address on a publication.
    You can link the addresses in this table to the <code>author</code> and
    <code>author_address</code> tables to see which authors correspond to which
-   addresses. See example in vignette for details.</p></dd>
+   addresses. See example in FAQs for details.</p></dd>
 
    <dt>author_address</dt><dd><p>A data frame that specifies which authors correspond
    to which addresses on a given publication. This data frame is meant to
@@ -153,11 +153,11 @@ throttling limits placed on new sessions.</p></td>
    relationship between <code>ut</code>'s and <code>jsc</code>'s.</p></dd>
 
    <dt>keyword</dt><dd><p>A data frame where each row corresponds to a different
-   publication/keyword pair. These keywords are the author-assigned keywords.</p></dd>
+   publication/keyword pair. These are the author-assigned keywords.</p></dd>
 
    <dt>keywords_plus</dt><dd><p>A data frame where each row corresponds to a different
    publication/keywords_plus pair. These keywords are the keywords assigned
-   by the Web of Science through an automated process.</p></dd>
+   by Clarivate Analytics through an automated process.</p></dd>
 
    <dt>grant</dt><dd><p>A data frame where each row corresponds to a different
    publication/grant agency/grant ID triplet. Not all publications acknowledge

@@ -10,14 +10,16 @@ write_wos_data(wos_data, dir)
 \item{wos_data}{An object of class \code{wos_data}, created by calling
 \code{\link{pull_wos}}.}
 
-\item{dir}{Path to the directory where you want to write the files.}
+\item{dir}{Path to the directory where you want to write the files. If the
+directory doesn't yet exist, \code{write_wos_data} will create it for you.
+Note, this directory cannot already have WoS data files in it.}
 }
 \value{
 Nothing. Files are written to disk.
 }
 \description{
 Writes each of the data frames in an object of class \code{wos_data} to its
-own csv file. Each file will be named after the name of the data frame.
+own csv file.
 }
 \examples{
 \dontrun{
@@ -29,7 +31,6 @@ wos_data <- pull_wos("TS = (dog welfare) AND PY = 2010", sid = sid)
 write_wos_data(wos_data, ".")
 
 # Write files to "wos-data" dir
-dir.create("wos-data")
 write_wos_data(wos_data, "wos-data")
 }
 }

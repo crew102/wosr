@@ -89,7 +89,7 @@
 
     
     <p>Pull the records that have at least one citation in common with a publication
-of interest</p>
+of interest.</p>
     
 
     <pre class="usage"><span class='fu'>pull_related_recs</span>(<span class='no'>uts</span>, <span class='no'>num_recs</span>, <span class='kw'>editions</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"SCI"</span>, <span class='st'>"SSCI"</span>, <span class='st'>"AHCI"</span>, <span class='st'>"ISTP"</span>,
@@ -101,11 +101,12 @@ of interest</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>uts</th>
-      <td><p>The documents you want to find related records for</p></td>
+      <td><p>The documents whose related records you want to pull.</p></td>
     </tr>
     <tr>
       <th>num_recs</th>
-      <td><p>Number of related records to pull for each UT</p></td>
+      <td><p>Number of related records to pull for each UT. This value
+must be &lt;= 100.</p></td>
     </tr>
     <tr>
       <th>editions</th>
@@ -128,7 +129,7 @@ throttling limits placed on new sessions.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame with the following columns:</p><dl class='dl-horizontal'>
-   <dt>ut</dt><dd><p>The publications that you passed into <code>pull_related_rds</code>.
+   <dt>ut</dt><dd><p>The publications that you passed into <code>pull_related_recs</code>.
    If one of your publications doesn't have any related records, it won't
    appear here.</p></dd>
 
@@ -136,7 +137,7 @@ throttling limits placed on new sessions.</p></td>
 
    <dt>rec_num</dt><dd><p>The related record's ordering in the result set returned
    by the API. Records that share more citations with your UTs will have
-   lower <code>rec_num</code>s.</p></dd>
+   smaller <code>rec_num</code>s.</p></dd>
  </dl>
 
     
