@@ -1,11 +1,13 @@
 #' Write WoS data
 #'
 #' Writes each of the data frames in an object of class \code{wos_data} to its
-#' own csv file. Each file will be named after the name of the data frame.
+#' own csv file.
 #'
 #' @param wos_data An object of class \code{wos_data}, created by calling
 #' \code{\link{pull_wos}}.
-#' @param dir Path to the directory where you want to write the files.
+#' @param dir Path to the directory where you want to write the files. If the
+#' directory doesn't yet exist, \code{write_wos_data} will create it for you.
+#' Note, this directory cannot already have WoS data files in it.
 #'
 #' @return Nothing. Files are written to disk.
 #'
@@ -25,10 +27,11 @@
 #' @export
 write_wos_data <- function(wos_data, dir) {
 
-  if (!dir.exists(dir))
-    stop(
-      "Directory ", normalizePath(dir),
-      " doesn't exists. Create it and try again."
+  if (!dir.exists(dir)) dir.create(dir, recursive = TRUE)
+  if (length(list.files(dir, "publication\\.csv", all.files = TRUE)))
+   stop(
+      "It looks like there are already WoS files in ", normalizePath(dir),
+      ". Remove these files and try again."
     )
 
   if (!("wos_data" %in% class(wos_data)))
