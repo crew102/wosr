@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • wosr</title>
+<title>Changelog • wosr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,24 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
   <link href="../extra.css" rel="stylesheet">
   
+<meta property="og:title" content="Changelog" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +58,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">wosr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">wosr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -74,6 +89,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -81,28 +97,54 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="contents">
-    <div id="wosr-0-2-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#wosr-0-2-0" class="anchor"></a>wosr 0.2.0</h1>
+    <div id="wosr-0-3-0" class="section level1">
+<h1 class="page-header">
+<a href="#wosr-0-3-0" class="anchor"></a>wosr 0.3.0<small> Unreleased </small>
+</h1>
 <div id="new-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h2>
 <ul>
 <li>
-<code><a href="../reference/query_wos_apply.html">query_wos_apply()</a></code> and <code><a href="../reference/pull_wos_apply.html">pull_wos_apply()</a></code> added to issue multiple queries to the WoS API and pull the data for those queries, respectively</li>
+<code><a href="../reference/pull_cited_refs.html">pull_cited_refs()</a></code> added to pull a publication’s cited references (#5)</li>
+<li>
+<code><a href="../reference/pull_related_recs.html">pull_related_recs()</a></code> added to pull a publication’s set of related references</li>
+<li>
+<code>create_ut_quereis()</code> added to create a list of UT-based queries</li>
 </ul>
 </div>
 <div id="misc" class="section level2">
 <h2 class="hasAnchor">
 <a href="#misc" class="anchor"></a>Misc</h2>
+<ul>
+<li>An error is no longer thrown when user attempts IP-based authentication (#6)</li>
+<li>
+<code><a href="../reference/write_wos_data.html">write_wos_data()</a></code> now creates the directory to write files to if it doesn’t already exist</li>
+</ul>
+</div>
+</div>
+    <div id="wosr-0-2-0" class="section level1">
+<h1 class="page-header">
+<a href="#wosr-0-2-0" class="anchor"></a>wosr 0.2.0<small> 2018-09-27 </small>
+</h1>
+<div id="new-functions-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-functions-1" class="anchor"></a>New functions</h2>
+<ul>
+<li>
+<code><a href="../reference/query_wos_apply.html">query_wos_apply()</a></code> and <code><a href="../reference/pull_wos_apply.html">pull_wos_apply()</a></code> added to issue multiple queries to the WoS API and pull the data for those queries, respectively</li>
+</ul>
+</div>
+<div id="misc-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#misc-1" class="anchor"></a>Misc</h2>
 <ul>
 <li>
 <code><a href="../reference/pull_wos.html">pull_wos()</a></code> now returns empty data frames instead of <code>NA</code> if the user’s query returns no results</li>
@@ -112,11 +154,12 @@
 </div>
 </div>
     <div id="wosr-0-1-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#wosr-0-1-2" class="anchor"></a>wosr 0.1.2</h1>
-<div id="new-functions-1" class="section level2">
+<h1 class="page-header">
+<a href="#wosr-0-1-2" class="anchor"></a>wosr 0.1.2<small> 2018-07-27 </small>
+</h1>
+<div id="new-functions-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h2>
+<a href="#new-functions-2" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/write_wos_data.html">write_wos_data()</a></code> and <code><a href="../reference/read_wos_data.html">read_wos_data()</a></code> added to write the data returned by <code><a href="../reference/pull_wos.html">pull_wos()</a></code> as a series of CSVs and to read those CSVs back into R</li>
@@ -132,22 +175,24 @@
 </div>
 </div>
     <div id="wosr-0-1-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#wosr-0-1-1" class="anchor"></a>wosr 0.1.1</h1>
-<div id="misc-1" class="section level2">
+<h1 class="page-header">
+<a href="#wosr-0-1-1" class="anchor"></a>wosr 0.1.1<small> 2018-05-03 </small>
+</h1>
+<div id="misc-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#misc-1" class="anchor"></a>Misc</h2>
+<a href="#misc-2" class="anchor"></a>Misc</h2>
 <ul>
 <li>The InCites API was updated by Clarivate, including moving to a new endpoint URL and changing the order of fields returned by the “DocumentLevelMetricsByUT” method. Small changes to the internals of <code><a href="../reference/pull_incites.html">pull_incites()</a></code> were made to reflect this.</li>
 </ul>
 </div>
 </div>
     <div id="wosr-0-1-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#wosr-0-1-0" class="anchor"></a>wosr 0.1.0</h1>
-<div id="new-functions-2" class="section level2">
+<h1 class="page-header">
+<a href="#wosr-0-1-0" class="anchor"></a>wosr 0.1.0<small> 2018-02-06 </small>
+</h1>
+<div id="new-functions-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions-2" class="anchor"></a>New functions</h2>
+<a href="#new-functions-3" class="anchor"></a>New functions</h2>
 <ul>
 <li>
 <code><a href="../reference/auth.html">auth()</a></code> added to get a session ID from WoS API server</li>
@@ -158,13 +203,13 @@
 </ul>
 </div>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#wosr-0-3-0">0.3.0</a></li>
         <li><a href="#wosr-0-2-0">0.2.0</a></li>
         <li><a href="#wosr-0-1-2">0.1.2</a></li>
         <li><a href="#wosr-0-1-1">0.1.1</a></li>
@@ -181,11 +226,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -110,7 +110,7 @@ pull_incites(uts)
 #>                      ut article_type tot_cites journal_expected_citations
 #> 1.1 WOS:000272877700013           AA         1                        3.4
 #> 1.2 WOS:000272366800025           AA         4                        4.3
-#> 1.3 WOS:000272272000015           AA         3                        9.0
+#> 1.3 WOS:000272272000015           AA         3                        9.1
 #>     journal_act_exp_citations impact_factor avg_expected_rate percentile
 #> 1.1                      0.29          0.49                20         87
 #> 1.2                      0.93          0.85                20         63
@@ -135,33 +135,33 @@ wos <- pull_wos('TS = ("dog welfare")', sid = sid)
 # Download InCites data
 head(pull_incites(wos$publication$ut))
 #>                      ut article_type tot_cites journal_expected_citations
-#> 1.1 WOS:A1996VH04300002           AA        19                      30.22
-#> 1.2 WOS:000438259600009           AA         1                       1.12
-#> 1.3 WOS:000438259600004           AA         1                       1.12
-#> 1.4 WOS:000436270600004           AA         0                       0.26
-#> 1.5 WOS:000435128900013            R         3                       2.00
-#> 1.6 WOS:000432234000011           AA         0                       0.14
+#> 1.1 WOS:A1996VH04300002           AA        19                     30.308
+#> 1.2 WOS:000439855300030            L         0                      0.068
+#> 1.3 WOS:000438259600009           AA         1                      1.186
+#> 1.4 WOS:000438259600004           AA         1                      1.186
+#> 1.5 WOS:000436270600004           AA         1                      0.321
+#> 1.6 WOS:000435128900013            R         3                      2.000
 #>     journal_act_exp_citations impact_factor avg_expected_rate percentile
-#> 1.1                      0.63           1.5             19.15       22.8
-#> 1.2                      0.90           1.6              0.17       10.9
-#> 1.3                      0.90           1.6              0.17       10.9
-#> 1.4                      0.00           1.7              0.13      100.0
-#> 1.5                      1.50           1.6              0.32        1.2
-#> 1.6                      0.00           1.5              0.15      100.0
+#> 1.1                      0.63           1.5             19.20       22.8
+#> 1.2                      0.00           2.0              0.11      100.0
+#> 1.3                      0.84           1.6              0.21       12.5
+#> 1.4                      0.84           1.6              0.21       12.5
+#> 1.5                      3.12           1.7              0.15       11.5
+#> 1.6                      1.50           1.6              0.40        1.5
 #>      nci esi_most_cited_article hot_paper is_international_collab
 #> 1.1 0.99                  FALSE     FALSE                   FALSE
-#> 1.2 5.72                  FALSE     FALSE                   FALSE
-#> 1.3 5.72                  FALSE     FALSE                   FALSE
-#> 1.4 0.00                  FALSE     FALSE                   FALSE
-#> 1.5 9.35                  FALSE     FALSE                    TRUE
-#> 1.6 0.00                  FALSE     FALSE                   FALSE
+#> 1.2 0.00                  FALSE     FALSE                   FALSE
+#> 1.3 4.74                  FALSE     FALSE                   FALSE
+#> 1.4 4.74                  FALSE     FALSE                   FALSE
+#> 1.5 6.46                  FALSE     FALSE                   FALSE
+#> 1.6 7.46                  FALSE     FALSE                    TRUE
 #>     is_institution_collab is_industry_collab oa_flag
 #> 1.1                 FALSE              FALSE   FALSE
 #> 1.2                 FALSE              FALSE   FALSE
 #> 1.3                 FALSE              FALSE   FALSE
-#> 1.4                 FALSE              FALSE    TRUE
-#> 1.5                  TRUE              FALSE   FALSE
-#> 1.6                 FALSE              FALSE   FALSE
+#> 1.4                 FALSE              FALSE   FALSE
+#> 1.5                 FALSE              FALSE    TRUE
+#> 1.6                  TRUE              FALSE   FALSE
 ```
 
 Learning more
