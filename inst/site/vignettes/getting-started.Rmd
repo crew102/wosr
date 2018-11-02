@@ -1,10 +1,6 @@
 ---
 title: "Getting started"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Getting started}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 
 ```{r, echo = FALSE, message = FALSE}

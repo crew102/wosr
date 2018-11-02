@@ -1,10 +1,6 @@
 ---
 title: "Frequently asked questions"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{FAQs}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 
 ### Why does the WoS API sometimes return a different number of records than the WoS web interface?
