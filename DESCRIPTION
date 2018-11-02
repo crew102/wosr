@@ -1,13 +1,13 @@
 Package: wosr
 Type: Package
 Title: Clients to the 'Web of Science' and 'InCites' APIs
-Description: An R client to the 'Web of Science' and 'InCites' 
-  <https://clarivate.com/products/data-integration/> web services, which 
+Description: R clients to the 'Web of Science' and 'InCites' 
+  <https://clarivate.com/products/data-integration/> APIs, which 
   allow you to programmatically download publication and citation data
   indexed in the 'Web of Science' and 'InCites' databases.
 URL: https://vt-arc.github.io/wosr/index.html
 BugReports: https://github.com/vt-arc/wosr/issues
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: person("Christopher", "Baker", email = "chriscrewbaker@gmail.com",
   role = c("aut", "cre"))
 License: MIT + file LICENSE
