@@ -1,3 +1,16 @@
+# wosr 0.3.0
+
+## New functions
+
+* `pull_cited_refs()` added to pull a publication's cited references (#5)
+* `pull_related_recs()` added to pull a publication's set of related references
+* `create_ut_quereis()` added to create a list of UT-based queries
+
+## Misc
+
+* An error is no longer thrown when user attempts IP-based authentication (#6)
+* `write_wos_data()` now creates the directory to write files to if it doesn't already exist
+
 # wosr 0.2.0
 
 ## New functions
