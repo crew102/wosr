@@ -57,10 +57,11 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
       ua()
     )
   } else {
+    auth_val <- get_authorization_value(username, password)
     response <- httr::POST(
       url,
       body = body,
-      httr::authenticate(username, password = password),
+      httr::add_headers(Authorization = auth_val),
       httr::timeout(30),
       ua()
     )
@@ -72,4 +73,10 @@ auth <- function(username = Sys.getenv("WOS_USERNAME"),
   # Pull out SID from XML
   doc <- get_xml(response)
   parse_el_txt(doc, xpath = "//return")
+}
+
+get_authorization_value <- function(username, password) {
+  string <- paste0(username, ":", password)
+  raw <- charToRaw(string)
+  paste("Basic", base64enc::base64encode(raw))
 }
