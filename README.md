@@ -4,9 +4,12 @@ wosr
 > R clients to the Web of Science and Incites APIs
 
 [![Linux Build Status](https://travis-ci.org/vt-arc/wosr.svg?branch=master)](https://travis-ci.org/vt-arc/wosr) [![CRAN version](http://www.r-pkg.org/badges/version/wosr)](https://cran.r-project.org/package=wosr)
+[![Project Status: Unsupported – The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
 
 Installation
 ------------
+
+**Warning: Clarivate Analytics recently redesigned the WoS and InCites APIs, and `wosr` has not yet been updated to deal with these changes.**
 
 You can get the stable version from CRAN:
 
