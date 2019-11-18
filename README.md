@@ -9,8 +9,6 @@ wosr
 Installation
 ------------
 
-**Warning: Clarivate Analytics recently redesigned the WoS and InCites APIs, and `wosr` has not yet been updated to deal with these changes.**
-
 You can get the stable version from CRAN:
 
 ``` r
