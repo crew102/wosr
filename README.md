@@ -168,4 +168,4 @@ head(pull_incites(wos$publication$ut))
 Learning more
 -------------
 
--   To learn more, head over to `wosr`'s [webpage](https://vt-arc.github.io/wosr/index.html).
+-   To learn more, head over to `wosr`'s [webpage](https://crew102.github.io/wosr/).
