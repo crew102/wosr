@@ -8,7 +8,7 @@ enforce_schema <- function(wos_unenforced) {
     # have to run these logical tests in wonky way b/c don't want warning about
     # is.na(NULL), etc
     df_has_no_rows <- if (is_df) nrow(maybe_df) == 0 else FALSE
-    na_or_empty <- if (!is_null) df_has_no_rows || is.na(maybe_df) else FALSE
+    na_or_empty <- if (!is_null) df_has_no_rows || all(is.na(maybe_df)) else FALSE
 
     df <- if (na_or_empty || is_null) make_df(name) else maybe_df
     cast_fields(df, name)
