@@ -4,8 +4,11 @@
 \alias{pull_cited_refs}
 \title{Pull cited references}
 \usage{
-pull_cited_refs(uts, sid = auth(Sys.getenv("WOS_USERNAME"),
-  Sys.getenv("WOS_PASSWORD")), ...)
+pull_cited_refs(
+  uts,
+  sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
+  ...
+)
 }
 \arguments{
 \item{uts}{Vector of UTs (i.e., publications) whose cited references you want.}

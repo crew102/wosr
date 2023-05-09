@@ -4,10 +4,13 @@
 \alias{query_wos_apply}
 \title{Run \code{query_wos} across multiple queries}
 \usage{
-query_wos_apply(queries, editions = c("SCI", "SSCI", "AHCI", "ISTP",
-  "ISSHP", "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+query_wos_apply(
+  queries,
+  editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR",
+    "ESCI"),
   sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
-  ...)
+  ...
+)
 }
 \arguments{
 \item{queries}{Vector of queries run.}

@@ -3,8 +3,4 @@
 \docType{package}
 \name{wosr}
 \alias{wosr}
-\alias{wosr-package}
 \title{wosr}
-\description{
-wosr
-}

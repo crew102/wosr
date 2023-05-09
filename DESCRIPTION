@@ -22,7 +22,7 @@ Imports:
   utils,
   tools,
   base64enc
-RoxygenNote: 6.1.0
+RoxygenNote: 7.2.3
 Suggests: 
   testthat,
   knitr,

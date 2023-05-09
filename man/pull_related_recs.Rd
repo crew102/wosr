@@ -4,10 +4,14 @@
 \alias{pull_related_recs}
 \title{Pull related records}
 \usage{
-pull_related_recs(uts, num_recs, editions = c("SCI", "SSCI", "AHCI",
-  "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+pull_related_recs(
+  uts,
+  num_recs,
+  editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR",
+    "ESCI"),
   sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
-  ...)
+  ...
+)
 }
 \arguments{
 \item{uts}{The documents whose related records you want to pull.}

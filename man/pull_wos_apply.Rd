@@ -4,10 +4,13 @@
 \alias{pull_wos_apply}
 \title{Run \code{pull_wos} across multiple queries}
 \usage{
-pull_wos_apply(queries, editions = c("SCI", "SSCI", "AHCI", "ISTP",
-  "ISSHP", "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+pull_wos_apply(
+  queries,
+  editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR",
+    "ESCI"),
   sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
-  ...)
+  ...
+)
 }
 \arguments{
 \item{queries}{Vector of queries to issue to the WoS API and pull data for.}
