@@ -1,3 +1,8 @@
+# wosr 0.3.1
+
+* Fixed issue with `pull_wos()` and associated function not working with R 4.3 (#26)
+* Updated test harness to use IP-based authentication when available
+
 # wosr 0.3.0
 
 ## New functions

@@ -7,7 +7,7 @@ Description: R clients to the 'Web of Science' and 'InCites'
   indexed in the 'Web of Science' and 'InCites' databases.
 URL: https://vt-arc.github.io/wosr/index.html
 BugReports: https://github.com/vt-arc/wosr/issues
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: person("Christopher", "Baker", email = "chriscrewbaker@gmail.com",
   role = c("aut", "cre"))
 License: MIT + file LICENSE
@@ -22,7 +22,7 @@ Imports:
   utils,
   tools,
   base64enc
-RoxygenNote: 6.1.0
+RoxygenNote: 7.2.3
 Suggests: 
   testthat,
   knitr,

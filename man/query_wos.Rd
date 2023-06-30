@@ -4,10 +4,13 @@
 \alias{query_wos}
 \title{Query the Web of Science}
 \usage{
-query_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
-  "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+query_wos(
+  query,
+  editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR",
+    "ESCI"),
   sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
-  ...)
+  ...
+)
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
@@ -40,7 +43,7 @@ many records you're trying to download before attempting to do so.
 # Get session ID and reuse it across queries:
 sid <- auth("some_username", password = "some_password")
 
-query_wos("TS = (\\"dog welfare\\") AND PY = (1990-2007)", sid = sid)
+query_wos("TS = (\"dog welfare\") AND PY = (1990-2007)", sid = sid)
 
 # Finds records in which Max Planck appears in the address field.
 query_wos("AD = Max Planck", sid = sid)

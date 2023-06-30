@@ -4,10 +4,13 @@
 \alias{pull_wos}
 \title{Pull data from the Web of Science}
 \usage{
-pull_wos(query, editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP",
-  "BSCI", "BHCI", "IC", "CCR", "ESCI"),
+pull_wos(
+  query,
+  editions = c("SCI", "SSCI", "AHCI", "ISTP", "ISSHP", "BSCI", "BHCI", "IC", "CCR",
+    "ESCI"),
   sid = auth(Sys.getenv("WOS_USERNAME"), Sys.getenv("WOS_PASSWORD")),
-  ...)
+  ...
+)
 }
 \arguments{
 \item{query}{Query string. See the \href{https://images.webofknowledge.com/images/help/WOK/hs_search_operators.html#dsy863-TRS_search_operator_precedence}{WoS query documentation} page
@@ -80,10 +83,10 @@ sid <- auth("your_username", password = "your_password")
 pull_wos("TS = (dog welfare) AND PY = 2010", sid = sid)
 
 # Re-use session ID. This is best practice to avoid throttling limits:
-pull_wos("TI = \\"dog welfare\\"", sid = sid)
+pull_wos("TI = \"dog welfare\"", sid = sid)
 
 # Get fresh session ID:
-pull_wos("TI = \\"pet welfare\\"", sid = auth("your_username", "your_password"))
+pull_wos("TI = \"pet welfare\"", sid = auth("your_username", "your_password"))
 
 # It's best to see how many records your query matches before actually
 # downloading the data. To do this, call query_wos before running pull_wos:

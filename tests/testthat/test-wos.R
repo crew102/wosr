@@ -4,7 +4,7 @@ test_that("authentication works", {
   skip_if_no_auth()
   # reuse sid across tests, so we don't run into throttling limits. note that
   # this has to be inside test_that function so we can use skip_if_no_auth()
-  sid <<- auth()
+  if (!exists("sid")) sid <<- auth()
   expect_true(is.character(sid))
 })
 

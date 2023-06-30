@@ -4,8 +4,10 @@
 \alias{auth}
 \title{Authenticate user credentials}
 \usage{
-auth(username = Sys.getenv("WOS_USERNAME"),
-  password = Sys.getenv("WOS_PASSWORD"))
+auth(
+  username = Sys.getenv("WOS_USERNAME"),
+  password = Sys.getenv("WOS_PASSWORD")
+)
 }
 \arguments{
 \item{username}{Your username. Specify \code{username = NULL} if you want to
